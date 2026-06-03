@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>$POSAA — Public Opinion, Sentiment, Antics & Assholery</title>
+  <meta name="description" content="$POSAA is a community-driven meme token on XRPL celebrating raw, unfiltered human expression. Public Opinion, Sentiment, Antics & Assholery. No presale. 0% tax. Fair launch." />
+  <meta name="keywords" content="POSAA, XRPL, XRP meme token, crypto meme, free speech token, public opinion token, XRPL DEX, meme coin" />
+  <meta property="og:title" content="$POSAA — Unfiltered Public Opinion on the Blockchain" />
+  <meta property="og:description" content="Rejecting echo chambers, mocking hypocrisy, and empowering everyday people. $POSAA on XRPL." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="$POSAA — Public Opinion, Sentiment, Antics & Assholery" />
+  <meta name="twitter:description" content="Community meme token on XRPL. 0% tax. No presale. Satire, provocation, and humor." />
+  <link rel="canonical" href="https://posaa.io/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #050505;
+      --dark: #0a0a0a;
+      --dark-gray: #151515;
+      --gold: #F4B400;
+      --gold-soft: #FFD54F;
+      --purple: #7B2FFF;
+      --violet: #A855F7;
+      --white: #FFFFFF;
+      --light-gray: #CFCFCF;
+      --gray: #888888;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* ── PARTICLES ── */
+    #particles-canvas {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 0; opacity: 0.45;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 70px;
+      background: rgba(5,5,5,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(244,180,0,0.15);
+    }
+    .nav-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900; font-size: 1.3rem;
+      color: var(--gold);
+      text-shadow: 0 0 12px rgba(244,180,0,0.6);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 1rem;
+      color: var(--light-gray); text-decoration: none;
+      letter-spacing: 0.08em; transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--gold); display: block; transition: all 0.3s; }
+    .mobile-menu {
+      display: none; position: fixed; top: 70px; left: 0; right: 0;
+      background: rgba(5,5,5,0.97); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(244,180,0,0.2);
+      padding: 1.5rem 5%; flex-direction: column; gap: 1rem; z-index: 999;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 1.1rem;
+      color: var(--light-gray); text-decoration: none; padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(244,180,0,0.08);
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* ── PAGES ── */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ── SECTIONS ── */
+    section { position: relative; z-index: 1; }
+
+    /* ══════════════════════════════════════════
+       HOME PAGE
+    ══════════════════════════════════════════ */
+
+    /* BANNER VIDEO */
+    .banner-video-wrap {
+      width: 100%; margin-top: 70px; /* offset for fixed nav */
+      position: relative; z-index: 1; line-height: 0;
+      overflow: hidden;
+    }
+    .banner-video-wrap video {
+      width: 100%; max-height: 420px; object-fit: cover; display: block;
+    }
+    .banner-video-wrap::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 80px;
+      background: linear-gradient(to bottom, transparent, var(--black));
+      pointer-events: none;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: calc(100vh - 420px);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 60px 5% 60px;
+      position: relative; overflow: hidden;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(123,47,255,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 900px; }
+    .hero-logo-wrap {
+      width: 150px; height: 150px; margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      box-shadow: 0 0 40px rgba(244,180,0,0.5), 0 0 80px rgba(244,180,0,0.2), inset 0 0 30px rgba(244,180,0,0.05);
+      overflow: hidden;
+      animation: logoPulse 3s ease-in-out infinite;
+    }
+    @keyframes logoPulse {
+      0%,100% { box-shadow: 0 0 40px rgba(244,180,0,0.5), 0 0 80px rgba(244,180,0,0.2); }
+      50%      { box-shadow: 0 0 60px rgba(244,180,0,0.8), 0 0 120px rgba(244,180,0,0.3); }
+    }
+    .hero-logo-wrap video,
+    .hero-logo-wrap img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .hero-token-name {
+      font-family: 'Orbitron', sans-serif; font-weight: 900;
+      font-size: clamp(2.8rem, 8vw, 6rem);
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-soft) 50%, var(--gold) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      text-shadow: none;
+      letter-spacing: 0.05em; line-height: 1;
+      filter: drop-shadow(0 0 30px rgba(244,180,0,0.5));
+      margin-bottom: 0.5rem;
+    }
+    .hero-full-name {
+      font-family: 'Rajdhani', sans-serif; font-weight: 600;
+      font-size: clamp(0.85rem, 2.5vw, 1.3rem);
+      color: var(--light-gray); letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .hero-tagline {
+      font-family: 'Rajdhani', sans-serif; font-weight: 700;
+      font-size: clamp(1rem, 3vw, 1.6rem);
+      color: var(--white); margin-bottom: 2rem;
+      line-height: 1.3;
+    }
+    .hero-tagline span { color: var(--gold); }
+    .ca-wrap {
+      display: inline-flex; align-items: center; gap: 0.7rem;
+      background: rgba(21,21,21,0.8); border: 1px solid rgba(244,180,0,0.3);
+      border-radius: 8px; padding: 0.6rem 1rem; margin-bottom: 1.8rem;
+      backdrop-filter: blur(8px);
+    }
+    .ca-label {
+      font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 0.75rem;
+      color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .ca-address {
+      font-family: 'JetBrains Mono', monospace; font-size: clamp(0.6rem, 1.8vw, 0.85rem);
+      color: var(--light-gray); letter-spacing: 0.05em;
+    }
+    .ca-copy-btn {
+      background: rgba(244,180,0,0.15); border: 1px solid rgba(244,180,0,0.4);
+      color: var(--gold); padding: 0.3rem 0.7rem; border-radius: 5px;
+      font-family: 'Orbitron', sans-serif; font-size: 0.65rem; font-weight: 600;
+      cursor: pointer; transition: all 0.2s; letter-spacing: 0.05em; white-space: nowrap;
+    }
+    .ca-copy-btn:hover { background: rgba(244,180,0,0.3); box-shadow: 0 0 12px rgba(244,180,0,0.3); }
+    .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+    .btn-primary {
+      font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.9rem;
+      letter-spacing: 0.1em; padding: 0.85rem 2.2rem; border-radius: 6px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+      color: var(--black); border: none; cursor: pointer;
+      box-shadow: 0 0 25px rgba(244,180,0,0.4);
+      transition: all 0.2s; text-transform: uppercase;
+    }
+    .btn-primary:hover { box-shadow: 0 0 40px rgba(244,180,0,0.6); transform: translateY(-2px); }
+    .btn-secondary {
+      font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.9rem;
+      letter-spacing: 0.1em; padding: 0.85rem 2.2rem; border-radius: 6px;
+      background: transparent;
+      color: var(--violet); border: 1px solid var(--violet); cursor: pointer;
+      box-shadow: 0 0 15px rgba(168,85,247,0.2);
+      transition: all 0.2s; text-transform: uppercase;
+    }
+    .btn-secondary:hover { background: rgba(123,47,255,0.15); box-shadow: 0 0 30px rgba(168,85,247,0.4); transform: translateY(-2px); }
+    .hero-socials { display: flex; gap: 1.2rem; justify-content: center; align-items: center; }
+    .social-icon {
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 1px solid rgba(244,180,0,0.35);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); text-decoration: none; font-size: 1rem;
+      transition: all 0.2s; background: rgba(21,21,21,0.6);
+    }
+    .social-icon:hover { border-color: var(--gold); box-shadow: 0 0 20px rgba(244,180,0,0.4); background: rgba(244,180,0,0.1); transform: scale(1.1); }
+
+    /* ABOUT */
+    .about-section {
+      padding: 100px 5%;
+      background: linear-gradient(180deg, var(--black) 0%, rgba(21,21,21,0.5) 50%, var(--black) 100%);
+    }
+    .section-heading {
+      font-family: 'Orbitron', sans-serif; font-weight: 700;
+      font-size: clamp(1.6rem, 4vw, 2.8rem);
+      text-align: center; margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 15px rgba(244,180,0,0.35));
+    }
+    .section-divider {
+      width: 80px; height: 2px; margin: 0.5rem auto 3rem;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .about-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .about-intro {
+      font-family: 'Inter', sans-serif; font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+      color: var(--light-gray); line-height: 1.8;
+    }
+    .about-intro p { margin-bottom: 1.2rem; }
+    .about-intro strong { color: var(--gold); }
+    .vision-mission-wrap { display: flex; flex-direction: column; gap: 1.5rem; }
+    .glass-card {
+      background: rgba(21,21,21,0.7); border: 1px solid rgba(168,85,247,0.25);
+      border-radius: 12px; padding: 1.5rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(123,47,255,0.1), inset 0 0 20px rgba(123,47,255,0.03);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .glass-card:hover { border-color: rgba(168,85,247,0.5); box-shadow: 0 0 35px rgba(123,47,255,0.2); }
+    .glass-card-gold { border-color: rgba(244,180,0,0.25); box-shadow: 0 0 20px rgba(244,180,0,0.08); }
+    .glass-card-gold:hover { border-color: rgba(244,180,0,0.5); box-shadow: 0 0 35px rgba(244,180,0,0.15); }
+    .card-title {
+      font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.2rem;
+      color: var(--gold); letter-spacing: 0.08em; margin-bottom: 0.8rem; text-transform: uppercase;
+    }
+    .card-body { font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--light-gray); line-height: 1.7; }
+    .card-body ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .card-body ul li::before { content: '▸ '; color: var(--gold); }
+
+    /* ROADMAP */
+    .roadmap-section { padding: 100px 5%; }
+    .roadmap-timeline { max-width: 800px; margin: 0 auto; position: relative; }
+    .roadmap-timeline::before {
+      content: ''; position: absolute; left: 20px; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(180deg, var(--gold), var(--purple), var(--gold));
+    }
+    .roadmap-item { padding-left: 60px; margin-bottom: 3rem; position: relative; }
+    .roadmap-dot {
+      position: absolute; left: 10px; top: 4px;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--dark-gray); border: 2px solid var(--gold);
+      box-shadow: 0 0 12px rgba(244,180,0,0.4);
+    }
+    .roadmap-phase {
+      font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.75rem;
+      color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.3rem;
+    }
+    .roadmap-title {
+      font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.3rem;
+      color: var(--white); margin-bottom: 0.8rem;
+    }
+    .roadmap-body { font-family: 'Inter', sans-serif; font-size: 0.88rem; color: var(--light-gray); line-height: 1.7; }
+    .roadmap-body ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.4rem; }
+    .roadmap-body ul li::before { content: '→ '; color: var(--violet); }
+    .roadmap-body em { font-style: italic; font-size: 0.8rem; color: var(--gray); display: block; margin-top: 0.5rem; }
+
+    /* TOKENOMICS */
+    .tokenomics-section { padding: 100px 5%; background: rgba(10,10,10,0.5); }
+    .tokenomics-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem;
+      margin-bottom: 3rem;
+    }
+    .token-card {
+      background: rgba(21,21,21,0.8); border: 1px solid rgba(244,180,0,0.2);
+      border-radius: 12px; padding: 1.5rem; text-align: center;
+      backdrop-filter: blur(8px);
+      transition: all 0.3s; position: relative; overflow: hidden;
+    }
+    .token-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .token-card:hover { border-color: rgba(244,180,0,0.5); transform: translateY(-4px); box-shadow: 0 10px 40px rgba(244,180,0,0.1); }
+    .token-card-icon { font-size: 1.8rem; margin-bottom: 0.6rem; }
+    .token-card-label {
+      font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 0.8rem;
+      color: var(--gray); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.4rem;
+    }
+    .token-card-value {
+      font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: clamp(0.95rem, 2vw, 1.2rem);
+      color: var(--gold);
+    }
+    .token-card-sub { font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--gray); margin-top: 0.3rem; }
+    .tokenomics-bottom { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .donut-wrap { display: flex; flex-direction: column; align-items: center; }
+    .donut-wrap h3 { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--light-gray); margin-bottom: 1.2rem; text-transform: uppercase; letter-spacing: 0.1em; }
+    canvas#donutChart { max-width: 260px; }
+    .donut-legend { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1.2rem; width: 100%; max-width: 280px; }
+    .legend-item { display: flex; align-items: center; gap: 0.6rem; font-family: 'Inter', sans-serif; font-size: 0.82rem; color: var(--light-gray); }
+    .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+    .xrpl-info { display: flex; flex-direction: column; justify-content: center; gap: 1rem; }
+    .xrpl-info h3 { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+    .xrpl-item { display: flex; gap: 0.8rem; align-items: flex-start; }
+    .xrpl-bullet { color: var(--gold); font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .xrpl-text { font-family: 'Inter', sans-serif; font-size: 0.88rem; color: var(--light-gray); line-height: 1.5; }
+    .xrpl-text strong { color: var(--white); }
+
+    /* DISTRIBUTION */
+    .dist-section { padding: 80px 5%; }
+    .dist-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+    /* BUY SECTION */
+    .buy-section {
+      padding: 100px 5%;
+      background: radial-gradient(ellipse at center, rgba(123,47,255,0.08) 0%, var(--black) 70%);
+    }
+    .buy-inner { max-width: 700px; margin: 0 auto; text-align: center; }
+    .buy-ca-box {
+      background: rgba(21,21,21,0.9); border: 1px solid rgba(244,180,0,0.3);
+      border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 2rem;
+      backdrop-filter: blur(12px);
+    }
+    .buy-ca-label { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.85rem; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .buy-ca-val { font-family: 'JetBrains Mono', monospace; font-size: clamp(0.7rem, 2vw, 0.95rem); color: var(--light-gray); margin-bottom: 0.8rem; word-break: break-all; }
+    .buy-ca-val.coming-soon { color: var(--violet); font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.1rem; letter-spacing: 0.1em; }
+    .chart-placeholder {
+      background: rgba(21,21,21,0.7); border: 1px solid rgba(168,85,247,0.25);
+      border-radius: 12px; padding: 3rem; margin-bottom: 2rem; text-align: center;
+    }
+    .coming-soon-tag {
+      font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 1rem;
+      color: var(--violet); letter-spacing: 0.15em;
+      text-shadow: 0 0 15px rgba(168,85,247,0.5);
+    }
+    .chart-sub { font-family: 'Inter', sans-serif; font-size: 0.82rem; color: var(--gray); margin-top: 0.5rem; }
+
+    /* COMMUNITY */
+    .community-section {
+      padding: 100px 5%;
+      background: linear-gradient(180deg, var(--black) 0%, rgba(21,21,21,0.3) 50%, var(--black) 100%);
+    }
+    .community-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; max-width: 700px; margin: 0 auto; }
+    .comm-btn {
+      display: flex; align-items: center; gap: 0.8rem;
+      padding: 1.1rem 2rem; border-radius: 10px;
+      font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.9rem;
+      letter-spacing: 0.05em; text-decoration: none;
+      transition: all 0.25s; min-width: 180px; justify-content: center;
+      border: 1px solid; cursor: pointer;
+    }
+    .comm-btn-x {
+      color: var(--black); background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+      border-color: var(--gold); box-shadow: 0 0 25px rgba(244,180,0,0.3);
+    }
+    .comm-btn-x:hover { box-shadow: 0 0 45px rgba(244,180,0,0.5); transform: translateY(-3px) scale(1.02); }
+    .comm-btn-tg {
+      color: var(--white); background: rgba(21,21,21,0.7);
+      border-color: rgba(168,85,247,0.5); box-shadow: 0 0 20px rgba(123,47,255,0.15);
+    }
+    .comm-btn-tg:hover { border-color: var(--violet); box-shadow: 0 0 40px rgba(168,85,247,0.35); transform: translateY(-3px); background: rgba(123,47,255,0.12); }
+    .comm-btn-yt {
+      color: var(--white); background: rgba(21,21,21,0.7);
+      border-color: rgba(255,80,80,0.4); box-shadow: 0 0 20px rgba(255,0,0,0.1);
+    }
+    .comm-btn-yt:hover { border-color: #ff4444; box-shadow: 0 0 40px rgba(255,0,0,0.2); transform: translateY(-3px); background: rgba(255,0,0,0.08); }
+
+    /* DISCLAIMER */
+    .disclaimer-section { padding: 60px 5%; border-top: 1px solid rgba(244,180,0,0.1); }
+    .disclaimer-box {
+      max-width: 800px; margin: 0 auto;
+      background: rgba(21,21,21,0.5); border: 1px solid rgba(255,80,80,0.2);
+      border-radius: 10px; padding: 1.5rem 2rem;
+    }
+    .disclaimer-box h3 { font-family: 'Rajdhani', sans-serif; font-weight: 700; color: #ff6666; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; }
+    .disclaimer-box p { font-family: 'Inter', sans-serif; font-size: 0.85rem; color: var(--gray); line-height: 1.7; margin-bottom: 0.5rem; }
+    .disclaimer-box ul { list-style: none; }
+    .disclaimer-box ul li::before { content: '• '; color: #ff6666; }
+    .disclaimer-box ul li { font-family: 'Inter', sans-serif; font-size: 0.85rem; color: var(--gray); }
+
+    /* FOOTER */
+    footer {
+      padding: 40px 5%; text-align: center;
+      border-top: 1px solid rgba(244,180,0,0.08);
+    }
+    .footer-logo { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.2rem; color: var(--gold); margin-bottom: 0.5rem; }
+    .footer-copy { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--gray); }
+
+    /* ══════════════════════════════════════════
+       COMING SOON PAGES
+    ══════════════════════════════════════════ */
+    .coming-soon-page {
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 100px 5% 60px;
+    }
+    .cs-icon { font-size: 4rem; margin-bottom: 1.5rem; }
+    .cs-title {
+      font-family: 'Orbitron', sans-serif; font-weight: 900;
+      font-size: clamp(2rem, 6vw, 4rem);
+      background: linear-gradient(135deg, var(--gold), var(--violet));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 0.8rem;
+    }
+    .cs-subtitle {
+      font-family: 'Rajdhani', sans-serif; font-weight: 600;
+      font-size: clamp(1rem, 3vw, 1.5rem); color: var(--light-gray); margin-bottom: 1.5rem;
+    }
+    .cs-desc { font-family: 'Inter', sans-serif; font-size: 1rem; color: var(--gray); max-width: 500px; line-height: 1.7; }
+    .cs-glow {
+      width: 300px; height: 300px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(123,47,255,0.15) 0%, transparent 70%);
+      position: absolute; pointer-events: none;
+    }
+
+    /* ══════════════════════════════════════════
+       WHITEPAPER MODAL
+    ══════════════════════════════════════════ */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 2000;
+      background: rgba(0,0,0,0.88); backdrop-filter: blur(10px);
+      align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: var(--dark-gray); border: 1px solid rgba(244,180,0,0.3);
+      border-radius: 16px; max-width: 900px; width: 100%;
+      max-height: 90vh; display: flex; flex-direction: column;
+      box-shadow: 0 0 60px rgba(244,180,0,0.15);
+    }
+    .modal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 1.5rem; border-bottom: 1px solid rgba(244,180,0,0.15);
+    }
+    .modal-title { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 1rem; color: var(--gold); letter-spacing: 0.1em; }
+    .modal-close {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: rgba(244,180,0,0.1); border: 1px solid rgba(244,180,0,0.3);
+      color: var(--gold); font-size: 1.1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .modal-close:hover { background: rgba(244,180,0,0.2); }
+    .modal-nav {
+      display: flex; align-items: center; gap: 1rem; padding: 0.8rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .modal-prev, .modal-next {
+      font-family: 'Orbitron', sans-serif; font-size: 0.7rem; font-weight: 700;
+      padding: 0.4rem 1rem; border-radius: 5px; cursor: pointer; transition: all 0.2s;
+      background: rgba(244,180,0,0.1); border: 1px solid rgba(244,180,0,0.3); color: var(--gold);
+    }
+    .modal-prev:hover, .modal-next:hover { background: rgba(244,180,0,0.2); }
+    .modal-prev:disabled, .modal-next:disabled { opacity: 0.3; cursor: not-allowed; }
+    .modal-page-indicator { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--gray); flex: 1; text-align: center; }
+    .modal-body { flex: 1; overflow-y: auto; padding: 1.5rem; display: flex; align-items: center; justify-content: center; }
+    .modal-body img { max-width: 100%; max-height: 70vh; object-fit: contain; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); }
+
+    /* TOAST */
+    .toast {
+      position: fixed; bottom: 30px; right: 30px; z-index: 3000;
+      background: rgba(21,21,21,0.95); border: 1px solid var(--gold);
+      border-radius: 8px; padding: 0.8rem 1.5rem;
+      font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 0.95rem;
+      color: var(--gold); box-shadow: 0 0 20px rgba(244,180,0,0.2);
+      opacity: 0; transition: opacity 0.3s; pointer-events: none;
+    }
+    .toast.show { opacity: 1; }
+
+    /* SCROLL REVEAL */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s, transform 0.7s; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 4%; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .about-grid { grid-template-columns: 1fr; }
+      .tokenomics-grid { grid-template-columns: 1fr 1fr; }
+      .tokenomics-bottom { grid-template-columns: 1fr; }
+      .dist-grid { grid-template-columns: 1fr; }
+      .roadmap-timeline::before { left: 12px; }
+      .roadmap-item { padding-left: 45px; }
+      .roadmap-dot { left: 2px; }
+      .hero-logo-wrap { width: 110px; height: 110px; }
+      .banner-video-wrap video { max-height: 220px; }
+      .ca-wrap { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .modal-box { max-height: 95vh; }
+    }
+    @media (max-width: 480px) {
+      .tokenomics-grid { grid-template-columns: 1fr 1fr; }
+      .hero-buttons { flex-direction: column; align-items: center; }
+      .community-buttons { flex-direction: column; align-items: center; }
+      .comm-btn { width: 100%; max-width: 280px; }
+      .ca-address { font-size: 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Particles -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- Nav -->
+<nav>
+  <a href="#" class="nav-logo" onclick="showPage('home')">$POSAA</a>
+  <div class="nav-links">
+    <a href="#" onclick="showPage('home')" class="active" id="nav-home">Home</a>
+    <a href="#" onclick="showPage('youtube')" id="nav-youtube">YouTube & Contest</a>
+    <a href="#" onclick="showPage('game')" id="nav-game">Game</a>
+    <button class="btn-secondary" style="font-size:0.75rem;padding:0.5rem 1rem;" onclick="openWhitepaperModal()">Whitepaper</button>
+  </div>
+  <div class="hamburger" onclick="toggleMobileMenu()" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#" onclick="showPage('home');toggleMobileMenu()">Home</a>
+  <a href="#" onclick="showPage('youtube');toggleMobileMenu()">YouTube & Contest</a>
+  <a href="#" onclick="showPage('game');toggleMobileMenu()">Game</a>
+  <a href="#" onclick="openWhitepaperModal();toggleMobileMenu()">📄 Whitepaper</a>
+</div>
+
+<!-- ═══════════════════════════
+     HOME PAGE
+════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- BANNER VIDEO (below nav, above hero) -->
+  <div class="banner-video-wrap">
+    <video autoplay muted loop playsinline>
+      <source src="banner.mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-logo-wrap">
+        <video autoplay muted loop playsinline>
+          <source src="posaa.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero-token-name">$POSAA</div>
+      <div class="hero-full-name">Public Opinion, Sentiment, Antics &amp; Assholery</div>
+      <div class="hero-tagline">
+        Reject echo chambers. Mock hypocrisy.<br/>
+        <span>Speak the unfiltered truth — on-chain.</span>
+      </div>
+      <div class="hero-buttons">
+        <button class="btn-primary" onclick="showComingSoonAlert()">🚀 Buy $POSAA</button>
+        <button class="btn-secondary" onclick="openWhitepaperModal()">📄 Whitepaper</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section">
+    <h2 class="section-heading reveal">About $POSAA</h2>
+    <div class="section-divider"></div>
+    <div class="about-grid">
+      <div class="about-intro reveal">
+        <p>In an era where public discourse is polarized, sanitized, and manipulated by mainstream media narratives and corporate greed, <strong>$POSAA</strong> stands as a meme token celebrating the raw, unfiltered essence of human expression:</p>
+        <p><strong>Public Opinion, Sentiment, Antics &amp; Assholery</strong></p>
+        <p>$POSAA is a community-driven project embracing the chaotic, controversial, and hilarious side of calling out bullshit—whether it's a Piece of Shit CEO diluting retail investors, a news anchor pushing scripted spin, or social-media "fact-checkers" silencing real talk.</p>
+        <p>This project is <strong>not about hate or harm</strong>. It is about rejecting echo chambers, mocking hypocrisy, and empowering everyday people to voice unpopular opinions without fear of cancellation or de-platforming.</p>
+        <p>Satire, provocation, and humor are at the heart of $POSAA. The community champions open conversation while maintaining a clear boundary against threats and illegal activity.</p>
+        <p>Inspired by the wild frontiers of X, Reddit, Stocktwits, podcasts, and living-room rants at the TV, $POSAA unites high-energy communities—apes, skeptics, meme warriors, and anyone tired of being told what to think—into a decentralized movement where <strong>controversy fuels creativity and engagement</strong>.</p>
+        <p style="font-size:0.8rem;color:var(--gray);font-style:italic;">This is not financial advice.</p>
+      </div>
+      <div class="vision-mission-wrap reveal">
+        <div class="glass-card glass-card-gold">
+          <div class="card-title">🎯 Vision</div>
+          <div class="card-body">
+            To become the defining meme symbol of unfiltered public discourse—where raw opinion, radical honesty, and calling out shit in the media and corporate boardrooms are celebrated as features, not bugs.
+          </div>
+        </div>
+        <div class="glass-card">
+          <div class="card-title">🚀 Mission</div>
+          <div class="card-body">
+            <ul>
+              <li>Champion maximal free expression through savage meme culture</li>
+              <li>Rally people tired of mainstream media spin, corporate dilutions, and moderation bias</li>
+              <li>Create viral, controversial content that roasts daily headlines and hypocrisy</li>
+              <li>Reward participation and creativity — not passive income, staking, or empty promises</li>
+            </ul>
+            <br/>
+            $POSAA is for anyone who believes truth and comedy thrive when regular people are free to speak and laugh at the clowns.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section class="roadmap-section">
+    <h2 class="section-heading reveal">Road Map</h2>
+    <div class="section-divider"></div>
+    <div class="roadmap-timeline">
+
+      <div class="roadmap-item reveal">
+        <div class="roadmap-dot"></div>
+        <div class="roadmap-phase">Phase 1 · Q2 2026</div>
+        <div class="roadmap-title">Launch &amp; Hype</div>
+        <div class="roadmap-body">
+          <ul>
+            <li>Fair launch on XRPL DEX</li>
+            <li>Rapid community formation across X, Reddit, Stocktwits, and Telegram</li>
+            <li>Maximum meme velocity through viral roasts</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="roadmap-item reveal">
+        <div class="roadmap-dot" style="border-color:var(--violet);box-shadow:0 0 12px rgba(168,85,247,0.4);"></div>
+        <div class="roadmap-phase" style="color:var(--violet);">Phase 2 · Q2–Q4 2026</div>
+        <div class="roadmap-title">Community Expansion &amp; LP Ramp</div>
+        <div class="roadmap-body">
+          <ul>
+            <li>Continued liquidity injections</li>
+            <li>Cross-community promotion (AMC apes, free-speech groups)</li>
+            <li>Daily Sentiment Score updates</li>
+            <li>Airdrops to active contributors</li>
+            <li>Exploration of deeper DEX visibility and potential CEX listings</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="roadmap-item reveal">
+        <div class="roadmap-dot" style="border-color:var(--gold-soft);box-shadow:0 0 12px rgba(255,213,79,0.4);"></div>
+        <div class="roadmap-phase" style="color:var(--gold-soft);">Phase 3 · Ongoing</div>
+        <div class="roadmap-title">Moon or Bust 🌙</div>
+        <div class="roadmap-body">
+          Aspirational, community-driven initiatives:
+          <ul>
+            <li>Push for top XRPL meme rankings</li>
+            <li>Strengthen alliances and diamond-hand culture</li>
+            <li>Limited-run merchandise of $POSAA art and songs (with Easter-egg surprises)</li>
+            <li>Community-driven video game where apes battle diluted corporate undead</li>
+            <li>Enlist free-speech maximalists Candace "Intelligence Agency" Owens and her Mommy Sleuths to investigate true price discovery inside dark pools and naked shorts. If she's not afraid to call out Heads of State, she won't be afraid to call out corrupt players.</li>
+            <li>Ultimate Ape Catalyst: pop-culture icon remix featuring Britney Spears singing <em>"Oops, I Diluted Again"</em></li>
+            <li>Choose Your Turd (ChYT) passing of the shit head crown</li>
+          </ul>
+          <em>All aspirational items are illustrative only and do not guarantee outcomes.</em>
+        </div>
+      </div>
+
+      <div class="roadmap-item reveal">
+        <div class="roadmap-dot" style="border-color:#ff6666;box-shadow:0 0 12px rgba(255,100,100,0.4);"></div>
+        <div class="roadmap-phase" style="color:#ff9999;">Phase 4 · Beyond 2026</div>
+        <div class="roadmap-title">Long-Term Evolution</div>
+        <div class="roadmap-body">
+          <ul>
+            <li>Cultural relevance — move over Doge / Pepe</li>
+            <li>Meme incubator</li>
+            <li>Sustain chaos responsibly</li>
+            <li>First $1B XRP shit coin 💩</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TOKENOMICS -->
+  <section class="tokenomics-section">
+    <h2 class="section-heading reveal">Tokenomics</h2>
+    <div class="section-divider"></div>
+    <div class="tokenomics-grid reveal">
+      <div class="token-card">
+        <div class="token-card-icon">💎</div>
+        <div class="token-card-label">Total Supply</div>
+        <div class="token-card-value">1,100,000,000</div>
+        <div class="token-card-sub">POSAA · Fixed · No Minting</div>
+      </div>
+      <div class="token-card">
+        <div class="token-card-icon">🏦</div>
+        <div class="token-card-label">Initial Liquidity Pool</div>
+        <div class="token-card-value">~1,100 XRP</div>
+        <div class="token-card-sub">Paired at Launch</div>
+      </div>
+      <div class="token-card">
+        <div class="token-card-icon">🔥</div>
+        <div class="token-card-label">LP Burn</div>
+        <div class="token-card-value">Burned</div>
+        <div class="token-card-sub">LP Tokens Burned at Launch</div>
+      </div>
+      <div class="token-card">
+        <div class="token-card-icon">💸</div>
+        <div class="token-card-label">Transaction Tax</div>
+        <div class="token-card-value">0%</div>
+        <div class="token-card-sub">XRPL Network Fees Only</div>
+      </div>
+      <div class="token-card">
+        <div class="token-card-icon">🔮</div>
+        <div class="token-card-label">Moon Bag / Dev Allocation</div>
+        <div class="token-card-value">330,000,000</div>
+        <div class="token-card-sub">No Vesting Lock · Full Transparency</div>
+      </div>
+      <div class="token-card">
+        <div class="token-card-icon">⚡</div>
+        <div class="token-card-label">Circulating at Launch</div>
+        <div class="token-card-value">1.1B (Full)</div>
+        <div class="token-card-sub">Effectively Full Supply</div>
+      </div>
+    </div>
+
+    <div class="tokenomics-bottom">
+      <div class="donut-wrap reveal">
+        <h3>Supply Distribution</h3>
+        <canvas id="donutChart" width="260" height="260"></canvas>
+        <div class="donut-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#F4B400;"></div>Circulating / Public — 770M (70%)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#7B2FFF;"></div>Moon Bag / Dev Allocation — 330M (30%)</div>
+        </div>
+      </div>
+      <div class="xrpl-info reveal">
+        <div class="glass-card glass-card-gold">
+          <h3 style="font-family:'Orbitron',sans-serif;font-weight:700;font-size:1rem;color:var(--gold);margin-bottom:1rem;letter-spacing:0.1em;">Why XRPL?</h3>
+          <div style="display:flex;flex-direction:column;gap:0.9rem;">
+            <div class="xrpl-item"><span class="xrpl-bullet">⚡</span><span class="xrpl-text"><strong>Low Fees</strong> — Ultra-low transaction costs make micro-transactions viable and accessible for all.</span></div>
+            <div class="xrpl-item"><span class="xrpl-bullet">🚀</span><span class="xrpl-text"><strong>Lightning-Fast Transactions</strong> — Near-instant settlement for frictionless trading.</span></div>
+            <div class="xrpl-item"><span class="xrpl-bullet">🏛️</span><span class="xrpl-text"><strong>Robust Decentralization</strong> — Battle-tested, highly distributed validator network.</span></div>
+            <div class="xrpl-item"><span class="xrpl-bullet">🔄</span><span class="xrpl-text"><strong>Native DEX / AMM Support</strong> — Built-in decentralized exchange with automated market making.</span></div>
+            <div class="xrpl-item"><span class="xrpl-bullet">🕊️</span><span class="xrpl-text"><em>It's what Lou would have wanted (R.I.P.).</em></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LAUNCH MECHANICS / DISTRIBUTION -->
+  <section class="dist-section">
+    <h2 class="section-heading reveal">Distribution &amp; Fair Launch Principles</h2>
+    <div class="section-divider"></div>
+    <div class="dist-grid">
+      <div class="glass-card reveal">
+        <div class="card-title">🎯 Fair Launch Principles</div>
+        <div class="card-body">
+          <ul>
+            <li>No presale — zero early advantage</li>
+            <li>Anti-bot and anti-sniper measures active</li>
+            <li>Organic raids only</li>
+          </ul>
+        </div>
+      </div>
+      <div class="glass-card glass-card-gold reveal">
+        <div class="card-title">💧 Liquidity Growth Plan</div>
+        <div class="card-body">
+          Ongoing XRP added post-launch to steadily grow the liquidity pool and support healthy price discovery as community momentum builds.
+        </div>
+      </div>
+      <div class="glass-card reveal">
+        <div class="card-title">🌙 Moon Bag Transparency</div>
+        <div class="card-body">
+          330,000,000 POSAA strategic deference allocation to discourage unserious participants, paper hands, jeeters, and short sellers. No vesting lock. Full transparency via public announcements.
+        </div>
+      </div>
+      <div class="glass-card glass-card-gold reveal">
+        <div class="card-title">📊 Blockchain</div>
+        <div class="card-body">
+          <ul>
+            <li><strong style="color:var(--white);">Token Name:</strong> POSAA</li>
+            <li><strong style="color:var(--white);">Ticker:</strong> $POSAA</li>
+            <li><strong style="color:var(--white);">Blockchain:</strong> XRP Ledger (XRPL)</li>
+            <li><strong style="color:var(--white);">Token Name Full:</strong> Public Opinion, Sentiment, Antics &amp; Assholery</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUY SECTION -->
+  <section class="buy-section">
+    <h2 class="section-heading reveal">Buy $POSAA</h2>
+    <div class="section-divider"></div>
+    <div class="buy-inner">
+      <div class="buy-ca-box reveal">
+        <div class="buy-ca-label">Contract Address</div>
+        <div class="buy-ca-val coming-soon">⏳ Coming Soon</div>
+        <button class="ca-copy-btn" onclick="copyCA()" style="margin-top:0.3rem;">COPY WHEN LIVE</button>
+      </div>
+      <div class="chart-placeholder reveal">
+        <div class="coming-soon-tag">📈 LIVE CHART COMING SOON</div>
+        <div class="chart-sub">DexScreener chart will be embedded upon launch</div>
+      </div>
+      <div class="hero-buttons reveal">
+        <button class="btn-primary" onclick="showComingSoonAlert()">🚀 Buy on XRPL DEX</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section class="community-section">
+    <h2 class="section-heading reveal">Join the Community</h2>
+    <div class="section-divider"></div>
+    <p style="text-align:center;font-family:'Inter',sans-serif;font-size:1rem;color:var(--light-gray);margin-bottom:2.5rem;max-width:600px;margin-left:auto;margin-right:auto;" class="reveal">
+      Unite with apes, skeptics, meme warriors, and free-speech maximalists. This is where unfiltered discourse meets decentralized finance.
+    </p>
+    <div class="community-buttons">
+      <a href="https://x.com/Posaa_xrpl" target="_blank" rel="noopener" class="comm-btn comm-btn-x reveal">
+        <span style="font-size:1.2rem;">𝕏</span> Follow on X
+      </a>
+      <a href="https://t.me/POSAA_XRPL" target="_blank" rel="noopener" class="comm-btn comm-btn-tg reveal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.94 8.19l-2.02 9.52c-.15.67-.54.84-1.09.52l-3-2.21-1.45 1.4c-.16.16-.29.29-.6.29l.21-3.02 5.5-4.97c.24-.21-.05-.33-.37-.12l-6.8 4.28-2.93-.91c-.64-.2-.65-.64.13-.95l11.42-4.4c.53-.19 1 .13.8.57z"/></svg>
+        Join Telegram
+      </a>
+      <a href="https://youtube.com/@posaa_xrpl?si=O-551EnpcVr0wWVm" target="_blank" rel="noopener" class="comm-btn comm-btn-yt reveal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+        YouTube Channel
+      </a>
+    </div>
+  </section>
+
+  <!-- DISCLAIMER -->
+  <section class="disclaimer-section">
+    <div class="disclaimer-box reveal">
+      <h3>🚫 Disclaimer</h3>
+      <p>$POSAA is speculative, volatile, and driven purely by community sentiment.</p>
+      <ul>
+        <li>There is no intrinsic value</li>
+        <li>Do your own research</li>
+        <li>Never participate with more than you can afford to lose</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">$POSAA</div>
+    <p class="footer-copy">© 2026 $POSAA Community. Public Opinion, Sentiment, Antics &amp; Assholery. Not financial advice.</p>
+  </footer>
+
+</div><!-- /page-home -->
+
+
+<!-- ═══════════════════════════
+     YOUTUBE + CONTEST PAGE
+════════════════════════════ -->
+<div class="page" id="page-youtube">
+  <div class="coming-soon-page">
+    <div class="cs-glow"></div>
+    <div class="cs-icon">🎬</div>
+    <div class="cs-title">YouTube &amp; Contest</div>
+    <div class="cs-subtitle">Something Epic is Brewing</div>
+    <p class="cs-desc">The $POSAA YouTube channel and community contests are gearing up. Meme battles, viral content drops, and rewards for the best takes are on the way. Stay tuned — the apes are preparing.</p>
+    <div style="margin-top:2rem;">
+      <a href="https://youtube.com/@posaa_xrpl?si=O-551EnpcVr0wWVm" target="_blank" rel="noopener" class="comm-btn comm-btn-yt" style="display:inline-flex;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+        Visit YouTube Channel
+      </a>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-logo">$POSAA</div>
+    <p class="footer-copy">© 2026 $POSAA Community. Not financial advice.</p>
+  </footer>
+</div>
+
+
+<!-- ═══════════════════════════
+     GAME PAGE
+════════════════════════════ -->
+<div class="page" id="page-game">
+  <div class="coming-soon-page">
+    <div class="cs-glow" style="background:radial-gradient(circle, rgba(244,180,0,0.12) 0%, transparent 70%);"></div>
+    <div class="cs-icon">🎮</div>
+    <div class="cs-title">The Ape Game</div>
+    <div class="cs-subtitle">Community-Driven. Battle-Ready.</div>
+    <p class="cs-desc">The community-driven video game where apes battle diluted corporate undead is in development. Prepare to storm the boardrooms, expose the frauds, and earn your place in the hall of based legends.</p>
+    <div style="margin-top:2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="https://x.com/Posaa_xrpl" target="_blank" rel="noopener" class="comm-btn comm-btn-x" style="display:inline-flex;">𝕏 Stay Updated</a>
+      <a href="https://t.me/POSAA_XRPL" target="_blank" rel="noopener" class="comm-btn comm-btn-tg" style="display:inline-flex;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.94 8.19l-2.02 9.52c-.15.67-.54.84-1.09.52l-3-2.21-1.45 1.4c-.16.16-.29.29-.6.29l.21-3.02 5.5-4.97c.24-.21-.05-.33-.37-.12l-6.8 4.28-2.93-.91c-.64-.2-.65-.64.13-.95l11.42-4.4c.53-.19 1 .13.8.57z"/></svg>
+        Join Telegram
+      </a>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-logo">$POSAA</div>
+    <p class="footer-copy">© 2026 $POSAA Community. Not financial advice.</p>
+  </footer>
+</div>
+
+
+<!-- ═══════════════════════════
+     WHITEPAPER MODAL
+════════════════════════════ -->
+<div class="modal-overlay" id="whitepaper-modal" onclick="handleModalOverlayClick(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">📄 $POSAA WHITEPAPER</div>
+      <button class="modal-close" onclick="closeWhitepaperModal()">✕</button>
+    </div>
+    <div class="modal-nav">
+      <button class="modal-prev" id="modal-prev" onclick="changeWpPage(-1)">◀ PREV</button>
+      <div class="modal-page-indicator" id="modal-page-indicator">Page 1 of 7</div>
+      <button class="modal-next" id="modal-next" onclick="changeWpPage(1)">NEXT ▶</button>
+    </div>
+    <div class="modal-body" id="modal-body">
+      <img src="whitepaper1.png" alt="$POSAA Whitepaper Page 1" id="wp-img" loading="lazy" />
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- COMING SOON MODAL -->
+<div class="modal-overlay" id="cs-modal" onclick="closeCSModal(event)">
+  <div class="modal-box" style="max-width:420px;text-align:center;">
+    <div class="modal-header">
+      <div class="modal-title">⏳ COMING SOON</div>
+      <button class="modal-close" onclick="closeCSModal(null,true)">✕</button>
+    </div>
+    <div style="padding:2.5rem 2rem;">
+      <div style="font-size:3rem;margin-bottom:1rem;">🚀</div>
+      <div style="font-family:'Orbitron',sans-serif;font-weight:700;font-size:1.1rem;color:var(--gold);margin-bottom:0.8rem;">Launch Incoming</div>
+      <p style="font-family:'Inter',sans-serif;font-size:0.9rem;color:var(--light-gray);line-height:1.6;margin-bottom:1.5rem;">
+        The $POSAA fair launch on XRPL DEX is coming soon. Stay connected to the community to be first in line.
+      </p>
+      <div style="display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap;">
+        <a href="https://x.com/Posaa_xrpl" target="_blank" class="comm-btn comm-btn-x" style="font-size:0.8rem;padding:0.7rem 1.3rem;">𝕏 Follow</a>
+        <a href="https://t.me/POSAA_XRPL" target="_blank" class="comm-btn comm-btn-tg" style="font-size:0.8rem;padding:0.7rem 1.3rem;">Telegram</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── PAGE NAVIGATION ──
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  ['home','youtube','game'].forEach(n => {
+    const el = document.getElementById('nav-' + n);
+    if (el) el.classList.toggle('active', n === id);
+  });
+  window.scrollTo(0, 0);
+  if (id === 'home') drawDonut();
+}
+
+// ── MOBILE MENU ──
+function toggleMobileMenu() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+
+// ── COPY CA ──
+function copyCA() {
+  const ca = document.getElementById('ca-text').innerText;
+  if (ca === 'Coming Soon') { showToast('Contract address not live yet!'); return; }
+  navigator.clipboard.writeText(ca).then(() => showToast('Address copied!')).catch(() => showToast('Copy failed'));
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ── COMING SOON MODAL ──
+function showComingSoonAlert() {
+  document.getElementById('cs-modal').classList.add('open');
+}
+function closeCSModal(e, force) {
+  if (force || (e && e.target === document.getElementById('cs-modal'))) {
+    document.getElementById('cs-modal').classList.remove('open');
+  }
+}
+
+// ── WHITEPAPER MODAL ──
+let wpPage = 1; const wpTotal = 7;
+function openWhitepaperModal() {
+  wpPage = 1; updateWpModal();
+  document.getElementById('whitepaper-modal').classList.add('open');
+}
+function closeWhitepaperModal() {
+  document.getElementById('whitepaper-modal').classList.remove('open');
+}
+function handleModalOverlayClick(e) {
+  if (e.target === document.getElementById('whitepaper-modal')) closeWhitepaperModal();
+}
+function changeWpPage(dir) {
+  wpPage = Math.max(1, Math.min(wpTotal, wpPage + dir));
+  updateWpModal();
+}
+function updateWpModal() {
+  document.getElementById('wp-img').src = 'whitepaper' + wpPage + '.png';
+  document.getElementById('wp-img').alt = '$POSAA Whitepaper Page ' + wpPage;
+  document.getElementById('modal-page-indicator').textContent = 'Page ' + wpPage + ' of ' + wpTotal;
+  document.getElementById('modal-prev').disabled = wpPage === 1;
+  document.getElementById('modal-next').disabled = wpPage === wpTotal;
+}
+document.addEventListener('keydown', function(e) {
+  if (document.getElementById('whitepaper-modal').classList.contains('open')) {
+    if (e.key === 'ArrowRight') changeWpPage(1);
+    if (e.key === 'ArrowLeft') changeWpPage(-1);
+    if (e.key === 'Escape') closeWhitepaperModal();
+  }
+  if (document.getElementById('cs-modal').classList.contains('open') && e.key === 'Escape') {
+    closeCSModal(null, true);
+  }
+});
+
+// ── DONUT CHART ──
+function drawDonut() {
+  const canvas = document.getElementById('donutChart');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width, h = canvas.height;
+  ctx.clearRect(0, 0, w, h);
+  const cx = w/2, cy = h/2, outer = 100, inner = 60;
+  const data = [{ v: 70, c: '#F4B400' }, { v: 30, c: '#7B2FFF' }];
+  let start = -Math.PI / 2;
+  data.forEach(d => {
+    const end = start + (d.v / 100) * Math.PI * 2;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, outer, start, end);
+    ctx.closePath();
+    ctx.fillStyle = d.c;
+    ctx.fill();
+    start = end;
+  });
+  // inner hole
+  ctx.beginPath();
+  ctx.arc(cx, cy, inner, 0, Math.PI * 2);
+  ctx.fillStyle = '#151515';
+  ctx.fill();
+  // center text
+  ctx.fillStyle = '#F4B400';
+  ctx.font = 'bold 14px Orbitron, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('1.1B', cx, cy - 8);
+  ctx.fillStyle = '#888';
+  ctx.font = '10px Inter, sans-serif';
+  ctx.fillText('POSAA', cx, cy + 8);
+}
+window.addEventListener('load', drawDonut);
+
+// ── PARTICLES ──
+(function() {
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+  function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  resize(); window.addEventListener('resize', resize);
+  const COLORS = ['rgba(244,180,0,0.7)','rgba(168,85,247,0.6)','rgba(255,213,79,0.5)'];
+  for (let i = 0; i < 70; i++) particles.push({
+    x: Math.random()*2000, y: Math.random()*1200,
+    r: Math.random()*1.5+0.4,
+    c: COLORS[Math.floor(Math.random()*COLORS.length)],
+    vx: (Math.random()-0.5)*0.3, vy: (Math.random()-0.5)*0.3,
+    op: Math.random()*0.6+0.2
+  });
+  function frame() {
+    ctx.clearRect(0,0,W,H);
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = p.c; ctx.globalAlpha = p.op; ctx.fill();
+    });
+    ctx.globalAlpha = 1; requestAnimationFrame(frame);
+  }
+  frame();
+})();
+
+// ── SCROLL REVEAL ──
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>
