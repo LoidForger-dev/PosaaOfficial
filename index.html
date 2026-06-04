@@ -689,7 +689,7 @@
   <div class="banner-video-wrap">
     <video
       id="banner-video"
-      src="banner.mp4"
+      src="https://res.cloudinary.com/drdrwbdkp/video/upload/q_auto,f_auto/v1780555468/VID_20260603_222532_043_jps0pf.mp4"
       autoplay
       muted
       loop
@@ -719,7 +719,7 @@
         <!-- Logo video — covers the fallback when it plays -->
         <video
           id="logo-video"
-          src="posaa.mp4"
+          src="https://res.cloudinary.com/drdrwbdkp/video/upload/q_auto,f_auto/v1780555490/lv_0_20260603222327_pvsitr.mp4"
           autoplay
           muted
           loop
@@ -1276,14 +1276,14 @@ window.addEventListener('load', function () {
     });
 
     // Also catch stalled network (e.g. file missing / very slow connection)
-    // Give the browser a generous 10 seconds to recover before giving up
+    // Give the browser a full 60 seconds to recover before falling back
     logoVideo.addEventListener('stalled', function () {
       setTimeout(function () {
         if (logoVideo.readyState === 0) {
           logoVideo.style.display = 'none';
           logoFallback.style.display = 'block';
         }
-      }, 10000);
+      }, 60000);
     });
 
     // Once it can play, make sure it actually starts
