@@ -87,13 +87,9 @@
 
     /* ── NAV — DESKTOP OVERRIDE (vertical right panel) ── */
     @media (min-width: 769px) {
-      nav {
-        /* No longer a top bar — hide it; replaced by desktop-nav components */
-        display: none;
-      }
+      nav { display: none; }
       .mobile-menu { display: none !important; }
 
-      /* Top brand bar (logo left + tagline center) */
       .desktop-topbar {
         position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
         height: 60px; display: flex; align-items: center;
@@ -121,58 +117,16 @@
         filter: drop-shadow(0 0 10px rgba(244,180,0,0.4));
       }
 
-      /* Vertical right-side nav panel */
       .desktop-sidenav {
         position: fixed; top: 60px; right: 0; z-index: 999;
         width: 200px; height: calc(100vh - 60px);
         display: flex; flex-direction: column; justify-content: center;
-        padding: 2rem 0;
-        background: rgba(5,5,5,0.6); backdrop-filter: blur(12px);
-        border-left: 1px solid rgba(244,180,0,0.12);
-      }
-      .desktop-sidenav a, .desktop-sidenav button {
-        display: block; width: 100%; text-align: left;
-        padding: 0.9rem 1.5rem;
-        font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.95rem;
-        color: var(--light-gray); text-decoration: none; background: none; border: none;
-        letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
-        border-right: 2px solid transparent;
-        transition: color 0.2s, border-color 0.2s, background 0.2s;
-        position: relative;
-      }
-      .desktop-sidenav a::after, .desktop-sidenav button::after {
-        content: ' ›';
-        color: var(--gold); opacity: 0; transition: opacity 0.2s;
-      }
-      .desktop-sidenav a:hover, .desktop-sidenav button:hover {
-        color: var(--gold); border-right-color: var(--gold);
-        background: rgba(244,180,0,0.05);
-      }
-      .desktop-sidenav a:hover::after, .desktop-sidenav button:hover::after { opacity: 1; }
-      .desktop-sidenav a.active { color: var(--gold); border-right-color: var(--gold); }
-      .desktop-sidenav .sidenav-divider {
-        height: 1px; background: rgba(244,180,0,0.1); margin: 0.6rem 1.5rem;
-      }
-
-      /* Page content shifted right to make room for sidenav */
-      body.desktop-layout .page.active { margin-right: 200px; }
-      body.desktop-layout .banner-video-wrap { margin-top: 60px; }
-
-      /* Hide project info below logo on desktop */
-      body.desktop-layout .hero-token-name,
-      body.desktop-layout .hero-full-name,
-      body.desktop-layout .hero-tagline,
-      body.desktop-layout .hero-buttons { display: none; }
-
-      /* Sidenav card style per link */
-      .desktop-sidenav {
         padding: 1.5rem 1rem;
         background: transparent;
         border-left: none;
         overflow-y: auto;
       }
-      .desktop-sidenav a,
-      .desktop-sidenav button {
+      .desktop-sidenav a, .desktop-sidenav button {
         display: block; width: 100%; text-align: left;
         padding: 0.75rem 1.1rem;
         font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.88rem;
@@ -212,6 +166,14 @@
         height: 1px; background: rgba(244,180,0,0.12);
         margin: 0.3rem 0 0.8rem; border-radius: 2px;
       }
+
+      body.desktop-layout .page.active { margin-right: 200px; }
+      body.desktop-layout .banner-video-wrap { margin-top: 60px; }
+
+      body.desktop-layout .hero-token-name,
+      body.desktop-layout .hero-full-name,
+      body.desktop-layout .hero-tagline,
+      body.desktop-layout .hero-buttons { display: none; }
     }
     @media (max-width: 768px) {
       .desktop-topbar, .desktop-sidenav { display: none !important; }
@@ -230,7 +192,7 @@
 
     /* BANNER VIDEO */
     .banner-video-wrap {
-      width: 100%; margin-top: 70px; /* mobile: offset for fixed nav */
+      width: 100%; margin-top: 70px;
       position: relative; z-index: 1; line-height: 0;
       overflow: hidden;
     }
@@ -256,6 +218,8 @@
       pointer-events: none;
     }
     .hero-content { position: relative; z-index: 1; max-width: 900px; }
+
+    /* ── LOGO WRAP — fixed reliable approach ── */
     .hero-logo-wrap {
       width: 150px; height: 150px; margin: 0 auto 1.5rem;
       border-radius: 50%;
@@ -263,6 +227,8 @@
       box-shadow: 0 0 40px rgba(244,180,0,0.5), 0 0 80px rgba(244,180,0,0.2), inset 0 0 30px rgba(244,180,0,0.05);
       overflow: hidden;
       animation: logoPulse 3s ease-in-out infinite;
+      position: relative; /* needed for absolute fallback img */
+      background: var(--dark-gray);
     }
     @media (min-width: 769px) {
       .hero-logo-wrap { width: 320px; height: 320px; border-width: 4px; margin-bottom: 2rem; }
@@ -271,8 +237,17 @@
       0%,100% { box-shadow: 0 0 40px rgba(244,180,0,0.5), 0 0 80px rgba(244,180,0,0.2); }
       50%      { box-shadow: 0 0 60px rgba(244,180,0,0.8), 0 0 120px rgba(244,180,0,0.3); }
     }
+    /* Both video and fallback img fill the circle */
     .hero-logo-wrap video,
-    .hero-logo-wrap img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .hero-logo-wrap img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; border-radius: 50%;
+    }
+    /* Fallback img sits behind — video covers it when playing */
+    .hero-logo-wrap img { z-index: 1; }
+    .hero-logo-wrap video { z-index: 2; }
+
     .hero-token-name {
       font-family: 'Orbitron', sans-serif; font-weight: 900;
       font-size: clamp(2.8rem, 8vw, 6rem);
@@ -452,7 +427,6 @@
     .legend-item { display: flex; align-items: center; gap: 0.6rem; font-family: 'Inter', sans-serif; font-size: 0.82rem; color: var(--light-gray); }
     .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
     .xrpl-info { display: flex; flex-direction: column; justify-content: center; gap: 1rem; }
-    .xrpl-info h3 { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
     .xrpl-item { display: flex; gap: 0.8rem; align-items: flex-start; }
     .xrpl-bullet { color: var(--gold); font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
     .xrpl-text { font-family: 'Inter', sans-serif; font-size: 0.88rem; color: var(--light-gray); line-height: 1.5; }
@@ -682,7 +656,7 @@
     <div class="desktop-topbar-sub">Public Opinion, Speech, Antics, Assholery</div>
   </div>
   <div class="desktop-topbar-title">THE ULTIMATE SHIT COIN</div>
-  <div style="width:180px;"></div><!-- spacer to balance right panel -->
+  <div style="width:180px;"></div>
 </div>
 
 <!-- ── DESKTOP SIDE NAV (≥769px only) ── -->
@@ -706,22 +680,54 @@
 ════════════════════════════ -->
 <div class="page active" id="page-home">
 
-  <!-- BANNER VIDEO (below nav, above hero) -->
+  <!-- BANNER VIDEO -->
+  <!--
+    FIX: Added id="banner-video", preload="auto", and removed the inner <source> tag approach
+    in favour of a direct src attribute — this is more reliable across all browsers/hosts.
+    JS will also force .play() after load to handle strict autoplay policies.
+  -->
   <div class="banner-video-wrap">
-    <video autoplay muted loop playsinline>
-      <source src="banner.mp4" type="video/mp4" />
-    </video>
+    <video
+      id="banner-video"
+      src="banner.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    ></video>
   </div>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
+
+      <!--
+        FIX: Logo wrap now contains BOTH the fallback <img> (posaa.png, z-index:1)
+        AND the <video> (z-index:2). The video sits on top. If it fails to load,
+        JS hides it and the image shows through underneath.
+        Both are position:absolute; inset:0 — filling the circle perfectly.
+      -->
       <div class="hero-logo-wrap">
-        <video autoplay muted loop playsinline>
-          <source src="posaa.mp4" type="video/mp4" />
-        </video>
+        <!-- Fallback image — always present behind the video -->
+        <img
+          id="logo-fallback"
+          src="posaa.png"
+          alt="$POSAA Logo"
+        />
+        <!-- Logo video — covers the fallback when it plays -->
+        <video
+          id="logo-video"
+          src="posaa.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+        ></video>
       </div>
+
       <div class="hero-token-name">$POSAA</div>
       <div class="hero-full-name">Public Opinion, Sentiment, Antics &amp; Assholery</div>
       <div class="hero-tagline">
@@ -1124,12 +1130,10 @@ window.addEventListener('resize', applyDesktopLayout);
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + id).classList.add('active');
-  // Mobile nav active
   ['home','youtube','game'].forEach(n => {
     const el = document.getElementById('nav-' + n);
     if (el) el.classList.toggle('active', n === id);
   });
-  // Desktop sidenav active
   ['home','youtube','game'].forEach(n => {
     const el = document.getElementById('dnav-' + n);
     if (el) el.classList.toggle('active', n === id);
@@ -1151,9 +1155,7 @@ function toggleMobileMenu() {
 
 // ── COPY CA ──
 function copyCA() {
-  const ca = document.getElementById('ca-text').innerText;
-  if (ca === 'Coming Soon') { showToast('Contract address not live yet!'); return; }
-  navigator.clipboard.writeText(ca).then(() => showToast('Address copied!')).catch(() => showToast('Copy failed'));
+  showToast('Contract address not live yet!');
 }
 
 function showToast(msg) {
@@ -1226,12 +1228,10 @@ function drawDonut() {
     ctx.fill();
     start = end;
   });
-  // inner hole
   ctx.beginPath();
   ctx.arc(cx, cy, inner, 0, Math.PI * 2);
   ctx.fillStyle = '#151515';
   ctx.fill();
-  // center text
   ctx.fillStyle = '#F4B400';
   ctx.font = 'bold 14px Orbitron, sans-serif';
   ctx.textAlign = 'center';
@@ -1242,6 +1242,66 @@ function drawDonut() {
   ctx.fillText('POSAA', cx, cy + 8);
 }
 window.addEventListener('load', drawDonut);
+
+// ══════════════════════════════════════════
+// VIDEO FIX — Logo + Banner
+// ══════════════════════════════════════════
+
+// Helper: force-play a video element (handles strict autoplay policies)
+function forcePlay(videoEl) {
+  if (!videoEl) return;
+  const promise = videoEl.play();
+  if (promise !== undefined) {
+    promise.catch(() => {
+      // Autoplay blocked — add a click-to-play listener as last resort
+      document.addEventListener('click', function playOnClick() {
+        videoEl.play();
+        document.removeEventListener('click', playOnClick);
+      }, { once: true });
+    });
+  }
+}
+
+window.addEventListener('load', function () {
+
+  // ── LOGO VIDEO with fallback to posaa.png ──
+  const logoVideo = document.getElementById('logo-video');
+  const logoFallback = document.getElementById('logo-fallback');
+
+  if (logoVideo) {
+    // Try playing immediately
+    forcePlay(logoVideo);
+
+    // If the video fails to load at all, hide it so posaa.png shows through
+    logoVideo.addEventListener('error', function () {
+      logoVideo.style.display = 'none';
+    });
+
+    // Also handle the case where canplay fires — ensure it's actually playing
+    logoVideo.addEventListener('canplay', function () {
+      forcePlay(logoVideo);
+    });
+
+    // If after 3 seconds there's no video data, assume it failed and show fallback
+    setTimeout(function () {
+      if (logoVideo.readyState === 0) {
+        // HAVE_NOTHING — video never started loading
+        logoVideo.style.display = 'none';
+      }
+    }, 3000);
+  }
+
+  // ── BANNER VIDEO (no fallback, just make sure it plays) ──
+  const bannerVideo = document.getElementById('banner-video');
+  if (bannerVideo) {
+    forcePlay(bannerVideo);
+
+    bannerVideo.addEventListener('canplay', function () {
+      forcePlay(bannerVideo);
+    });
+  }
+
+});
 
 // ── PARTICLES ──
 (function() {
