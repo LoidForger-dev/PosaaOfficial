@@ -244,8 +244,8 @@
       width: 100%; height: 100%;
       object-fit: cover; border-radius: 50%;
     }
-    /* Fallback img sits behind — video covers it when playing */
-    .hero-logo-wrap img { z-index: 1; }
+    /* Fallback image hidden by default — only shown if video errors */
+    .hero-logo-wrap img { z-index: 1; display: none; }
     .hero-logo-wrap video { z-index: 2; }
 
     .hero-token-name {
@@ -1269,26 +1269,30 @@ window.addEventListener('load', function () {
   const logoFallback = document.getElementById('logo-fallback');
 
   if (logoVideo) {
-    // Try playing immediately
-    forcePlay(logoVideo);
-
-    // If the video fails to load at all, hide it so posaa.png shows through
+    // Only fall back to posaa.png on a genuine load error — never on a timer
     logoVideo.addEventListener('error', function () {
       logoVideo.style.display = 'none';
+      logoFallback.style.display = 'block';
     });
 
-    // Also handle the case where canplay fires — ensure it's actually playing
+    // Also catch stalled network (e.g. file missing / very slow connection)
+    // Give the browser a generous 10 seconds to recover before giving up
+    logoVideo.addEventListener('stalled', function () {
+      setTimeout(function () {
+        if (logoVideo.readyState === 0) {
+          logoVideo.style.display = 'none';
+          logoFallback.style.display = 'block';
+        }
+      }, 10000);
+    });
+
+    // Once it can play, make sure it actually starts
     logoVideo.addEventListener('canplay', function () {
       forcePlay(logoVideo);
     });
 
-    // If after 3 seconds there's no video data, assume it failed and show fallback
-    setTimeout(function () {
-      if (logoVideo.readyState === 0) {
-        // HAVE_NOTHING — video never started loading
-        logoVideo.style.display = 'none';
-      }
-    }, 3000);
+    // Attempt play immediately (video may already be ready)
+    forcePlay(logoVideo);
   }
 
   // ── BANNER VIDEO (no fallback, just make sure it plays) ──
