@@ -62,14 +62,8 @@
       text-shadow: 0 0 12px rgba(244,180,0,0.6);  
       text-decoration: none;  
     }  
-    .nav-links { display: flex; gap: 1.5rem; align-items: center; }  
-    .nav-links a {  
-      font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 1rem;  
-      color: var(--light-gray); text-decoration: none;  
-      letter-spacing: 0.08em; transition: color 0.2s;  
-    }  
-    .nav-links a:hover, .nav-links a.active { color: var(--gold); }  
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }  
+    .nav-links { display: none; } /* Simplified mobile for this change */
+    .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; }  
     .hamburger span { width: 24px; height: 2px; background: var(--gold); display: block; transition: all 0.3s; }  
     .mobile-menu {  
       display: none; position: fixed; top: 70px; left: 0; right: 0;  
@@ -85,7 +79,7 @@
     }  
     .mobile-menu a:hover { color: var(--gold); }  
 
-    /* ── NAV — DESKTOP OVERRIDE (vertical right panel) ── */  
+    /* ── NAV — DESKTOP OVERRIDE (3-COLUMN FLEX) ── */  
     @media (min-width: 769px) {  
       nav { display: none; }  
       .mobile-menu { display: none !important; }  
@@ -97,9 +91,10 @@
         background: rgba(5,5,5,0.9); backdrop-filter: blur(14px);  
         border-bottom: 1px solid rgba(244,180,0,0.12);  
       }  
-      .desktop-topbar-left {  
-        display: flex; flex-direction: column; min-width: 240px;  
-      }  
+      .dt-left { flex: 1; display: flex; flex-direction: column; }  
+      .dt-center { flex: 2; text-align: center; }  
+      .dt-right { flex: 1; display: flex; justify-content: flex-end; }
+      
       .desktop-topbar-logo {  
         font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.4rem;  
         color: var(--gold); text-shadow: 0 0 14px rgba(244,180,0,0.6);  
@@ -111,10 +106,8 @@
         margin-top: 2px;  
       }  
       .desktop-topbar-title {  
-        position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);  
-        text-align: center;  
         font-family: 'Orbitron', sans-serif; font-weight: 900;  
-        font-size: clamp(1rem, 2.2vw, 1.6rem);  
+        font-size: clamp(1rem, 1.5vw, 1.3rem);  
         background: linear-gradient(135deg, var(--gold), var(--gold-soft));  
         -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;  
         letter-spacing: 0.12em; text-transform: uppercase;  
@@ -127,7 +120,6 @@
         color: var(--black); border: none; cursor: pointer;  
         box-shadow: 0 0 15px rgba(244,180,0,0.35);  
         text-transform: uppercase; transition: all 0.2s ease;  
-        z-index: 1001;  
       }  
       .desktop-header-buy-btn:hover {  
         box-shadow: 0 0 25px rgba(244,180,0,0.55); transform: translateY(-1px);  
@@ -139,7 +131,6 @@
         display: flex; flex-direction: column; justify-content: start;  
         padding: 1.5rem 1rem;  
         background: transparent;  
-        border-left: none;  
         overflow-y: auto;  
       }  
       .desktop-sidenav a, .desktop-sidenav button {  
@@ -157,21 +148,12 @@
         transition: color 0.2s, border-color 0.2s, background 0.2s, box-shadow 0.2s;  
         position: relative;  
       }  
-      .desktop-sidenav a::after,  
-      .desktop-sidenav button::after {  
-        content: '›';  
-        color: var(--gold); opacity: 0; transition: opacity 0.2s;  
-        position: absolute; right: 0.9rem; top: 50%; transform: translateY(-50%);  
-      }  
-      .desktop-sidenav a:hover,  
-      .desktop-sidenav button:hover {  
+      .desktop-sidenav a:hover, .desktop-sidenav button:hover {  
         color: var(--gold);  
         border-color: rgba(244,180,0,0.65) !important;  
         background: rgba(244,180,0,0.08);  
         box-shadow: 0 0 18px rgba(244,180,0,0.2);  
       }  
-      .desktop-sidenav a:hover::after,  
-      .desktop-sidenav button:hover::after { opacity: 1; }  
       .desktop-sidenav a.active {  
         color: var(--gold);  
         border-color: var(--gold) !important;  
@@ -204,10 +186,7 @@
     /* ══════════════════════════════════════════  
        HOME PAGE  
     ══════════════════════════════════════════ */  
-    .hero-section-wrap {  
-      width: 100%;  
-    }  
-
+    .hero-section-wrap { width: 100%; }  
     .hero {  
       min-height: 100vh;  
       display: flex; flex-direction: column; align-items: center; justify-content: center;  
@@ -343,7 +322,7 @@
     }  
     .btn-secondary:hover { background: rgba(244,180,0,0.15); box-shadow: 0 0 30px rgba(244,180,0,0.4); transform: translateY(-2px); }  
 
-    /* ── PLAYLIST SIDEBAR CONTAINER — PERFECT MID-WAY MARGIN POSITIONING ── */  
+    /* ── PLAYLIST SIDEBAR ── */  
     .playlist-sidebar-container {  
       display: none;  
       background: rgba(10, 10, 10, 0.85);  
@@ -361,7 +340,7 @@
     @media (min-width: 769px) {  
       .playlist-sidebar-container {  
         display: block;  
-        margin-top: 45px; /* Shifted down slightly more from 15px to form an immaculate parallel margin layout */  
+        margin-top: 65px; /* Final nudge down adjustment to align perfectly with content flow */  
       }  
     }  
     .playlist-track {  
@@ -401,7 +380,7 @@
       text-transform: uppercase;  
     }  
 
-    /* ── SINGLE MULTI-BUY HUB DESIGN (Dedicated Page Container) ── */  
+    /* ── HUB DESIGN ── */  
     .buy-hub-wrapper {  
       max-width: 600px;  
       margin: 0 auto;  
@@ -797,10 +776,8 @@
 </head>  
 <body>  
 
-  <!-- Particles -->  
   <canvas id="particles-canvas"></canvas>
 
-  <!-- ── MOBILE NAV (≤768px only) ── -->  
   <nav>  
     <a href="#" class="nav-logo" onclick="showPage('home')">$POSAA</a>  
     <div class="nav-links">  
@@ -822,7 +799,6 @@
     <a href="#" onclick="openWhitepaperModal();toggleMobileMenu()">📄 Whitepaper</a>  
   </div>  
 
-  <!-- ── DESKTOP TOP BAR (≥769px only) ── -->  
   <div class="desktop-topbar" id="desktop-topbar">  
     <div class="desktop-topbar-left">  
       <a href="#" class="desktop-topbar-logo" onclick="showPage('home')">POSAA</a>  
@@ -834,7 +810,6 @@
     </div>  
   </div>  
 
-  <!-- ── DESKTOP SIDE NAV (≥769px only) ── -->  
   <div class="desktop-sidenav" id="desktop-sidenav">  
     <a href="#" onclick="showPage('home')" class="active" id="dnav-home">Home</a>  
     <div class="sidenav-divider"></div>  
@@ -849,23 +824,18 @@
     <a href="#" onclick="showPage('youtube')" id="dnav-youtube">Challenges</a>  
   </div>  
 
-  <!-- ═══════════════════════════  
-       HOME PAGE  
-  ════════════════════════════ -->  
   <div class="page active" id="page-home">    
     <div class="hero-section-wrap">  
       <section class="hero">  
         <div class="hero-overlay"></div>  
         <div class="hero-dual-grid">  
           
-          <!-- COLUMN 1 (LEFT): AUDIO SIDEBAR TRACKLIST CONTAINER — RE-ALIGNED TO SIT FLUSH AND REPRODUCE TRADITIONAL GRID MARGIN BALANCES -->  
           <div class="playlist-sidebar-container">  
             <div style="font-family:'Orbitron', sans-serif; font-weight:900; font-size:1.1rem; color:var(--gold); border-bottom:1px solid rgba(244,180,0,0.25); padding-bottom:8px; margin-bottom:12px; letter-spacing:0.05em; text-align:center;">  
               🔊 $POSAA TRACKS  
             </div>  
             <div style="max-height:540px; overflow-y:auto; padding-right:4px;">  
               
-              <!-- Track 01 -->  
               <div class="playlist-track">  
                 <div class="track-meta">01 - Oh No He's at It Again</div>  
                 <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -873,7 +843,6 @@
                 </audio>  
               </div>  
 
-              <!-- Track 02 -->  
               <div class="playlist-track">  
                 <div class="track-meta">02 - Ooops He Diluted Again</div>  
                 <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -881,7 +850,6 @@
                 </audio>  
               </div>  
 
-              <!-- Track 03 -->  
               <div class="playlist-track">  
                 <div class="track-meta">03 - Na-Na-Na-Na Lets Roll</div>  
                 <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -889,7 +857,6 @@
                 </audio>  
               </div>  
 
-              <!-- Track 04 -->  
               <div class="playlist-track">  
                 <div class="track-meta">04 - A Movie Company Glow</div>  
                 <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -897,7 +864,6 @@
                 </audio>  
               </div>  
 
-              <!-- Track 05 -->  
               <div class="playlist-track">  
                 <div class="track-meta">05 - The Knells of Christmas</div>  
                 <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -905,7 +871,6 @@
                 </audio>  
               </div>  
 
-              <!-- Track 06 -->  
               <div class="playlist-track">  
                 <div class="track-meta">06 - Echoes of the Market</div>  
                 <audio class="audio-player-element" controls controlsList="nodownload" controls>  
@@ -913,7 +878,6 @@
                 </audio>  
               </div>  
 
-              <!-- Track 07 -->  
               <div class="playlist-track">  
                 <div class="track-meta">07 - Feelin Your Shiv</div>  
                 <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -921,7 +885,6 @@
                 </audio>  
               </div>  
 
-              <!-- Track 08 -->  
               <div class="playlist-track">  
                 <div class="track-meta">08 - As We Held Down Tempo</div>  
                 <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -929,7 +892,6 @@
                 </audio>  
               </div>  
 
-              <!-- Track 09 -->  
               <div class="playlist-track">  
                 <div class="track-meta">09 - Silver Screen Dreams</div>  
                 <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -937,7 +899,6 @@
                 </audio>  
               </div>  
 
-              <!-- Track 10 -->  
               <div class="playlist-track">  
                 <div class="track-meta">10 - To The Moon</div>  
                 <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -945,7 +906,6 @@
                 </audio>  
               </div>  
 
-              <!-- Track 11 -->  
               <div class="playlist-track">  
                 <div class="track-meta">11 - Lamp On Flawed King</div>  
                 <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -953,7 +913,6 @@
                 </audio>  
               </div>  
 
-              <!-- Track 12 -->  
               <div class="playlist-track">  
                 <div class="track-meta">12 - Unbroken</div>  
                 <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -961,7 +920,6 @@
                 </audio>  
               </div>  
 
-              <!-- Track 13 -->  
               <div class="playlist-track">  
                 <div class="track-meta">13 - Apes and Retards in Arms</div>  
                 <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -975,7 +933,6 @@
             </div>  
           </div>  
 
-          <!-- COLUMN 2 (CENTER): HERO CENTRAL CONTENT BOX -->  
           <div class="hero-content">  
             <div class="hero-logo-wrap">  
               <img id="logo-fallback" src="posaa.png" alt="$POSAA Logo" />  
@@ -994,7 +951,6 @@
       </section>  
     </div>  
 
-    <!-- ABOUT -->    
     <section class="about-section" id="section-about">  
       <h2 class="section-heading reveal">About $POSAA</h2>  
       <div class="section-divider"></div>  
@@ -1031,7 +987,6 @@
       </div>  
     </section>    
 
-    <!-- ROADMAP — POSITIONED BEFORE TOKENOMICS -->    
     <section class="roadmap-section" id="section-roadmap">  
       <h2 class="section-heading reveal">Road Map</h2>  
       <div class="section-divider"></div>  
@@ -1099,7 +1054,6 @@
       </div>  
     </section>    
 
-    <!-- TOKENOMICS -->    
     <section class="tokenomics-section" id="section-tokenomics">  
       <h2 class="section-heading reveal">Tokenomics</h2>  
       <div class="section-divider"></div>  
@@ -1165,7 +1119,6 @@
       </div>  
     </section>    
 
-    <!-- ── CONTRACT ADDRESS & ANALYTICS VIEW BLOCK ── -->
     <section class="ca-analytics-section" id="section-analytics">
       <h2 class="section-heading reveal">Market Analysis</h2>  
       <div class="section-divider"></div>  
@@ -1181,7 +1134,6 @@
       </div>
     </section>
 
-    <!-- LAUNCH MECHANICS / DISTRIBUTION -->    
     <section class="dist-section">  
       <h2 class="section-heading reveal">Distribution &amp; Fair Launch Principles</h2>  
       <div class="section-divider"></div>  
@@ -1222,7 +1174,6 @@
       </div>  
     </section>    
 
-    <!-- COMMUNITY -->    
     <section class="community-section" id="section-community">  
       <h2 class="section-heading reveal">Join the Community</h2>  
       <div class="section-divider"></div>  
@@ -1244,7 +1195,6 @@
       </div>  
     </section>    
 
-    <!-- DISCLAIMER -->    
     <section class="disclaimer-section">  
       <div class="disclaimer-box reveal">  
         <h3>🚫 Disclaimer</h3>  
@@ -1257,15 +1207,11 @@
       </div>  
     </section>    
 
-    <!-- FOOTER -->    
     <footer>  
       <div class="footer-logo">$POSAA</div>  
       <p class="footer-copy">© 2026 $POSAA Community. Public Opinion, Sentiment, Antics &amp; Assholery. Not financial advice.</p>  
     </footer>  
-  </div><!-- /page-home -->  
-
-  <!-- ── DEDICATED BUY PAGE (Fully Configured Active Links) ── -->  
-  <div class="page" id="page-buy">  
+  </div><div class="page" id="page-buy">  
     <div class="coming-soon-page">  
       <div class="cs-glow"></div>  
       <div class="cs-icon">💎</div>  
@@ -1278,7 +1224,7 @@
         <a href="https://xpmarket.com/dex/POSAA-rUHPgW3p3YzkndS1RZRy9f3xKPRLuzVZtM/XRP?trade=market" target="_blank" rel="noopener" class="platform-link-btn">Buy on XPMarket</a>  
       </div>  
 
-      <p class="cs-desc" style="margin-top:25px; font-size:0.8rem; color:var(--gray);">  
+      <p class="cs-desc" style="margin-top:25px; font-size:0.85rem; color:var(--gray);">  
         Always confirm contract validity. 0% network tax architecture enabled natively.  
       </p>  
     </div>  
@@ -1288,7 +1234,6 @@
     </footer>  
   </div>  
 
-  <!-- ── POSAA AUDIO PAGE (Mobile Exclusive View Layer) ── -->  
   <div class="page" id="page-audio">  
     <div class="coming-soon-page">  
       <div class="cs-glow"></div>  
@@ -1298,7 +1243,6 @@
       
       <div class="mobile-audio-container" style="max-height: 520px; overflow-y: auto;">  
         
-        <!-- Track 01 -->  
         <div class="playlist-track" style="text-align: left;">  
           <div class="track-meta">01 - Oh No He's at It Again</div>  
           <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -1306,7 +1250,6 @@
           </audio>  
         </div>  
 
-        <!-- Track 02 -->  
         <div class="playlist-track" style="text-align: left;">  
           <div class="track-meta">02 - Ooops He Diluted Again</div>  
           <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -1314,7 +1257,6 @@
           </audio>  
         </div>  
 
-        <!-- Track 03 -->  
         <div class="playlist-track" style="text-align: left;">  
           <div class="track-meta">03 - Na-Na-Na-Na Lets Roll</div>  
           <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -1322,7 +1264,6 @@
           </audio>  
         </div>  
 
-        <!-- Track 04 -->  
         <div class="playlist-track" style="text-align: left;">  
           <div class="track-meta">04 - A Movie Company Glow</div>  
           <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -1330,7 +1271,6 @@
           </audio>  
         </div>  
 
-        <!-- Track 05 -->  
         <div class="playlist-track" style="text-align: left;">  
           <div class="track-meta">05 - The Knells of Christmas</div>  
           <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -1338,7 +1278,6 @@
           </audio>  
         </div>  
 
-        <!-- Track 06 -->  
         <div class="playlist-track" style="text-align: left;">  
           <div class="track-meta">06 - Echoes of the Market</div>  
           <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -1346,7 +1285,6 @@
           </audio>  
         </div>  
 
-        <!-- Track 07 -->  
         <div class="playlist-track" style="text-align: left;">  
           <div class="track-meta">07 - Feelin Your Shiv</div>  
           <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -1354,7 +1292,6 @@
           </audio>  
         </div>  
 
-        <!-- Track 08 -->  
         <div class="playlist-track" style="text-align: left;">  
           <div class="track-meta">08 - As We Held Down Tempo</div>  
           <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -1362,7 +1299,6 @@
           </audio>  
         </div>  
 
-        <!-- Track 09 -->  
         <div class="playlist-track" style="text-align: left;">  
           <div class="track-meta">09 - Silver Screen Dreams</div>  
           <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -1370,7 +1306,6 @@
           </audio>  
         </div>  
 
-        <!-- Track 10 -->  
         <div class="playlist-track" style="text-align: left;">  
           <div class="track-meta">10 - To The Moon</div>  
           <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -1378,7 +1313,6 @@
           </audio>  
         </div>  
 
-        <!-- Track 11 -->  
         <div class="playlist-track" style="text-align: left;">  
           <div class="track-meta">11 - Lamp On Flawed King</div>  
           <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -1386,7 +1320,6 @@
           </audio>  
         </div>  
 
-        <!-- Track 12 -->  
         <div class="playlist-track" style="text-align: left;">  
           <div class="track-meta">12 - Unbroken</div>  
           <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -1394,7 +1327,6 @@
           </audio>  
         </div>  
 
-        <!-- Track 13 -->  
         <div class="playlist-track" style="text-align: left;">  
           <div class="track-meta">13 - Apes and Retards in Arms</div>  
           <audio class="audio-player-element" controls controlsList="nodownload">  
@@ -1411,7 +1343,6 @@
     </footer>  
   </div>  
 
-  <!-- ── YOUTUBE + CONTEST PAGE ── -->  
   <div class="page" id="page-youtube">  
     <div class="coming-soon-page">  
       <div class="cs-glow"></div>  
@@ -1432,7 +1363,6 @@
     </footer>  
   </div>  
 
-  <!-- ── GAME PAGE ── -->  
   <div class="page" id="page-game">  
     <div class="coming-soon-page">  
       <div class="cs-glow" style="background:radial-gradient(circle, rgba(244,180,0,0.12) 0%, transparent 70%);"></div>  
@@ -1454,7 +1384,6 @@
     </footer>  
   </div>  
 
-  <!-- ── WHITEPAPER MODAL ── -->  
   <div class="modal-overlay" id="whitepaper-modal" onclick="handleModalOverlayClick(event)">  
     <div class="modal-box">  
       <div class="modal-header">  
@@ -1472,10 +1401,8 @@
     </div>  
   </div>  
 
-  <!-- TOAST -->  
   <div class="toast" id="toast"></div>  
 
-  <!-- COMING SOON MODAL -->  
   <div class="modal-overlay" id="cs-modal" onclick="closeCSModal(event)">  
     <div class="modal-box" style="max-width:420px;text-align:center;">  
       <div class="modal-header">  
