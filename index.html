@@ -218,8 +218,8 @@
     @media (min-width: 769px) {  
       .hero-dual-grid {  
         display: grid;  
-        grid-template-columns: 360px 1fr;  
-        gap: 3rem;  
+        grid-template-columns: 380px 1fr;  
+        gap: 3.5rem;  
         width: 100%;  
         max-width: 1440px;  
         margin: 0 auto;  
@@ -342,16 +342,16 @@
     }  
     .btn-secondary:hover { background: rgba(244,180,0,0.15); box-shadow: 0 0 30px rgba(244,180,0,0.4); transform: translateY(-2px); }  
 
-    /* ── PLAYLIST SIDEBAR CONTAINER ── */  
+    /* ── PLAYLIST SIDEBAR CONTAINER — EXPANDED IN LENGTH FOR ALIGNMENT ── */  
     .playlist-sidebar-container {  
       display: none;  
       background: rgba(10, 10, 10, 0.85);  
       border: 1px solid rgba(244, 180, 0, 0.3);  
       border-radius: 4px;  
-      padding: 12px;  
+      padding: 16px 12px;  
       width: 100%;  
-      max-width: 360px;  
-      max-height: 540px;  
+      max-width: 380px;  
+      max-height: 640px;  
       overflow-y: auto;  
       text-align: left;  
       backdrop-filter: blur(12px);  
@@ -432,6 +432,79 @@
       box-shadow: 0 0 20px rgba(244,180,0,0.25);  
       transform: translateY(-1px);  
     }  
+
+    /* ── CONTRACT ADDRESS & ANALYTICS VIEW BLOCK ── */
+    .ca-analytics-section {
+      padding: 100px 5%;
+      background: #090909;
+      border-top: 1px solid rgba(244,180,0,0.08);
+      border-bottom: 1px solid rgba(244,180,0,0.08);
+    }
+    .ca-display-card {
+      max-width: 760px;
+      margin: 0 auto 40px;
+      background: rgba(21,21,21,0.65);
+      border: 1px solid rgba(244,180,0,0.25);
+      border-radius: 8px;
+      padding: 24px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+    .ca-title-label {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .ca-hash-box {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(0.75rem, 2.2vw, 1.2rem);
+      color: var(--white);
+      background: #000000;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      padding: 14px 20px;
+      margin-bottom: 16px;
+      word-break: break-all;
+      letter-spacing: 0.02em;
+    }
+    .ca-action-trigger {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      padding: 10px 24px;
+      background: rgba(244,180,0,0.15);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      border-radius: 4px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
+    }
+    .ca-action-trigger:hover {
+      background: var(--gold);
+      color: var(--black);
+      box-shadow: 0 0 20px rgba(244,180,0,0.35);
+    }
+    .chart-embed-frame {
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 600px;
+      background: rgba(10,10,10,0.5);
+      border: 1px solid rgba(254,180,0,0.15);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+    }
+    .chart-embed-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
 
     /* ABOUT */  
     .about-section {  
@@ -533,7 +606,8 @@
     .token-card-sub { font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--gray); margin-top: 0.3rem; }  
     .tokenomics-bottom { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }  
     .donut-wrap { display: flex; flex-direction: column; align-items: center; }  
-    .donut-wrap h3 { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--light-gray); margin-bottom: 1.2rem; text-transform: uppercase; letter-spacing: 0.1em; }  canvas#donutChart { max-width: 260px; }  
+    .donut-wrap h3 { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--light-gray); margin-bottom: 1.2rem; text-transform: uppercase; letter-spacing: 0.1em; }  
+    canvas#donutChart { max-width: 260px; }  
     .donut-legend { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1.2rem; width: 100%; max-width: 280px; }  
     .legend-item { display: flex; align-items: center; gap: 0.6rem; font-family: 'Inter', sans-serif; font-size: 0.82rem; color: var(--light-gray); }  
     .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }  
@@ -546,31 +620,6 @@
     /* DISTRIBUTION */  
     .dist-section { padding: 80px 5%; }  
     .dist-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }  
-
-    /* BUY SECTION */  
-    .buy-section {  
-      padding: 100px 5%;  
-      background: radial-gradient(ellipse at center, rgba(123,47,255,0.08) 0%, var(--black) 70%);  
-    }  
-    .buy-inner { max-width: 700px; margin: 0 auto; text-align: center; }  
-    .buy-ca-box {  
-      background: rgba(21,21,21,0.9); border: 1px solid rgba(244,180,0,0.3);  
-      border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 2rem;  
-      backdrop-filter: blur(12px);  
-    }  
-    .buy-ca-label { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.85rem; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; }  
-    .buy-ca-val { font-family: 'JetBrains Mono', monospace; font-size: clamp(0.7rem, 2vw, 0.95rem); color: var(--light-gray); margin-bottom: 0.8rem; word-break: break-all; }  
-    .buy-ca-val.coming-soon { color: var(--violet); font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.1rem; letter-spacing: 0.1em; }  
-    .chart-placeholder {  
-      background: rgba(21,21,21,0.7); border: 1px solid rgba(168,85,247,0.25);  
-      border-radius: 12px; padding: 3rem; margin-bottom: 2rem; text-align: center;  
-    }  
-    .coming-soon-tag {  
-      font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 1rem;  
-      color: var(--violet); letter-spacing: 0.15em;  
-      text-shadow: 0 0 15px rgba(168,85,247,0.5);  
-    }  
-    .chart-sub { font-family: 'Inter', sans-serif; font-size: 0.82rem; color: var(--gray); margin-top: 0.5rem; }  
 
     /* COMMUNITY */  
     .community-section {  
@@ -787,8 +836,9 @@
     <div class="sidenav-divider"></div>  
     <a href="#" onclick="scrollToSection('about')">About</a>  
     <a href="#" onclick="openWhitepaperModal()">White Paper</a>  
-    <a href="#" onclick="scrollToSection('tokenomics')">Tokenomics</a>  
     <a href="#" onclick="scrollToSection('roadmap')">Road Map</a>  
+    <a href="#" onclick="scrollToSection('tokenomics')">Tokenomics</a>  
+    <a href="#" onclick="scrollToSection('analytics')">Live Chart</a>  
     <a href="#" onclick="scrollToSection('community')">Community</a>  
     <div class="sidenav-divider"></div>  
     <a href="#" onclick="showPage('game')" id="dnav-game">Games</a>  
@@ -804,12 +854,12 @@
         <div class="hero-overlay"></div>  
         <div class="hero-dual-grid">  
           
-          <!-- COLUMN 1 (LEFT): AUDIO SIDEBAR TRACKLIST CONTAINER -->  
+          <!-- COLUMN 1 (LEFT): AUDIO SIDEBAR TRACKLIST CONTAINER — ALIGNED WITH LOGO VIEWS AND TOP LINES -->  
           <div class="playlist-sidebar-container">  
             <div style="font-family:'Orbitron', sans-serif; font-weight:900; font-size:1.1rem; color:var(--gold); border-bottom:1px solid rgba(244,180,0,0.25); padding-bottom:8px; margin-bottom:12px; letter-spacing:0.05em; text-align:center;">  
               🔊 $POSAA TRACKS  
             </div>  
-            <div style="max-height:440px; overflow-y:auto; padding-right:4px;">  
+            <div style="max-height:540px; overflow-y:auto; padding-right:4px;">  
               
               <!-- Track 01 -->  
               <div class="playlist-track">  
@@ -854,7 +904,7 @@
               <!-- Track 06 -->  
               <div class="playlist-track">  
                 <div class="track-meta">06 - Echoes of the Market</div>  
-                <audio class="audio-player-element" controls controlsList="nodownload">  
+                <audio class="audio-player-element" controlsList="nodownload" controls>  
                   <source src="https://www.dropbox.com/scl/fi/styowc42qa726owg5oevj/Amy-Hurt-Me.mp3?rlkey=g66s0ir3nlmu6fvlhpht1xuvy&st=pyovos3t&raw=1" type="audio/mpeg">  
                 </audio>  
               </div>  
@@ -977,7 +1027,7 @@
       </div>  
     </section>    
 
-    <!-- ROADMAP -->    
+    <!-- ROADMAP — POSITIONED BEFORE TOKENOMICS -->    
     <section class="roadmap-section" id="section-roadmap">  
       <h2 class="section-heading reveal">Road Map</h2>  
       <div class="section-divider"></div>  
@@ -1109,7 +1159,23 @@
           </div>  
         </div>  
       </div>  
-    </section>  
+    </section>    
+
+    <!-- ── CONTRACT ADDRESS & ANALYTICS VIEW BLOCK ── -->
+    <section class="ca-analytics-section" id="section-analytics">
+      <h2 class="section-heading reveal">Market Analysis</h2>  
+      <div class="section-divider"></div>  
+      
+      <div class="ca-display-card reveal">
+        <div class="ca-title-label">Official XRPL Contract Address</div>
+        <div class="ca-hash-box" id="ca-value-string">rUHPgW3p3YzkndS1RZRy9f3xKPRLuzVZtM</div>
+        <button class="ca-action-trigger" onclick="copyContractToClipboard()">Copy Token Address</button>
+      </div>
+
+      <div class="chart-embed-frame reveal">
+        <iframe src="https://dexscreener.com/xrpl/504F534141000000000000000000000000000000.rUHPgW3p3YzkndS1RZRy9f3xKPRLuzVZtM_XRP?embed=1&theme=dark&trades=0&info=0"></iframe>
+      </div>
+    </section>
 
     <!-- LAUNCH MECHANICS / DISTRIBUTION -->    
     <section class="dist-section">  
@@ -1144,30 +1210,10 @@
             <ul>  
               <li><strong style="color:var(--white);">Token Name:</strong> POSAA</li>  
               <li><strong style="color:var(--white);">Ticker:</strong> $POSAA</li>  
-              <li><strong style="color:var(--white);">Blockchain:</strong> XRP Ledger (XRPL)</li>  ;
+              <li><strong style="color:var(--white);">Blockchain:</strong> XRP Ledger (XRPL)</li>  
               <li><strong style="color:var(--white);">Token Name Full:</strong> Public Opinion, Sentiment, Antics &amp; Assholery</li>  
             </ul>  
           </div>  
-        </div>  
-      </div>  
-    </section>    
-
-    <!-- BUY SECTION -->    
-    <section class="buy-section">  
-      <h2 class="section-heading reveal">Buy $POSAA</h2>  
-      <div class="section-divider"></div>  
-      <div class="buy-inner">  
-        <div class="buy-ca-box reveal">  
-          <div class="buy-ca-label">Contract Address</div>  
-          <div class="buy-ca-val coming-soon">⏳ Coming Soon</div>  
-          <button class="ca-copy-btn" onclick="copyCA()" style="margin-top:0.3rem;">COPY WHEN LIVE</button>  
-        </div>  
-        <div class="chart-placeholder reveal">  
-          <div class="coming-soon-tag">📈 LIVE CHART COMING SOON</div>  
-          <div class="chart-sub">DexScreener chart will be embedded upon launch</div>  
-        </div>  
-        <div class="hero-buttons reveal">  
-          <button class="btn-primary" onclick="showComingSoonAlert()">🚀 Buy on XRPL DEX</button>  
         </div>  
       </div>  
     </section>    
@@ -1214,7 +1260,7 @@
     </footer>  
   </div><!-- /page-home -->  
 
-  <!-- ── DEDICATED BUY PAGE ── -->  
+  <!-- ── DEDICATED BUY PAGE (Fully Configured Active Links) ── -->  
   <div class="page" id="page-buy">  
     <div class="coming-soon-page">  
       <div class="cs-glow"></div>  
@@ -1223,9 +1269,9 @@
       <div class="cs-subtitle">Acquire $POSAA Safely on XRPL Networks</div>  
       
       <div class="buy-hub-wrapper">  
-        <a href="#" class="platform-link-btn" onclick="showComingSoonAlert()">Buy on DexScreener</a>  
-        <a href="#" class="platform-link-btn" onclick="showComingSoonAlert()">Buy on First Ledger</a>  
-        <a href="#" class="platform-link-btn" onclick="showComingSoonAlert()">Buy on XPMarket</a>  
+        <a href="https://dexscreener.com/xrpl/504F534141000000000000000000000000000000.rUHPgW3p3YzkndS1RZRy9f3xKPRLuzVZtM_XRP" target="_blank" rel="noopener" class="platform-link-btn">Buy on DexScreener</a>  
+        <a href="https://firstledger.net/token/rUHPgW3p3YzkndS1RZRy9f3xKPRLuzVZtM/504F534141000000000000000000000000000000" target="_blank" rel="noopener" class="platform-link-btn">Buy on First Ledger</a>  
+        <a href="https://xpmarket.com/dex/POSAA-rUHPgW3p3YzkndS1RZRy9f3xKPRLuzVZtM/XRP?trade=market" target="_blank" rel="noopener" class="platform-link-btn">Buy on XPMarket</a>  
       </div>  
 
       <p class="cs-desc" style="margin-top:25px; font-size:0.85rem; color:var(--gray);">  
@@ -1495,9 +1541,14 @@
     document.getElementById('mobile-menu').classList.toggle('open');  
   }  
     
-  // ── COPY CA ──  
-  function copyCA() {  
-    showToast('Contract address not live yet!');  
+  // ── COPY CONTRACT MECHANISM ──  
+  function copyContractToClipboard() {  
+    const caString = "rUHPgW3p3YzkndS1RZRy9f3xKPRLuzVZtM";  
+    navigator.clipboard.writeText(caString).then(() => {  
+      showToast('Address copied to clipboard!');  
+    }).catch(() => {  
+      showToast('Copying failed. Please highlight manually.');  
+    });  
   }  
     
   function showToast(msg) {  
