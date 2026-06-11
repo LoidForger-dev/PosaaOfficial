@@ -42,13 +42,11 @@
       cursor: default;  
     }  
     
-    /* ── PARTICLES ── */  
     #particles-canvas {  
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;  
       pointer-events: none; z-index: 0; opacity: 0.45;  
     }  
 
-    /* ── NAV — MOBILE (default, horizontal top bar) ── */  
     nav {  
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;  
       display: flex; align-items: center; justify-content: space-between;  
@@ -81,7 +79,6 @@
     }  
     .mobile-menu a:hover { color: var(--gold); }  
 
-    /* ── NAV — DESKTOP OVERRIDE ── */  
     @media (min-width: 769px) {  
       nav { display: none; }  
       .mobile-menu { display: none !important; }  
@@ -133,7 +130,6 @@
         box-shadow: 0 0 25px rgba(244,180,0,0.55); transform: translateY(-1px);  
       }  
 
-      /* ── FIXED RIGHT SIDENAV ── */
       .desktop-sidenav {  
         position: fixed; top: var(--topbar-height); right: 0; z-index: 999;  
         width: var(--sidenav-width); height: calc(100vh - var(--topbar-height));  
@@ -143,7 +139,6 @@
         overflow-y: auto;  
       }
 
-      /* ── FIXED LEFT PLAYLIST PANEL ── */
       .desktop-playlist-panel {
         position: fixed; top: var(--topbar-height); left: 0; z-index: 999;
         width: var(--sidenav-width); height: calc(100vh - var(--topbar-height));
@@ -156,19 +151,13 @@
         flex: 1;
         overflow-y: auto;
         overflow-x: hidden;
-        /* hide scrollbar but keep scrollable */
         scrollbar-width: thin;
         scrollbar-color: rgba(244,180,0,0.3) transparent;
       }
-      .desktop-playlist-panel .playlist-inner-scroll::-webkit-scrollbar {
-        width: 4px;
-      }
-      .desktop-playlist-panel .playlist-inner-scroll::-webkit-scrollbar-track {
-        background: transparent;
-      }
+      .desktop-playlist-panel .playlist-inner-scroll::-webkit-scrollbar { width: 4px; }
+      .desktop-playlist-panel .playlist-inner-scroll::-webkit-scrollbar-track { background: transparent; }
       .desktop-playlist-panel .playlist-inner-scroll::-webkit-scrollbar-thumb {
-        background: rgba(244,180,0,0.3);
-        border-radius: 2px;
+        background: rgba(244,180,0,0.3); border-radius: 2px;
       }
 
       .desktop-sidenav a, .desktop-sidenav button {  
@@ -203,7 +192,6 @@
         margin: 0.3rem 0 0.8rem; border-radius: 2px;  
       }  
 
-      /* ── MAIN CONTENT: offset both sides ── */
       body.desktop-layout .page.active {
         margin-left: var(--sidenav-width);
         margin-right: var(--sidenav-width);
@@ -218,16 +206,11 @@
       .desktop-topbar, .desktop-sidenav, .desktop-playlist-panel { display: none !important; }  
     }  
 
-    /* ── PAGES ── */  
     .page { display: none; }  
     .page.active { display: block; }  
-
-    /* ── SECTIONS ── */  
     section { position: relative; z-index: 1; }  
 
-    /* ══════════════════════════════════════════  
-       HOME PAGE  
-    ══════════════════════════════════════════ */  
+    /* ══ HOME ══ */
     .hero-section-wrap { width: 100%; }  
     .hero {  
       min-height: 100vh;  
@@ -235,7 +218,6 @@
       text-align: center; padding: 100px 5% 60px;  
       position: relative; overflow: hidden;  
     }  
-    
     @media (min-width: 769px) {  
       .hero {
         min-height: calc(100vh - var(--topbar-height));
@@ -243,7 +225,6 @@
         justify-content: center;
       }
     }  
-
     .hero-overlay {  
       position: absolute; inset: 0; z-index: 0;  
       background: radial-gradient(ellipse at 50% 50%, rgba(123,47,255,0.1) 0%, transparent 70%);  
@@ -251,7 +232,6 @@
     }  
     .hero-content { position: relative; z-index: 1; width: 100%; }  
 
-    /* ── LOGO FRAME ── */  
     .hero-logo-wrap {  
       width: 150px; height: 150px; margin: 0 auto 1.5rem;  
       border-radius: 50%;  
@@ -275,22 +255,16 @@
       0%,100% { box-shadow: 0 0 30px rgba(244,180,0,0.35), 0 0 40px rgba(244,180,0,0.1); }  
       50%      { box-shadow: 0 0 40px rgba(244,180,0,0.45), 0 0 60px rgba(244,180,0,0.15); }  
     }  
-    .hero-logo-wrap video,  
-    .hero-logo-wrap img {  
+    .hero-logo-wrap video, .hero-logo-wrap img {  
       position: absolute; inset: 0;  
       width: 100%; height: 100%;  
-      object-fit: cover;  
-      border-radius: 50%;  
+      object-fit: cover; border-radius: 50%;  
     }  
-    
     @media (min-width: 769px) {  
-      .hero-logo-wrap video,  
-      .hero-logo-wrap img {  
-        transform: scale(1.10);  
-        transform-origin: center center;  
+      .hero-logo-wrap video, .hero-logo-wrap img {  
+        transform: scale(1.10); transform-origin: center center;  
       }  
     }  
-
     .hero-logo-wrap img { z-index: 1; display: none; }  
     .hero-logo-wrap video { z-index: 2; }  
 
@@ -299,7 +273,6 @@
       font-size: clamp(2.2rem, 6vw, 4.5rem);  
       background: linear-gradient(135deg, var(--gold) 0%, var(--gold-soft) 50%, var(--gold) 100%);  
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;  
-      text-shadow: none;  
       letter-spacing: 0.05em; line-height: 1;  
       filter: drop-shadow(0 0 30px rgba(244,180,0,0.5));  
       margin-bottom: 0.5rem;  
@@ -314,8 +287,7 @@
     .hero-tagline {  
       font-family: 'Rajdhani', sans-serif; font-weight: 700;  
       font-size: clamp(0.95rem, 2vw, 1.3rem);  
-      color: var(--white); margin-bottom: 2rem;  
-      line-height: 1.3;  
+      color: var(--white); margin-bottom: 2rem; line-height: 1.3;  
     }  
     .hero-tagline span { color: var(--gold); }  
     .ca-wrap {  
@@ -359,92 +331,213 @@
     }  
     .btn-secondary:hover { background: rgba(244,180,0,0.15); box-shadow: 0 0 30px rgba(244,180,0,0.4); transform: translateY(-2px); }  
 
-    /* ── PLAYLIST TRACK STYLES (shared mobile + desktop panel) ── */  
+    /* ══ MOBILE HERO BUY BUTTON ══ */
+    .mobile-hero-buy-btn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 1rem;
+      letter-spacing: 0.12em; padding: 1rem 2.8rem; border-radius: 6px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+      color: var(--black); border: none; cursor: pointer;
+      box-shadow: 0 0 30px rgba(244,180,0,0.45), 0 4px 20px rgba(0,0,0,0.4);
+      text-transform: uppercase; transition: all 0.25s;
+      text-decoration: none;
+    }
+    .mobile-hero-buy-btn:hover { box-shadow: 0 0 50px rgba(244,180,0,0.65); transform: translateY(-2px); }
+    @media (min-width: 769px) { .mobile-hero-buy-btn { display: none; } }
+
+    /* ══ PLAYLIST ══ */
     .playlist-track {  
       background: #000000 !important;  
       border: 1px solid rgba(244,180,0,0.15);  
-      border-radius: 4px;  
-      padding: 10px;  
-      margin-bottom: 8px;  
+      border-radius: 4px; padding: 10px; margin-bottom: 8px;  
       transition: all 0.2s ease;  
     }  
-    .playlist-track:hover {  
-      border-color: rgba(244,180,0,0.4);  
-    }  
+    .playlist-track:hover { border-color: rgba(244,180,0,0.4); }  
     .track-meta {  
-      font-family: 'Rajdhani', sans-serif;  
-      font-weight: 700;  
-      color: var(--gold);  
-      font-size: 0.85rem;  
-      margin-bottom: 6px;  
-      text-transform: uppercase;  
-      letter-spacing: 0.04em;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      font-family: 'Rajdhani', sans-serif; font-weight: 700; color: var(--gold);  
+      font-size: 0.85rem; margin-bottom: 6px; text-transform: uppercase;  
+      letter-spacing: 0.04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;  
     }  
     .audio-player-element {  
-      width: 100%;  
-      height: 28px;  
-      outline: none;  
-      filter: invert(1) hue-rotate(180deg);  
-      border-radius: 4px;  
+      width: 100%; height: 28px; outline: none;  
+      filter: invert(1) hue-rotate(180deg); border-radius: 4px;  
     }  
     .playlist-header-label {
       font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 0.85rem;
-      color: var(--gold);
-      border-bottom: 1px solid rgba(244,180,0,0.25);
-      padding-bottom: 8px; margin-bottom: 12px;
-      letter-spacing: 0.05em; text-align: center;
+      color: var(--gold); border-bottom: 1px solid rgba(244,180,0,0.25);
+      padding-bottom: 8px; margin-bottom: 12px; letter-spacing: 0.05em; text-align: center;
     }
     .playlist-footer-branding {  
-      text-align: center;  
-      font-family: 'Rajdhani', sans-serif;  
-      font-size: 0.7rem;  
-      color: var(--gray);  
-      letter-spacing: 0.08em;  
-      padding-top: 10px;
-      text-transform: uppercase;
-      flex-shrink: 0;
+      text-align: center; font-family: 'Rajdhani', sans-serif; font-size: 0.7rem;  
+      color: var(--gray); letter-spacing: 0.08em; padding-top: 10px;
+      text-transform: uppercase; flex-shrink: 0;  
     }  
 
-    /* ── HUB DESIGN ── */  
-    .buy-hub-wrapper {  
-      max-width: 600px;  
-      margin: 0 auto;  
-      background: rgba(15, 15, 15, 0.9);  
-      border: 1px solid rgba(244, 180, 0, 0.3);  
-      border-radius: 12px;  
-      padding: 40px;  
-      box-shadow: 0 0 40px rgba(0,0,0,0.85);  
-      backdrop-filter: blur(16px);  
-    }  
+    /* ══ BUY PAGE — REDESIGNED ══ */
+    .buy-page-wrap {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      padding: 100px 5% 60px;
+    }
+    @media (min-width: 769px) {
+      .buy-page-wrap { padding: 60px 5% 60px; }
+    }
+
+    .buy-page-heading {
+      font-family: 'Orbitron', sans-serif; font-weight: 900;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      text-align: center; margin-bottom: 0.4rem;
+      filter: drop-shadow(0 0 15px rgba(244,180,0,0.35));
+    }
+    .buy-page-sub {
+      font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 1rem;
+      color: var(--gray); letter-spacing: 0.15em; text-transform: uppercase;
+      text-align: center; margin-bottom: 2.5rem;
+    }
+
+    /* How-to Steps */
+    .how-to-container {
+      max-width: 720px; margin: 0 auto 2.5rem;
+    }
+    .how-to-step {
+      display: flex; gap: 1rem; align-items: flex-start;
+      background: rgba(15,15,15,0.85);
+      border: 1px solid rgba(244,180,0,0.15);
+      border-radius: 10px; padding: 1.1rem 1.3rem;
+      margin-bottom: 0.85rem;
+      backdrop-filter: blur(8px);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .how-to-step:hover {
+      border-color: rgba(244,180,0,0.4);
+      box-shadow: 0 0 20px rgba(244,180,0,0.08);
+    }
+    .step-number {
+      font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.1rem;
+      color: var(--gold); min-width: 36px; line-height: 1.3;
+      text-shadow: 0 0 10px rgba(244,180,0,0.4);
+    }
+    .step-content { flex: 1; }
+    .step-title {
+      font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.95rem;
+      color: var(--white); letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+    .step-desc {
+      font-family: 'Inter', sans-serif; font-size: 0.84rem;
+      color: var(--light-gray); line-height: 1.6;
+    }
+    .step-desc strong { color: var(--gold); }
+    .step-warning {
+      display: flex; gap: 0.5rem; align-items: flex-start;
+      background: rgba(255,100,0,0.07); border: 1px solid rgba(255,100,0,0.2);
+      border-radius: 6px; padding: 0.5rem 0.8rem; margin-top: 0.5rem;
+      font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #ffaa66; line-height: 1.5;
+    }
+
+    /* Contract address display in buy page */
+    .buy-ca-box {
+      max-width: 720px; margin: 0 auto 0.5rem;
+      background: rgba(15,15,15,0.85);
+      border: 1px solid rgba(244,180,0,0.3); border-radius: 8px;
+      padding: 1rem 1.3rem; text-align: center;
+      backdrop-filter: blur(8px);
+    }
+    .buy-ca-label {
+      font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.75rem;
+      color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem;
+    }
+    .buy-ca-value {
+      font-family: 'JetBrains Mono', monospace; font-size: clamp(0.65rem, 2vw, 0.9rem);
+      color: var(--white); word-break: break-all; margin-bottom: 0.7rem; line-height: 1.5;
+    }
+    .buy-ca-copy {
+      font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.72rem;
+      letter-spacing: 0.08em; padding: 0.45rem 1.2rem;
+      background: rgba(244,180,0,0.12); border: 1px solid var(--gold);
+      color: var(--gold); border-radius: 4px; cursor: pointer;
+      text-transform: uppercase; transition: all 0.2s;
+    }
+    .buy-ca-copy:hover { background: var(--gold); color: var(--black); }
+
+    /* Wallet download buttons */
+    .wallet-download-section {
+      max-width: 720px; margin: 0 auto 2.5rem;
+    }
+    .wallet-section-label {
+      font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.8rem;
+      color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase;
+      text-align: center; margin-bottom: 1rem;
+      padding-bottom: 0.6rem; border-bottom: 1px solid rgba(244,180,0,0.15);
+    }
+    .wallet-btn-row {
+      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    }
+    .wallet-download-btn {
+      display: flex; align-items: center; gap: 0.7rem;
+      padding: 0.9rem 1.6rem; border-radius: 8px;
+      font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.8rem;
+      letter-spacing: 0.08em; text-decoration: none; text-transform: uppercase;
+      transition: all 0.25s; min-width: 200px; justify-content: center;
+      background: rgba(15,15,15,0.9); color: var(--white);
+      border: 1px solid rgba(244,180,0,0.4);
+      box-shadow: 0 0 15px rgba(244,180,0,0.1);
+    }
+    .wallet-download-btn:hover {
+      border-color: var(--gold);
+      background: rgba(244,180,0,0.1);
+      box-shadow: 0 0 30px rgba(244,180,0,0.25);
+      transform: translateY(-2px);
+      color: var(--gold);
+    }
+    .wallet-icon { font-size: 1.3rem; }
+
+    /* Security tips box */
+    .security-box {
+      max-width: 720px; margin: 0 auto 2.5rem;
+      background: rgba(10,10,10,0.8); border: 1px solid rgba(255,180,0,0.15);
+      border-radius: 8px; padding: 1rem 1.3rem;
+    }
+    .security-box-title {
+      font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.85rem;
+      color: var(--gold-soft); letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .security-list {
+      list-style: none; display: flex; flex-direction: column; gap: 0.3rem;
+    }
+    .security-list li {
+      font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--gray);
+    }
+    .security-list li::before { content: '🔒 '; }
+
+    /* Buy platform buttons */
+    .buy-platforms-section {
+      max-width: 720px; margin: 0 auto 2rem;
+    }
+    .platforms-label {
+      font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.8rem;
+      color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase;
+      text-align: center; margin-bottom: 1rem;
+      padding-bottom: 0.6rem; border-bottom: 1px solid rgba(244,180,0,0.15);
+    }
     .platform-link-btn {  
-      display: block;  
-      width: 100%;  
-      padding: 16px;  
-      margin-bottom: 14px;  
-      background: rgba(5,5,5,0.95);  
-      border: 1px solid rgba(244,180,0,0.25);  
-      border-radius: 6px;  
-      color: var(--white);  
-      text-align: center;  
-      font-family: 'Orbitron', sans-serif;  
-      font-size: 0.95rem;  
-      text-decoration: none;  
-      text-transform: uppercase;  
-      font-weight: 700;  
-      letter-spacing: 0.05em;  
-      transition: all 0.25s;  
+      display: block; width: 100%; padding: 16px; margin-bottom: 12px;  
+      background: rgba(5,5,5,0.95); border: 1px solid rgba(244,180,0,0.25);  
+      border-radius: 6px; color: var(--white); text-align: center;  
+      font-family: 'Orbitron', sans-serif; font-size: 0.95rem;  
+      text-decoration: none; text-transform: uppercase; font-weight: 700;  
+      letter-spacing: 0.05em; transition: all 0.25s;  
     }  
     .platform-link-btn:hover {  
-      border-color: var(--gold);  
-      background: rgba(244,180,0,0.08);  
-      box-shadow: 0 0 20px rgba(244,180,0,0.25);  
-      transform: translateY(-1px);  
-    }  
+      border-color: var(--gold); background: rgba(244,180,0,0.08);  
+      box-shadow: 0 0 20px rgba(244,180,0,0.25); transform: translateY(-1px);  
+    }
 
-    /* ── CONTRACT ADDRESS & ANALYTICS VIEW BLOCK ── */
+    /* ══ CA ANALYTICS ══ */
     .ca-analytics-section {
       padding: 100px 5%;
       background: #090909;
@@ -452,70 +545,35 @@
       border-bottom: 1px solid rgba(244,180,0,0.08);
     }
     .ca-display-card {
-      max-width: 760px;
-      margin: 0 auto 40px;
-      background: rgba(21,21,21,0.65);
-      border: 1px solid rgba(244,180,0,0.25);
-      border-radius: 8px;
-      padding: 24px;
-      text-align: center;
+      max-width: 760px; margin: 0 auto 40px;
+      background: rgba(21,21,21,0.65); border: 1px solid rgba(244,180,0,0.25);
+      border-radius: 8px; padding: 24px; text-align: center;
       backdrop-filter: blur(10px);
     }
     .ca-title-label {
-      font-family: 'Orbitron', sans-serif;
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--gold);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
+      font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.9rem;
+      color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px;
     }
     .ca-hash-box {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: clamp(0.75rem, 2.2vw, 1.2rem);
-      color: var(--white);
-      background: #000000;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 4px;
-      padding: 14px 20px;
-      margin-bottom: 16px;
-      word-break: break-all;
-      letter-spacing: 0.02em;
+      font-family: 'JetBrains Mono', monospace; font-size: clamp(0.75rem, 2.2vw, 1.2rem);
+      color: var(--white); background: #000000; border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px; padding: 14px 20px; margin-bottom: 16px;
+      word-break: break-all; letter-spacing: 0.02em;
     }
     .ca-action-trigger {
-      font-family: 'Orbitron', sans-serif;
-      font-weight: 700;
-      font-size: 0.8rem;
-      letter-spacing: 0.08em;
-      padding: 10px 24px;
-      background: rgba(244,180,0,0.15);
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      border-radius: 4px;
-      cursor: pointer;
-      text-transform: uppercase;
-      transition: all 0.2s ease;
+      font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.8rem;
+      letter-spacing: 0.08em; padding: 10px 24px;
+      background: rgba(244,180,0,0.15); border: 1px solid var(--gold);
+      color: var(--gold); border-radius: 4px; cursor: pointer;
+      text-transform: uppercase; transition: all 0.2s ease;
     }
-    .ca-action-trigger:hover {
-      background: var(--gold);
-      color: var(--black);
-      box-shadow: 0 0 20px rgba(244,180,0,0.35);
-    }
+    .ca-action-trigger:hover { background: var(--gold); color: var(--black); box-shadow: 0 0 20px rgba(244,180,0,0.35); }
     .chart-embed-frame {
-      max-width: 1200px;
-      margin: 0 auto;
-      height: 600px;
-      background: rgba(10,10,10,0.5);
-      border: 1px solid rgba(254,180,0,0.15);
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+      max-width: 1200px; margin: 0 auto; height: 600px;
+      background: rgba(10,10,10,0.5); border: 1px solid rgba(254,180,0,0.15);
+      border-radius: 8px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.9);
     }
-    .chart-embed-frame iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
+    .chart-embed-frame iframe { width: 100%; height: 100%; border: none; }
 
     /* ABOUT */  
     .about-section {  
@@ -544,8 +602,7 @@
     .vision-mission-wrap { display: flex; flex-direction: column; gap: 1.5rem; }  
     .glass-card {  
       background: rgba(21,21,21,0.7); border: 1px solid rgba(168,85,247,0.25);  
-      border-radius: 12px; padding: 1.5rem;  
-      backdrop-filter: blur(10px);  
+      border-radius: 12px; padding: 1.5rem; backdrop-filter: blur(10px);  
       box-shadow: 0 0 20px rgba(123,47,255,0.1), inset 0 0 20px rgba(123,47,255,0.03);  
       transition: border-color 0.3s, box-shadow 0.3s;  
     }  
@@ -569,19 +626,14 @@
     }  
     .roadmap-item { padding-left: 60px; margin-bottom: 3rem; position: relative; }  
     .roadmap-dot {  
-      position: absolute; left: 10px; top: 4px;  
-      width: 22px; height: 22px; border-radius: 50%;  
-      background: var(--dark-gray); border: 2px solid var(--gold);  
-      box-shadow: 0 0 12px rgba(244,180,0,0.4);  
+      position: absolute; left: 10px; top: 4px; width: 22px; height: 22px; border-radius: 50%;  
+      background: var(--dark-gray); border: 2px solid var(--gold); box-shadow: 0 0 12px rgba(244,180,0,0.4);  
     }  
     .roadmap-phase {  
       font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.75rem;  
       color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.3rem;  
     }  
-    .roadmap-title {  
-      font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.3rem;  
-      color: var(--white); margin-bottom: 0.8rem;  
-    }  
+    .roadmap-title { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.3rem; color: var(--white); margin-bottom: 0.8rem; }  
     .roadmap-body { font-family: 'Inter', sans-serif; font-size: 0.88rem; color: var(--light-gray); line-height: 1.7; }  
     .roadmap-body ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.4rem; }  
     .roadmap-body ul li::before { content: '→ '; color: var(--violet); }  
@@ -591,13 +643,11 @@
     .tokenomics-section { padding: 100px 5%; background: rgba(10,10,10,0.5); }  
     .tokenomics-grid {  
       max-width: 1100px; margin: 0 auto;  
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem;  
-      margin-bottom: 3rem;  
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-bottom: 3rem;  
     }  
     .token-card {  
       background: rgba(21,21,21,0.8); border: 1px solid rgba(244,180,0,0.2);  
-      border-radius: 12px; padding: 1.5rem; text-align: center;  
-      backdrop-filter: blur(8px);  
+      border-radius: 12px; padding: 1.5rem; text-align: center; backdrop-filter: blur(8px);  
       transition: all 0.3s; position: relative; overflow: hidden;  
     }  
     .token-card::before {  
@@ -606,14 +656,8 @@
     }  
     .token-card:hover { border-color: rgba(244,180,0,0.5); transform: translateY(-4px); box-shadow: 0 10px 40px rgba(244,180,0,0.1); }  
     .token-card-icon { font-size: 1.8rem; margin-bottom: 0.6rem; }  
-    .token-card-label {  
-      font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 0.8rem;  
-      color: var(--gray); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.4rem;  
-    }  
-    .token-card-value {  
-      font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: clamp(0.95rem, 2vw, 1.2rem);  
-      color: var(--gold);  
-    }  
+    .token-card-label { font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 0.8rem; color: var(--gray); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.4rem; }  
+    .token-card-value { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: clamp(0.95rem, 2vw, 1.2rem); color: var(--gold); }  
     .token-card-sub { font-family: 'Inter', sans-serif; font-size: 0.78rem; color: var(--gray); margin-top: 0.3rem; }  
     .tokenomics-bottom { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }  
     .donut-wrap { display: flex; flex-direction: column; align-items: center; }  
@@ -642,119 +686,60 @@
       display: flex; align-items: center; gap: 0.8rem;  
       padding: 1.1rem 2rem; border-radius: 10px;  
       font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.9rem;  
-      letter-spacing: 0.05em; text-decoration: none;  
-      transition: all 0.25s; min-width: 180px; justify-content: center;  
-      border: 1px solid; cursor: pointer;  
+      letter-spacing: 0.05em; text-decoration: none; transition: all 0.25s;  
+      min-width: 180px; justify-content: center; border: 1px solid; cursor: pointer;  
     }  
-    .comm-btn-x {  
-      color: var(--black); background: linear-gradient(135deg, var(--gold), var(--gold-soft));  
-      border-color: var(--gold); box-shadow: 0 0 25px rgba(244,180,0,0.3);  
-    }  
+    .comm-btn-x { color: var(--black); background: linear-gradient(135deg, var(--gold), var(--gold-soft)); border-color: var(--gold); box-shadow: 0 0 25px rgba(244,180,0,0.3); }  
     .comm-btn-x:hover { box-shadow: 0 0 45px rgba(244,180,0,0.5); transform: translateY(-3px) scale(1.02); }  
-    .comm-btn-tg {  
-      color: var(--white); background: rgba(21,21,21,0.7);  
-      border-color: rgba(168,85,247,0.5); box-shadow: 0 0 20px rgba(123,47,255,0.15);  
-    }  
+    .comm-btn-tg { color: var(--white); background: rgba(21,21,21,0.7); border-color: rgba(168,85,247,0.5); box-shadow: 0 0 20px rgba(123,47,255,0.15); }  
     .comm-btn-tg:hover { border-color: var(--violet); box-shadow: 0 0 40px rgba(168,85,247,0.35); transform: translateY(-3px); background: rgba(123,47,255,0.12); }  
-    .comm-btn-yt {  
-      color: var(--white); background: rgba(21,21,21,0.7);  
-      border-color: rgba(255,80,80,0.4); box-shadow: 0 0 20px rgba(255,0,0,0.1);  
-    }  
+    .comm-btn-yt { color: var(--white); background: rgba(21,21,21,0.7); border-color: rgba(255,80,80,0.4); box-shadow: 0 0 20px rgba(255,0,0,0.1); }  
     .comm-btn-yt:hover { border-color: #ff4444; box-shadow: 0 0 40px rgba(255,0,0,0.2); transform: translateY(-3px); background: rgba(255,0,0,0.08); }  
 
     /* DISCLAIMER */  
     .disclaimer-section { padding: 60px 5%; border-top: 1px solid rgba(244,180,0,0.1); }  
-    .disclaimer-box {  
-      max-width: 800px; margin: 0 auto;  
-      background: rgba(21,21,21,0.5); border: 1px solid rgba(255,80,80,0.2);  
-      border-radius: 10px; padding: 1.5rem 2rem;  
-    }  
+    .disclaimer-box { max-width: 800px; margin: 0 auto; background: rgba(21,21,21,0.5); border: 1px solid rgba(255,80,80,0.2); border-radius: 10px; padding: 1.5rem 2rem; }  
     .disclaimer-box h3 { font-family: 'Rajdhani', sans-serif; font-weight: 700; color: #ff6666; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; }  
     .disclaimer-box p { font-family: 'Inter', sans-serif; font-size: 0.85rem; color: var(--gray); line-height: 1.7; margin-bottom: 0.5rem; }  
     .disclaimer-box ul { list-style: none; }  
     .disclaimer-box ul li::before { content: '• '; color: #ff6666; }  
     .disclaimer-box ul li { font-family: 'Inter', sans-serif; font-size: 0.85rem; color: var(--gray); }  
 
-    /* FOOTER */  
-    footer {  
-      padding: 40px 5%; text-align: center;  
-      border-top: 1px solid rgba(244,180,0,0.08);  
-    }  
+    footer { padding: 40px 5%; text-align: center; border-top: 1px solid rgba(244,180,0,0.08); }  
     .footer-logo { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.2rem; color: var(--gold); margin-bottom: 0.5rem; }  
-    .footer-copy { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--gray); }  
 
-    /* ── COMING SOON / ALTERNATE VIEW PAGES ── */  
+    /* COMING SOON PAGES */  
     .coming-soon-page {  
       min-height: 100vh; display: flex; flex-direction: column;  
-      align-items: center; justify-content: center; text-align: center;  
-      padding: 100px 5% 60px;  
+      align-items: center; justify-content: center; text-align: center; padding: 100px 5% 60px;  
     }  
     .cs-icon { font-size: 4rem; margin-bottom: 1.5rem; }  
     .cs-title {  
-      font-family: 'Orbitron', sans-serif; font-weight: 900;  
-      font-size: clamp(2rem, 6vw, 4rem);  
+      font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(2rem, 6vw, 4rem);  
       background: linear-gradient(135deg, var(--gold), var(--violet));  
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;  
       margin-bottom: 0.8rem;  
     }  
-    .cs-subtitle {  
-      font-family: 'Rajdhani', sans-serif; font-weight: 600;  
-      font-size: clamp(1rem, 3vw, 1.5rem); color: var(--light-gray); margin-bottom: 1.5rem;  
-    }  
+    .cs-subtitle { font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: clamp(1rem, 3vw, 1.5rem); color: var(--light-gray); margin-bottom: 1.5rem; }  
     .cs-desc { font-family: 'Inter', sans-serif; font-size: 1rem; color: var(--gray); max-width: 500px; line-height: 1.7; }  
-    .cs-glow {  
-      width: 300px; height: 300px; border-radius: 50%;  
-      background: radial-gradient(circle, rgba(123,47,255,0.15) 0%, transparent 70%);  
-      position: absolute; pointer-events: none;  
-    }  
+    .cs-glow { width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(123,47,255,0.15) 0%, transparent 70%); position: absolute; pointer-events: none; }  
 
-    /* ── MOBILE EXCLUSIVE TRACKLIST DESIGN ── */  
     .mobile-audio-container {  
-      width: 100%;  
-      max-width: 500px;  
-      margin: 0 auto;  
-      background: rgba(15,15,15,0.95);  
-      border: 1px solid rgba(244,180,0,0.25);  
-      border-radius: 8px;  
-      padding: 16px;  
-      box-shadow: 0 0 25px rgba(0,0,0,0.9);  
+      width: 100%; max-width: 500px; margin: 0 auto;  
+      background: rgba(15,15,15,0.95); border: 1px solid rgba(244,180,0,0.25);  
+      border-radius: 8px; padding: 16px; box-shadow: 0 0 25px rgba(0,0,0,0.9);  
     }  
 
-    /* ── WHITEPAPER MODAL ── */  
-    .modal-overlay {  
-      display: none; position: fixed; inset: 0; z-index: 2000;  
-      background: rgba(0,0,0,0.88); backdrop-filter: blur(10px);  
-      align-items: center; justify-content: center; padding: 20px;  
-    }  
+    /* WHITEPAPER MODAL */  
+    .modal-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.88); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 20px; }  
     .modal-overlay.open { display: flex; }  
-    .modal-box {  
-      background: var(--dark-gray); border: 1px solid rgba(244,180,0,0.3);  
-      border-radius: 16px; max-width: 900px; width: 100%;  
-      max-height: 90vh; display: flex; flex-direction: column;  
-      box-shadow: 0 0 60px rgba(244,180,0,0.15);  
-    }  
-    .modal-header {  
-      display: flex; align-items: center; justify-content: space-between;  
-      padding: 1.2rem 1.5rem; border-bottom: 1px solid rgba(244,180,0,0.15);  
-    }  
+    .modal-box { background: var(--dark-gray); border: 1px solid rgba(244,180,0,0.3); border-radius: 16px; max-width: 900px; width: 100%; max-height: 90vh; display: flex; flex-direction: column; box-shadow: 0 0 60px rgba(244,180,0,0.15); }  
+    .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 1.5rem; border-bottom: 1px solid rgba(244,180,0,0.15); }  
     .modal-title { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 1rem; color: var(--gold); letter-spacing: 0.1em; }  
-    .modal-close {  
-      width: 34px; height: 34px; border-radius: 50%;  
-      background: rgba(244,180,0,0.1); border: 1px solid rgba(244,180,0,0.3);  
-      color: var(--gold); font-size: 1.1rem; cursor: pointer;  
-      display: flex; align-items: center; justify-content: center;  
-      transition: all 0.2s;  
-    }  
+    .modal-close { width: 34px; height: 34px; border-radius: 50%; background: rgba(244,180,0,0.1); border: 1px solid rgba(244,180,0,0.3); color: var(--gold); font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }  
     .modal-close:hover { background: rgba(244,180,0,0.2); }  
-    .modal-nav {  
-      display: flex; align-items: center; gap: 1rem; padding: 0.8rem 1.5rem;  
-      border-bottom: 1px solid rgba(255,255,255,0.05);  
-    }  
-    .modal-prev, .modal-next {  
-      font-family: 'Orbitron', sans-serif; font-size: 0.7rem; font-weight: 700;  
-      padding: 0.4rem 1rem; border-radius: 5px; cursor: pointer; transition: all 0.2s;  
-      background: rgba(244,180,0,0.1); border: 1px solid rgba(244,180,0,0.3); color: var(--gold);  
-    }  
+    .modal-nav { display: flex; align-items: center; gap: 1rem; padding: 0.8rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); }  
+    .modal-prev, .modal-next { font-family: 'Orbitron', sans-serif; font-size: 0.7rem; font-weight: 700; padding: 0.4rem 1rem; border-radius: 5px; cursor: pointer; transition: all 0.2s; background: rgba(244,180,0,0.1); border: 1px solid rgba(244,180,0,0.3); color: var(--gold); }  
     .modal-prev:hover, .modal-next:hover { background: rgba(244,180,0,0.2); }  
     .modal-prev:disabled, .modal-next:disabled { opacity: 0.3; cursor: not-allowed; }  
     .modal-page-indicator { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--gray); flex: 1; text-align: center; }  
@@ -762,21 +747,13 @@
     .modal-body img { max-width: 100%; max-height: 70vh; object-fit: contain; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); }  
 
     /* TOAST */  
-    .toast {  
-      position: fixed; bottom: 30px; right: 30px; z-index: 3000;  
-      background: rgba(21,21,21,0.95); border: 1px solid var(--gold);  
-      border-radius: 8px; padding: 0.8rem 1.5rem;  
-      font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 0.95rem;  
-      color: var(--gold); box-shadow: 0 0 20px rgba(244,180,0,0.2);  
-      opacity: 0; transition: opacity 0.3s; pointer-events: none;  
-    }  
+    .toast { position: fixed; bottom: 30px; right: 30px; z-index: 3000; background: rgba(21,21,21,0.95); border: 1px solid var(--gold); border-radius: 8px; padding: 0.8rem 1.5rem; font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 0.95rem; color: var(--gold); box-shadow: 0 0 20px rgba(244,180,0,0.2); opacity: 0; transition: opacity 0.3s; pointer-events: none; }  
     .toast.show { opacity: 1; }  
 
-    /* SCROLL REVEAL */  
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s, transform 0.7s; }  
     .reveal.visible { opacity: 1; transform: translateY(0); }  
 
-    /* RESPONSIVE — MOBILE */  
+    /* RESPONSIVE MOBILE */  
     @media (max-width: 768px) {  
       nav { display: flex !important; padding: 0 4%; }  
       .nav-links { display: none; }  
@@ -791,7 +768,9 @@
       .hero-logo-wrap { width: 110px; height: 110px; }  
       .hero-section-wrap { margin-top: 70px !important; }  
       .ca-wrap { flex-direction: column; gap: 0.5rem; text-align: center; }  
-      .modal-box { max-height: 95vh; }  
+      .modal-box { max-height: 95vh; }
+      .wallet-btn-row { flex-direction: column; align-items: center; }
+      .wallet-download-btn { width: 100%; max-width: 320px; }
     }  
     @media (max-width: 480px) {  
       .tokenomics-grid { grid-template-columns: 1fr 1fr; }  
@@ -845,98 +824,21 @@
   <div class="desktop-playlist-panel" id="desktop-playlist-panel">
     <div class="playlist-header-label">🔊 $POSAA TRACKS</div>
     <div class="playlist-inner-scroll">
-
-      <div class="playlist-track">
-        <div class="track-meta">01 - Oh No He's at It Again</div>
-        <audio class="audio-player-element" controls controlsList="nodownload">
-          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-01_Oh_No_He_s_At_It_Again__Corporate_Games_wdvmcr.wav" type="audio/wav">
-        </audio>
-      </div>
-      <div class="playlist-track">
-        <div class="track-meta">02 - Ooops He Diluted Again</div>
-        <audio class="audio-player-element" controls controlsList="nodownload">
-          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161158/-02_Ooops_He_s_Not_that_Innocent_rhb6s8.wav" type="audio/wav">
-        </audio>
-      </div>
-      <div class="playlist-track">
-        <div class="track-meta">03 - Na-Na-Na-Na Lets Roll</div>
-        <audio class="audio-player-element" controls controlsList="nodownload">
-          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161157/-03_Na_Na_Na_Na_zkgr9z.wav" type="audio/wav">
-        </audio>
-      </div>
-      <div class="playlist-track">
-        <div class="track-meta">04 - A Movie Company Glow</div>
-        <audio class="audio-player-element" controls controlsList="nodownload">
-          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-04_2021_Dreams_iaamek.wav" type="audio/wav">
-        </audio>
-      </div>
-      <div class="playlist-track">
-        <div class="track-meta">05 - The Knells of Christmas</div>
-        <audio class="audio-player-element" controls controlsList="nodownload">
-          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161178/-05_Apes_Fairy_Tale_Christmas_be6cg6.wav" type="audio/wav">
-        </audio>
-      </div>
-      <div class="playlist-track">
-        <div class="track-meta">06 - Echoes of the Market</div>
-        <audio class="audio-player-element" controls controlsList="nodownload">
-          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161151/Amy_Hurt_Me_vlhoas.mp3" type="audio/mpeg">
-        </audio>
-      </div>
-      <div class="playlist-track">
-        <div class="track-meta">07 - Feelin Your Shiv</div>
-        <audio class="audio-player-element" controls controlsList="nodownload">
-          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-07_Feelin__Your_Shiv_morxoj.wav" type="audio/wav">
-        </audio>
-      </div>
-      <div class="playlist-track">
-        <div class="track-meta">08 - As We Held Down Tempo</div>
-        <audio class="audio-player-element" controls controlsList="nodownload">
-          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161157/-08_As_We_Held__Down_Tempo_pkrbgr.wav" type="audio/wav">
-        </audio>
-      </div>
-      <div class="playlist-track">
-        <div class="track-meta">09 - Silver Screen Dreams</div>
-        <audio class="audio-player-element" controls controlsList="nodownload">
-          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161160/-09_Silver_Screen_Dreams_j8f2rk.wav" type="audio/wav">
-        </audio>
-      </div>
-      <div class="playlist-track">
-        <div class="track-meta">10 - To The Moon</div>
-        <audio class="audio-player-element" controls controlsList="nodownload">
-          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161154/-10_To_the_Moon_luoi6u.wav" type="audio/wav">
-        </audio>
-      </div>
-      <div class="playlist-track">
-        <div class="track-meta">11 - Lamp On Flawed King</div>
-        <audio class="audio-player-element" controls controlsList="nodownload">
-          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161158/-11_Lamp_On__The_Flawed_King_f2xaaw.wav" type="audio/wav">
-        </audio>
-      </div>
-      <div class="playlist-track">
-        <div class="track-meta">12 - Unbroken</div>
-        <audio class="audio-player-element" controls controlsList="nodownload">
-          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161154/-12_Unbroken__Anthem_f8ur1e.wav" type="audio/wav">
-        </audio>
-      </div>
-      <div class="playlist-track">
-        <div class="track-meta">13 - Apes and Retards in Arms</div>
-        <audio class="audio-player-element" controls controlsList="nodownload">
-          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161177/-13_Apes_and_Retards_in_Arms_hydamw.wav" type="audio/wav">
-        </audio>
-      </div>
-      <div class="playlist-track">
-        <div class="track-meta">14 - Hurt It's Gonna Take a Lotta Love</div>
-        <audio class="audio-player-element" controls controlsList="nodownload">
-          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161152/Hurt_It_s_Gonna_Take_a_Lotta_Love_umm7of.mp3" type="audio/mpeg">
-        </audio>
-      </div>
-      <div class="playlist-track">
-        <div class="track-meta">15 - Hodl My Shot</div>
-        <audio class="audio-player-element" controls controlsList="nodownload">
-          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161147/Hodl_My_Shot_i5dg2m.mp3" type="audio/mpeg">
-        </audio>
-      </div>
-
+      <div class="playlist-track"><div class="track-meta">01 - Oh No He's at It Again</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-01_Oh_No_He_s_At_It_Again__Corporate_Games_wdvmcr.wav" type="audio/wav"></audio></div>
+      <div class="playlist-track"><div class="track-meta">02 - Ooops He Diluted Again</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161158/-02_Ooops_He_s_Not_that_Innocent_rhb6s8.wav" type="audio/wav"></audio></div>
+      <div class="playlist-track"><div class="track-meta">03 - Na-Na-Na-Na Lets Roll</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161157/-03_Na_Na_Na_Na_zkgr9z.wav" type="audio/wav"></audio></div>
+      <div class="playlist-track"><div class="track-meta">04 - A Movie Company Glow</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-04_2021_Dreams_iaamek.wav" type="audio/wav"></audio></div>
+      <div class="playlist-track"><div class="track-meta">05 - The Knells of Christmas</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161178/-05_Apes_Fairy_Tale_Christmas_be6cg6.wav" type="audio/wav"></audio></div>
+      <div class="playlist-track"><div class="track-meta">06 - Echoes of the Market</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161151/Amy_Hurt_Me_vlhoas.mp3" type="audio/mpeg"></audio></div>
+      <div class="playlist-track"><div class="track-meta">07 - Feelin Your Shiv</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-07_Feelin__Your_Shiv_morxoj.wav" type="audio/wav"></audio></div>
+      <div class="playlist-track"><div class="track-meta">08 - As We Held Down Tempo</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161157/-08_As_We_Held__Down_Tempo_pkrbgr.wav" type="audio/wav"></audio></div>
+      <div class="playlist-track"><div class="track-meta">09 - Silver Screen Dreams</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161160/-09_Silver_Screen_Dreams_j8f2rk.wav" type="audio/wav"></audio></div>
+      <div class="playlist-track"><div class="track-meta">10 - To The Moon</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161154/-10_To_the_Moon_luoi6u.wav" type="audio/wav"></audio></div>
+      <div class="playlist-track"><div class="track-meta">11 - Lamp On Flawed King</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161158/-11_Lamp_On__The_Flawed_King_f2xaaw.wav" type="audio/wav"></audio></div>
+      <div class="playlist-track"><div class="track-meta">12 - Unbroken</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161154/-12_Unbroken__Anthem_f8ur1e.wav" type="audio/wav"></audio></div>
+      <div class="playlist-track"><div class="track-meta">13 - Apes and Retards in Arms</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161177/-13_Apes_and_Retards_in_Arms_hydamw.wav" type="audio/wav"></audio></div>
+      <div class="playlist-track"><div class="track-meta">14 - Hurt It's Gonna Take a Lotta Love</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161152/Hurt_It_s_Gonna_Take_a_Lotta_Love_umm7of.mp3" type="audio/mpeg"></audio></div>
+      <div class="playlist-track"><div class="track-meta">15 - Hodl My Shot</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161147/Hodl_My_Shot_i5dg2m.mp3" type="audio/mpeg"></audio></div>
     </div>
     <div class="playlist-footer-branding">POSAA — Public Opinion. Speech. Antics. Assholery.</div>
   </div>
@@ -956,7 +858,9 @@
     <a href="#" onclick="showPage('youtube')" id="dnav-youtube">Challenges</a>  
   </div>  
 
+  <!-- ═══════════════════════════════════════ -->
   <!-- HOME PAGE -->
+  <!-- ═══════════════════════════════════════ -->
   <div class="page active" id="page-home">    
     <div class="hero-section-wrap">  
       <section class="hero">  
@@ -971,7 +875,9 @@
           <div class="hero-tagline">  
             Reject echo chambers. Mock hypocrisy.<br/>  
             <span>Speak the unfiltered truth — on-chain.</span>  
-          </div>  
+          </div>
+          <!-- MOBILE-ONLY BUY BUTTON IN HERO -->
+          <button class="mobile-hero-buy-btn" onclick="showPage('buy')">💎 Buy $POSAA</button>
         </div>  
       </section>  
     </div>  
@@ -992,9 +898,7 @@
         <div class="vision-mission-wrap reveal">  
           <div class="glass-card glass-card-gold">  
             <div class="card-title">🎯 Vision</div>  
-            <div class="card-body">  
-              To become the defining meme symbol of unfiltered public discourse—where raw opinion, radical honesty, and calling out shit in the media and corporate boardrooms are celebrated as features, not bugs.  
-            </div>  
+            <div class="card-body">To become the defining meme symbol of unfiltered public discourse—where raw opinion, radical honesty, and calling out shit in the media and corporate boardrooms are celebrated as features, not bugs.</div>  
           </div>  
           <div class="glass-card">  
             <div class="card-title">🚀 Mission</div>  
@@ -1005,8 +909,7 @@
                 <li>Create viral, controversial content that roasts daily headlines and hypocrisy</li>  
                 <li>Reward participation and creativity — not passive income, staking, or empty promises</li>  
               </ul>  
-              <br/>  
-              $POSAA is for anyone who believes truth and comedy thrive when regular people are free to speak and laugh at the clowns.  
+              <br/>$POSAA is for anyone who believes truth and comedy thrive when regular people are free to speak and laugh at the clowns.  
             </div>  
           </div>  
         </div>  
@@ -1021,58 +924,25 @@
           <div class="roadmap-dot"></div>  
           <div class="roadmap-phase">Phase 1 · Q2 2026</div>  
           <div class="roadmap-title">Launch &amp; Hype</div>  
-          <div class="roadmap-body">  
-            <ul>  
-              <li>Fair launch on XRPL DEX</li>  
-              <li>Rapid community formation across X, Reddit, Stocktwits, and Telegram</li>  
-              <li>Maximum meme velocity through viral roasts</li>  
-            </ul>  
-          </div>  
+          <div class="roadmap-body"><ul><li>Fair launch on XRPL DEX</li><li>Rapid community formation across X, Reddit, Stocktwits, and Telegram</li><li>Maximum meme velocity through viral roasts</li></ul></div>  
         </div>  
         <div class="roadmap-item reveal">  
           <div class="roadmap-dot" style="border-color:var(--violet);box-shadow:0 0 12px rgba(168,85,247,0.4);"></div>  
           <div class="roadmap-phase" style="color:var(--violet);">Phase 2 · Q2–Q4 2026</div>  
           <div class="roadmap-title">Community Expansion &amp; LP Ramp</div>  
-          <div class="roadmap-body">  
-            <ul>  
-              <li>Continued liquidity injections</li>  
-              <li>Cross-community promotion (AMC apes, free-speech groups)</li>  
-              <li>Daily Sentiment Score updates</li>  
-              <li>Airdrops to active contributors</li>  
-              <li>Exploration of deeper DEX visibility and potential CEX listings</li>  
-            </ul>  
-          </div>  
+          <div class="roadmap-body"><ul><li>Continued liquidity injections</li><li>Cross-community promotion (AMC apes, free-speech groups)</li><li>Daily Sentiment Score updates</li><li>Airdrops to active contributors</li><li>Exploration of deeper DEX visibility and potential CEX listings</li></ul></div>  
         </div>  
         <div class="roadmap-item reveal">  
           <div class="roadmap-dot" style="border-color:var(--gold-soft);box-shadow:0 0 12px rgba(255,213,79,0.4);"></div>  
           <div class="roadmap-phase" style="color:var(--gold-soft);">Phase 3 · Ongoing</div>  
           <div class="roadmap-title">Moon or Bust 🌙</div>  
-          <div class="roadmap-body">  
-            Aspirational, community-driven initiatives:  
-            <ul>  
-              <li>Push for top XRPL meme rankings</li>  
-              <li>Strengthen alliances and diamond-hand culture</li>  
-              <li>Limited-run merchandise of $POSAA art and songs (with Easter-egg surprises)</li>  
-              <li>Community-driven video game where apes battle diluted corporate undead</li>  
-              <li>Enlist free-speech maximalists Candace "Intelligence Agency" Owens and her Mommy Sleuths to investigate true price discovery inside dark pools and naked shorts. If she's not afraid to call out Heads of State, she won't be afraid to call out corrupt players.</li>  
-              <li>Ultimate Ape Catalyst: pop-culture icon remix featuring Britney Spears singing <em>"Oops, I Diluted Again"</em></li>  
-              <li>Choose Your Turd (ChYT) passing of the shit head crown</li>  
-            </ul>  
-            <em>All aspirational items are illustrative only and do not guarantee outcomes.</em>  
-          </div>  
+          <div class="roadmap-body">Aspirational, community-driven initiatives:<ul><li>Push for top XRPL meme rankings</li><li>Strengthen alliances and diamond-hand culture</li><li>Limited-run merchandise of $POSAA art and songs (with Easter-egg surprises)</li><li>Community-driven video game where apes battle diluted corporate undead</li><li>Enlist free-speech maximalists Candace "Intelligence Agency" Owens and her Mommy Sleuths to investigate true price discovery inside dark pools and naked shorts.</li><li>Ultimate Ape Catalyst: pop-culture icon remix featuring Britney Spears singing <em>"Oops, I Diluted Again"</em></li><li>Choose Your Turd (ChYT) passing of the shit head crown</li></ul><em>All aspirational items are illustrative only and do not guarantee outcomes.</em></div>  
         </div>  
         <div class="roadmap-item reveal">  
           <div class="roadmap-dot" style="border-color:#ff6666;box-shadow:0 0 12px rgba(255,100,100,0.4);"></div>  
           <div class="roadmap-phase" style="color:#ff9999;">Phase 4 · Beyond 2026</div>  
           <div class="roadmap-title">Long-Term Evolution</div>  
-          <div class="roadmap-body">  
-            <ul>  
-              <li>Cultural relevance — move over Doge / Pepe</li>  
-              <li>Meme incubator</li>  
-              <li>Sustain chaos responsibly</li>  
-              <li>First $1B XRP shit coin 💩</li>  
-            </ul>  
-          </div>  
+          <div class="roadmap-body"><ul><li>Cultural relevance — move over Doge / Pepe</li><li>Meme incubator</li><li>Sustain chaos responsibly</li><li>First $1B XRP shit coin 💩</li></ul></div>  
         </div>  
       </div>  
     </section>    
@@ -1081,42 +951,12 @@
       <h2 class="section-heading reveal">Tokenomics</h2>  
       <div class="section-divider"></div>  
       <div class="tokenomics-grid reveal">  
-        <div class="token-card">  
-          <div class="token-card-icon">💎</div>  
-          <div class="token-card-label">Total Supply</div>  
-          <div class="token-card-value">1,100,000,000</div>  
-          <div class="token-card-sub">POSAA · Fixed · No Minting</div>  
-        </div>  
-        <div class="token-card">  
-          <div class="token-card-icon">🏦</div>  
-          <div class="token-card-label">Initial Liquidity Pool</div>  
-          <div class="token-card-value">~1,100 XRP</div>  
-          <div class="token-card-sub">Paired at Launch</div>  
-        </div>  
-        <div class="token-card">  
-          <div class="token-card-icon">🔥</div>  
-          <div class="token-card-label">LP Burn</div>  
-          <div class="token-card-value">Burned</div>  
-          <div class="token-card-sub">LP Tokens Burned at Launch</div>  
-        </div>  
-        <div class="token-card">  
-          <div class="token-card-icon">💸</div>  
-          <div class="token-card-label">Transaction Tax</div>  
-          <div class="token-card-value">0%</div>  
-          <div class="token-card-sub">XRPL Network Fees Only</div>  
-        </div>  
-        <div class="token-card">  
-          <div class="token-card-icon">🔮</div>  
-          <div class="token-card-label">Moon Bag / Dev Allocation</div>  
-          <div class="token-card-value">330,000,000</div>  
-          <div class="token-card-sub">No Vesting Lock · Full Transparency</div>  
-        </div>  
-        <div class="token-card">  
-          <div class="token-card-icon">⚡</div>  
-          <div class="token-card-label">Circulating at Launch</div>  
-          <div class="token-card-value">1.1B (Full)</div>  
-          <div class="token-card-sub">Effectively Full Supply</div>  
-        </div>  
+        <div class="token-card"><div class="token-card-icon">💎</div><div class="token-card-label">Total Supply</div><div class="token-card-value">1,100,000,000</div><div class="token-card-sub">POSAA · Fixed · No Minting</div></div>  
+        <div class="token-card"><div class="token-card-icon">🏦</div><div class="token-card-label">Initial Liquidity Pool</div><div class="token-card-value">~1,100 XRP</div><div class="token-card-sub">Paired at Launch</div></div>  
+        <div class="token-card"><div class="token-card-icon">🔥</div><div class="token-card-label">LP Burn</div><div class="token-card-value">Burned</div><div class="token-card-sub">LP Tokens Burned at Launch</div></div>  
+        <div class="token-card"><div class="token-card-icon">💸</div><div class="token-card-label">Transaction Tax</div><div class="token-card-value">0%</div><div class="token-card-sub">XRPL Network Fees Only</div></div>  
+        <div class="token-card"><div class="token-card-icon">🔮</div><div class="token-card-label">Moon Bag / Dev Allocation</div><div class="token-card-value">330,000,000</div><div class="token-card-sub">No Vesting Lock · Full Transparency</div></div>  
+        <div class="token-card"><div class="token-card-icon">⚡</div><div class="token-card-label">Circulating at Launch</div><div class="token-card-value">1.1B (Full)</div><div class="token-card-sub">Effectively Full Supply</div></div>  
       </div>  
       <div class="tokenomics-bottom">  
         <div class="donut-wrap reveal">  
@@ -1159,60 +999,21 @@
       <h2 class="section-heading reveal">Distribution &amp; Fair Launch Principles</h2>  
       <div class="section-divider"></div>  
       <div class="dist-grid">  
-        <div class="glass-card reveal">  
-          <div class="card-title">🎯 Fair Launch Principles</div>  
-          <div class="card-body">  
-            <ul>  
-              <li>No presale — zero early advantage</li>  
-              <li>Anti-bot and anti-sniper measures active</li>  
-              <li>Organic raids only</li>  
-            </ul>  
-          </div>  
-        </div>  
-        <div class="glass-card glass-card-gold reveal">  
-          <div class="card-title">💧 Liquidity Growth Plan</div>  
-          <div class="card-body">  
-            Ongoing XRP added post-launch to steadily grow the liquidity pool and support healthy price discovery as community momentum builds.  
-          </div>  
-        </div>  
-        <div class="glass-card reveal">  
-          <div class="card-title">🌙 Moon Bag Transparency</div>  
-          <div class="card-body">  
-            330,000,000 POSAA strategic deference allocation to discourage unserious participants, paper hands, jeeters, and short sellers. No vesting lock. Full transparency via public announcements.  
-          </div>  
-        </div>  
-        <div class="glass-card glass-card-gold reveal">  
-          <div class="card-title">📊 Blockchain</div>  
-          <div class="card-body">  
-            <ul>  
-              <li><strong style="color:var(--white);">Token Name:</strong> POSAA</li>  
-              <li><strong style="color:var(--white);">Ticker:</strong> $POSAA</li>  
-              <li><strong style="color:var(--white);">Blockchain:</strong> XRP Ledger (XRPL)</li>  
-              <li><strong style="color:var(--white);">Token Name Full:</strong> Public Opinion, Sentiment, Antics &amp; Assholery</li>  
-            </ul>  
-          </div>  
-        </div>  
+        <div class="glass-card reveal"><div class="card-title">🎯 Fair Launch Principles</div><div class="card-body"><ul><li>No presale — zero early advantage</li><li>Anti-bot and anti-sniper measures active</li><li>Organic raids only</li></ul></div></div>  
+        <div class="glass-card glass-card-gold reveal"><div class="card-title">💧 Liquidity Growth Plan</div><div class="card-body">Ongoing XRP added post-launch to steadily grow the liquidity pool and support healthy price discovery as community momentum builds.</div></div>  
+        <div class="glass-card reveal"><div class="card-title">🌙 Moon Bag Transparency</div><div class="card-body">330,000,000 POSAA strategic deference allocation to discourage unserious participants, paper hands, jeeters, and short sellers. No vesting lock. Full transparency via public announcements.</div></div>  
+        <div class="glass-card glass-card-gold reveal"><div class="card-title">📊 Blockchain</div><div class="card-body"><ul><li><strong style="color:var(--white);">Token Name:</strong> POSAA</li><li><strong style="color:var(--white);">Ticker:</strong> $POSAA</li><li><strong style="color:var(--white);">Blockchain:</strong> XRP Ledger (XRPL)</li><li><strong style="color:var(--white);">Token Name Full:</strong> Public Opinion, Sentiment, Antics &amp; Assholery</li></ul></div></div>  
       </div>  
     </section>    
 
     <section class="community-section" id="section-community">  
       <h2 class="section-heading reveal">Join the Community</h2>  
       <div class="section-divider"></div>  
-      <p style="text-align:center;font-family:'Inter',sans-serif;font-size:1rem;color:var(--light-gray);margin-bottom:2.5rem;max-width:600px;margin-left:auto;margin-right:auto;" class="reveal">  
-        Unite with apes, skeptics, meme warriors, and free-speech maximalists. This is where unfiltered discourse meets decentralized finance.  
-      </p>  
+      <p style="text-align:center;font-family:'Inter',sans-serif;font-size:1rem;color:var(--light-gray);margin-bottom:2.5rem;max-width:600px;margin-left:auto;margin-right:auto;" class="reveal">Unite with apes, skeptics, meme warriors, and free-speech maximalists. This is where unfiltered discourse meets decentralized finance.</p>  
       <div class="community-buttons">  
-        <a href="https://x.com/Posaa_xrpl" target="_blank" rel="noopener" class="comm-btn comm-btn-x reveal">  
-          <span style="font-size:1.2rem;">𝕏</span> Follow on X  
-        </a>  
-        <a href="https://t.me/POSAA_XRPL" target="_blank" rel="noopener" class="comm-btn comm-btn-tg reveal">  
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.94 8.19l-2.02 9.52c-.15.67-.54.84-1.09.52l-3-2.21-1.45 1.4c-.16.16-.29.29-.6.29l.21-3.02 5.5-4.97c.24-.21-.05-.33-.37-.12l-6.8 4.28-2.93-.91c-.64-.2-.65-.64.13-.95l11.42-4.4c.53-.19 1 .13.8.57z"/></svg>  
-          Join Telegram  
-        </a>  
-        <a href="https://youtube.com/@posaa_xrpl?si=O-551EnpcVr0wWVm" target="_blank" rel="noopener" class="comm-btn comm-btn-yt reveal">  
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>  
-          YouTube Channel  
-        </a>  
+        <a href="https://x.com/Posaa_xrpl" target="_blank" rel="noopener" class="comm-btn comm-btn-x reveal"><span style="font-size:1.2rem;">𝕏</span> Follow on X</a>  
+        <a href="https://t.me/POSAA_XRPL" target="_blank" rel="noopener" class="comm-btn comm-btn-tg reveal"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.94 8.19l-2.02 9.52c-.15.67-.54.84-1.09.52l-3-2.21-1.45 1.4c-.16.16-.29.29-.6.29l.21-3.02 5.5-4.97c.24-.21-.05-.33-.37-.12l-6.8 4.28-2.93-.91c-.64-.2-.65-.64.13-.95l11.42-4.4c.53-.19 1 .13.8.57z"/></svg>Join Telegram</a>  
+        <a href="https://youtube.com/@posaa_xrpl?si=O-551EnpcVr0wWVm" target="_blank" rel="noopener" class="comm-btn comm-btn-yt reveal"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>YouTube Channel</a>  
       </div>  
     </section>    
 
@@ -1220,11 +1021,7 @@
       <div class="disclaimer-box reveal">  
         <h3>🚫 Disclaimer</h3>  
         <p>$POSAA is speculative, volatile, and driven purely by community sentiment.</p>  
-        <ul>  
-          <li>There is no intrinsic value</li>  
-          <li>Do your own research</li>  
-          <li>Never participate with more than you can afford to lose</li>  
-        </ul>  
+        <ul><li>There is no intrinsic value</li><li>Do your own research</li><li>Never participate with more than you can afford to lose</li></ul>  
       </div>  
     </section>    
 
@@ -1234,22 +1031,132 @@
     </footer>  
   </div>
 
-  <!-- BUY PAGE -->
+  <!-- ═══════════════════════════════════════ -->
+  <!-- BUY PAGE — REDESIGNED -->
+  <!-- ═══════════════════════════════════════ -->
   <div class="page" id="page-buy">  
-    <div class="coming-soon-page">  
-      <div class="cs-glow"></div>  
-      <div class="cs-icon">💎</div>  
-      <div class="cs-title">SECURE ROUTERS</div>  
-      <div class="cs-subtitle">Acquire $POSAA Safely on XRPL Networks</div>  
-      <div class="buy-hub-wrapper">  
-        <a href="https://dexscreener.com/xrpl/504F534141000000000000000000000000000000.rUHPgW3p3YzkndS1RZRy9f3xKPRLuzVZtM_XRP" target="_blank" rel="noopener" class="platform-link-btn">Buy on DexScreener</a>  
-        <a href="https://firstledger.net/token/rUHPgW3p3YzkndS1RZRy9f3xKPRLuzVZtM/504F534141000000000000000000000000000000" target="_blank" rel="noopener" class="platform-link-btn">Buy on First Ledger</a>  
-        <a href="https://xpmarket.com/dex/POSAA-rUHPgW3p3YzkndS1RZRy9f3xKPRLuzVZtM/XRP?trade=market" target="_blank" rel="noopener" class="platform-link-btn">Buy on XPMarket</a>  
-      </div>  
-      <p class="cs-desc" style="margin-top:25px; font-size:0.85rem; color:var(--gray);">  
-        Always confirm contract validity. 0% network tax architecture enabled natively.  
-      </p>  
-    </div>  
+    <div class="buy-page-wrap">
+      <div class="buy-page-heading">Buy $POSAA</div>
+      <div class="buy-page-sub">Step-by-step guide to getting started on XRPL</div>
+
+      <!-- HOW TO BUY STEPS -->
+      <div class="how-to-container">
+
+        <div class="how-to-step">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <div class="step-title">Install an XRPL Wallet</div>
+            <div class="step-desc">To interact with $POSAA, you need a compatible XRP Ledger wallet. Download your preferred wallet from its official source using the buttons below and complete installation.</div>
+          </div>
+        </div>
+
+        <div class="how-to-step">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <div class="step-title">Create Your Wallet</div>
+            <div class="step-desc">Open the wallet app and create a new XRPL account. You'll receive recovery credentials — a recovery phrase, secret numbers, or similar depending on your wallet choice.
+              <div class="step-warning">⚠️ Store these credentials securely and offline. Anyone with access to them can access your wallet.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="how-to-step">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <div class="step-title">Activate Your XRPL Account</div>
+            <div class="step-desc">New XRP Ledger accounts require activation before they can be fully used. Follow the wallet's activation instructions to get your account ready for transactions.</div>
+          </div>
+        </div>
+
+        <div class="how-to-step">
+          <div class="step-number">04</div>
+          <div class="step-content">
+            <div class="step-title">Verify Your Wallet Address</div>
+            <div class="step-desc">Once created, you'll receive a unique XRPL wallet address beginning with <strong>"r"</strong>. Double-check your address and keep it available for future transactions.</div>
+          </div>
+        </div>
+
+        <div class="how-to-step">
+          <div class="step-number">05</div>
+          <div class="step-content">
+            <div class="step-title">Verify Official POSAA Information</div>
+            <div class="step-desc">Before interacting with any asset, confirm the token details match the official $POSAA info. Always compare against information published through official POSAA channels.<br/><br/>
+            <strong>Official Issuer Address:</strong><br/>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--gold-soft);word-break:break-all;">rUHPgW3p3YzkndS1RZRy9f3xKPRLuzVZtM</span></div>
+          </div>
+        </div>
+
+        <div class="how-to-step">
+          <div class="step-number">06</div>
+          <div class="step-content">
+            <div class="step-title">Access a Supported Trading Platform</div>
+            <div class="step-desc">$POSAA can be purchased through the XRPL trading platforms listed at the bottom of this page. Always use official links provided by the POSAA project.</div>
+          </div>
+        </div>
+
+        <div class="how-to-step">
+          <div class="step-number">07</div>
+          <div class="step-content">
+            <div class="step-title">Review Transaction Information</div>
+            <div class="step-desc">Before confirming any blockchain transaction: verify wallet details, confirm asset info matches the official issuer, review transaction fees, and ensure you understand the transaction before approval.</div>
+          </div>
+        </div>
+
+        <div class="how-to-step">
+          <div class="step-number">08</div>
+          <div class="step-content">
+            <div class="step-title">Monitor Your Wallet</div>
+            <div class="step-desc">After interacting with the XRP Ledger, monitor your wallet activity through your wallet app and supported XRPL explorers. Transaction records are permanently recorded on-chain.</div>
+          </div>
+        </div>
+
+      </div>
+      <!-- END STEPS -->
+
+      <!-- WALLET DOWNLOAD BUTTONS -->
+      <div class="wallet-download-section">
+        <div class="wallet-section-label">📲 Step 1 — Download a Wallet</div>
+        <div class="wallet-btn-row">
+          <a href="https://xaman.app/" target="_blank" rel="noopener" class="wallet-download-btn">
+            <span class="wallet-icon">🔷</span> Download Xaman Wallet
+          </a>
+          <a href="https://joeywallet.xyz/" target="_blank" rel="noopener" class="wallet-download-btn">
+            <span class="wallet-icon">🦘</span> Download Joey Wallet
+          </a>
+        </div>
+      </div>
+
+      <!-- SECURITY TIPS -->
+      <div class="security-box">
+        <div class="security-box-title">🛡️ Security Best Practices</div>
+        <ul class="security-list">
+          <li>Never share your recovery phrase or secret numbers</li>
+          <li>Never send funds to unverified addresses</li>
+          <li>Use only official POSAA links and resources</li>
+          <li>Verify issuer information before interacting with any asset</li>
+          <li>Be cautious of impersonators and fake support accounts</li>
+        </ul>
+      </div>
+
+      <!-- CONTRACT ADDRESS -->
+      <div class="buy-ca-box">
+        <div class="buy-ca-label">Official $POSAA Issuer Address</div>
+        <div class="buy-ca-value">rUHPgW3p3YzkndS1RZRy9f3xKPRLuzVZtM</div>
+        <button class="buy-ca-copy" onclick="copyContractToClipboard()">Copy Address</button>
+      </div>
+      <p style="text-align:center;font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--gray);margin-bottom:2rem;">Always verify this address before trading.</p>
+
+      <!-- BUY PLATFORM BUTTONS -->
+      <div class="buy-platforms-section">
+        <div class="platforms-label">🛒 Trade $POSAA — Choose a Platform</div>
+        <a href="https://firstledger.net/token/rUHPgW3p3YzkndS1RZRy9f3xKPRLuzVZtM/504F534141000000000000000000000000000000" target="_blank" rel="noopener" class="platform-link-btn">Buy on First Ledger</a>
+        <a href="https://xpmarket.com/dex/POSAA-rUHPgW3p3YzkndS1RZRy9f3xKPRLuzVZtM/XRP?trade=market" target="_blank" rel="noopener" class="platform-link-btn">Buy on XPMarket</a>
+        <a href="https://dexscreener.com/xrpl/504F534141000000000000000000000000000000.rUHPgW3p3YzkndS1RZRy9f3xKPRLuzVZtM_XRP" target="_blank" rel="noopener" class="platform-link-btn">Buy on DexScreener</a>
+      </div>
+
+      <p style="text-align:center;font-family:'Inter',sans-serif;font-size:0.82rem;color:var(--gray);padding-bottom:2rem;">Always confirm contract validity. 0% network tax architecture enabled natively. Not financial advice.</p>
+
+    </div>
     <footer>  
       <div class="footer-logo">$POSAA</div>  
       <p class="footer-copy">© 2026 $POSAA Community. Not financial advice.</p>  
@@ -1264,28 +1171,25 @@
       <div class="cs-title">POSAA AUDIO</div>  
       <div class="cs-subtitle">Unfiltered Sound Waves Streamed On-Chain</div>  
       <div class="mobile-audio-container" style="max-height: 520px; overflow-y: auto;">  
-        <div class="playlist-track" style="text-align: left;"><div class="track-meta">01 - Oh No He's at It Again</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-01_Oh_No_He_s_At_It_Again__Corporate_Games_wdvmcr.wav" type="audio/wav"></audio></div>
-        <div class="playlist-track" style="text-align: left;"><div class="track-meta">02 - Ooops He Diluted Again</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161158/-02_Ooops_He_s_Not_that_Innocent_rhb6s8.wav" type="audio/wav"></audio></div>
-        <div class="playlist-track" style="text-align: left;"><div class="track-meta">03 - Na-Na-Na-Na Lets Roll</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161157/-03_Na_Na_Na_Na_zkgr9z.wav" type="audio/wav"></audio></div>
-        <div class="playlist-track" style="text-align: left;"><div class="track-meta">04 - A Movie Company Glow</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-04_2021_Dreams_iaamek.wav" type="audio/wav"></audio></div>
-        <div class="playlist-track" style="text-align: left;"><div class="track-meta">05 - The Knells of Christmas</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161178/-05_Apes_Fairy_Tale_Christmas_be6cg6.wav" type="audio/wav"></audio></div>
-        <div class="playlist-track" style="text-align: left;"><div class="track-meta">06 - Echoes of the Market</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161151/Amy_Hurt_Me_vlhoas.mp3" type="audio/mpeg"></audio></div>
-        <div class="playlist-track" style="text-align: left;"><div class="track-meta">07 - Feelin Your Shiv</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-07_Feelin__Your_Shiv_morxoj.wav" type="audio/wav"></audio></div>
-        <div class="playlist-track" style="text-align: left;"><div class="track-meta">08 - As We Held Down Tempo</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161157/-08_As_We_Held__Down_Tempo_pkrbgr.wav" type="audio/wav"></audio></div>
-        <div class="playlist-track" style="text-align: left;"><div class="track-meta">09 - Silver Screen Dreams</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161160/-09_Silver_Screen_Dreams_j8f2rk.wav" type="audio/wav"></audio></div>
-        <div class="playlist-track" style="text-align: left;"><div class="track-meta">10 - To The Moon</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161154/-10_To_the_Moon_luoi6u.wav" type="audio/wav"></audio></div>
-        <div class="playlist-track" style="text-align: left;"><div class="track-meta">11 - Lamp On Flawed King</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161158/-11_Lamp_On__The_Flawed_King_f2xaaw.wav" type="audio/wav"></audio></div>
-        <div class="playlist-track" style="text-align: left;"><div class="track-meta">12 - Unbroken</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161154/-12_Unbroken__Anthem_f8ur1e.wav" type="audio/wav"></audio></div>
-        <div class="playlist-track" style="text-align: left;"><div class="track-meta">13 - Apes and Retards in Arms</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161177/-13_Apes_and_Retards_in_Arms_hydamw.wav" type="audio/wav"></audio></div>
-        <div class="playlist-track" style="text-align: left;"><div class="track-meta">14 - Hurt It's Gonna Take a Lotta Love</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161152/Hurt_It_s_Gonna_Take_a_Lotta_Love_umm7of.mp3" type="audio/mpeg"></audio></div>
-        <div class="playlist-track" style="text-align: left;"><div class="track-meta">15 - Hodl My Shot</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161147/Hodl_My_Shot_i5dg2m.mp3" type="audio/mpeg"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">01 - Oh No He's at It Again</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-01_Oh_No_He_s_At_It_Again__Corporate_Games_wdvmcr.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">02 - Ooops He Diluted Again</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161158/-02_Ooops_He_s_Not_that_Innocent_rhb6s8.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">03 - Na-Na-Na-Na Lets Roll</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161157/-03_Na_Na_Na_Na_zkgr9z.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">04 - A Movie Company Glow</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-04_2021_Dreams_iaamek.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">05 - The Knells of Christmas</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161178/-05_Apes_Fairy_Tale_Christmas_be6cg6.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">06 - Echoes of the Market</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161151/Amy_Hurt_Me_vlhoas.mp3" type="audio/mpeg"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">07 - Feelin Your Shiv</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-07_Feelin__Your_Shiv_morxoj.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">08 - As We Held Down Tempo</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161157/-08_As_We_Held__Down_Tempo_pkrbgr.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">09 - Silver Screen Dreams</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161160/-09_Silver_Screen_Dreams_j8f2rk.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">10 - To The Moon</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161154/-10_To_the_Moon_luoi6u.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">11 - Lamp On Flawed King</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161158/-11_Lamp_On__The_Flawed_King_f2xaaw.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">12 - Unbroken</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161154/-12_Unbroken__Anthem_f8ur1e.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">13 - Apes and Retards in Arms</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161177/-13_Apes_and_Retards_in_Arms_hydamw.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">14 - Hurt It's Gonna Take a Lotta Love</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161152/Hurt_It_s_Gonna_Take_a_Lotta_Love_umm7of.mp3" type="audio/mpeg"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">15 - Hodl My Shot</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161147/Hodl_My_Shot_i5dg2m.mp3" type="audio/mpeg"></audio></div>
       </div>  
       <p class="cs-desc" style="margin-top:20px;">More dynamic tracking metrics updating real-time.</p>  
     </div>  
-    <footer>  
-      <div class="footer-logo">$POSAA</div>  
-      <p class="footer-copy">© 2026 $POSAA Community. Not financial advice.</p>  
-    </footer>  
+    <footer><div class="footer-logo">$POSAA</div><p class="footer-copy">© 2026 $POSAA Community. Not financial advice.</p></footer>  
   </div>  
 
   <!-- YOUTUBE PAGE -->
@@ -1297,16 +1201,10 @@
       <div class="cs-subtitle">Something Epic is Brewing</div>  
       <p class="cs-desc">The $POSAA YouTube channel and community contests are gearing up. Meme battles, viral content drops, and rewards for the best takes are on the way. Stay tuned — the apes are preparing.</p>  
       <div style="margin-top:2rem;">  
-        <a href="https://youtube.com/@posaa_xrpl?si=O-551EnpcVr0wWVm" target="_blank" rel="noopener" class="comm-btn comm-btn-yt" style="display:inline-flex;">  
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>  
-          Visit YouTube Channel  
-        </a>  
+        <a href="https://youtube.com/@posaa_xrpl?si=O-551EnpcVr0wWVm" target="_blank" rel="noopener" class="comm-btn comm-btn-yt" style="display:inline-flex;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>Visit YouTube Channel</a>  
       </div>  
     </div>  
-    <footer>  
-      <div class="footer-logo">$POSAA</div>  
-      <p class="footer-copy">© 2026 $POSAA Community. Not financial advice.</p>  
-    </footer>  
+    <footer><div class="footer-logo">$POSAA</div><p class="footer-copy">© 2026 $POSAA Community. Not financial advice.</p></footer>  
   </div>  
 
   <!-- GAME PAGE -->
@@ -1319,16 +1217,10 @@
       <p class="cs-desc">The community-driven video game where apes battle diluted corporate undead is in development. Prepare to storm the boardrooms, expose the frauds, and earn your place in the hall of based legends.</p>  
       <div style="margin-top:2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">  
         <a href="https://x.com/Posaa_xrpl" target="_blank" rel="noopener" class="comm-btn comm-btn-x" style="display:inline-flex;">𝕏 Stay Updated</a>  
-        <a href="https://t.me/POSAA_XRPL" target="_blank" rel="noopener" class="comm-btn comm-btn-tg" style="display:inline-flex;">  
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.94 8.19l-2.02 9.52c-.15.67-.54.84-1.09.52l-3-2.21-1.45 1.4c-.16.16-.29.29-.6.29l.21-3.02 5.5-4.97c.24-.21-.05-.33-.37-.12l-6.8 4.28-2.93-.91c-.64-.2-.65-.64.13-.95l11.42-4.4c.53-.19 1 .13.8.57z"/></svg>  
-          Join Telegram  
-        </a>  
+        <a href="https://t.me/POSAA_XRPL" target="_blank" rel="noopener" class="comm-btn comm-btn-tg" style="display:inline-flex;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.94 8.19l-2.02 9.52c-.15.67-.54.84-1.09.52l-3-2.21-1.45 1.4c-.16.16-.29.29-.6.29l.21-3.02 5.5-4.97c.24-.21-.05-.33-.37-.12l-6.8 4.28-2.93-.91c-.64-.2-.65-.64.13-.95l11.42-4.4c.53-.19 1 .13.8.57z"/></svg>Join Telegram</a>  
       </div>  
     </div>  
-    <footer>  
-      <div class="footer-logo">$POSAA</div>  
-      <p class="footer-copy">© 2026 $POSAA Community. Not financial advice.</p>  
-    </footer>  
+    <footer><div class="footer-logo">$POSAA</div><p class="footer-copy">© 2026 $POSAA Community. Not financial advice.</p></footer>  
   </div>  
 
   <!-- WHITEPAPER MODAL -->
@@ -1360,9 +1252,7 @@
       <div style="padding:2.5rem 2rem;">  
         <div style="font-size:3rem;margin-bottom:1rem;">🚀</div>  
         <div style="font-family:'Orbitron',sans-serif;font-weight:700;font-size:1.1rem;color:var(--gold);margin-bottom:0.8rem;">Launch Incoming</div>  
-        <p style="font-family:'Inter',sans-serif;font-size:0.9rem;color:var(--light-gray);line-height:1.6;margin-bottom:1.5rem;">  
-          The $POSAA fair launch on XRPL DEX is coming soon. Stay connected to the community to be first in line.  
-        </p>  
+        <p style="font-family:'Inter',sans-serif;font-size:0.9rem;color:var(--light-gray);line-height:1.6;margin-bottom:1.5rem;">The $POSAA fair launch on XRPL DEX is coming soon. Stay connected to the community to be first in line.</p>  
         <div style="display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap;">  
           <a href="https://x.com/Posaa_xrpl" target="_blank" class="comm-btn comm-btn-x" style="font-size:0.8rem;padding:0.7rem 1.3rem;">𝕏 Follow</a>  
           <a href="https://t.me/POSAA_XRPL" target="_blank" class="comm-btn comm-btn-tg" style="font-size:0.8rem;padding:0.7rem 1.3rem;">Telegram</a>  
@@ -1479,26 +1369,14 @@
     let start = -Math.PI / 2;  
     data.forEach(d => {  
       const end = start + (d.v / 100) * Math.PI * 2;  
-      ctx.beginPath();  
-      ctx.moveTo(cx, cy);  
-      ctx.arc(cx, cy, outer, start, end);  
-      ctx.closePath();  
-      ctx.fillStyle = d.c;  
-      ctx.fill();  
-      start = end;  
+      ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, outer, start, end); ctx.closePath();  
+      ctx.fillStyle = d.c; ctx.fill(); start = end;  
     });  
-    ctx.beginPath();  
-    ctx.arc(cx, cy, inner, 0, Math.PI * 2);  
-    ctx.fillStyle = '#151515';  
-    ctx.fill();  
-    ctx.fillStyle = '#F4B400';  
-    ctx.font = 'bold 14px Orbitron, sans-serif';  
-    ctx.textAlign = 'center';  
-    ctx.textBaseline = 'middle';  
-    ctx.fillText('1.1B', cx, cy - 8);  
-    ctx.fillStyle = '#888';  
-    ctx.font = '10px Inter, sans-serif';  
-    ctx.fillText('POSAA', cx, cy + 8);  
+    ctx.beginPath(); ctx.arc(cx, cy, inner, 0, Math.PI * 2); ctx.fillStyle = '#151515'; ctx.fill();  
+    ctx.fillStyle = '#F4B400'; ctx.font = 'bold 14px Orbitron, sans-serif';  
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';  
+    ctx.fillText('1.1B', cx, cy - 8); ctx.fillStyle = '#888';  
+    ctx.font = '10px Inter, sans-serif'; ctx.fillText('POSAA', cx, cy + 8);  
   }  
   window.addEventListener('load', drawDonut);  
     
@@ -1519,21 +1397,11 @@
     const logoVideo = document.getElementById('logo-video');  
     const logoFallback = document.getElementById('logo-fallback');  
     if (logoVideo) {  
-      logoVideo.addEventListener('error', function () {  
-        logoVideo.style.display = 'none';  
-        logoFallback.style.display = 'block';  
-      });  
+      logoVideo.addEventListener('error', function () { logoVideo.style.display = 'none'; logoFallback.style.display = 'block'; });  
       logoVideo.addEventListener('stalled', function () {  
-        setTimeout(function () {  
-          if (logoVideo.readyState === 0) {  
-            logoVideo.style.display = 'none';  
-            logoFallback.style.display = 'block';  
-          }  
-        }, 60000);  
+        setTimeout(function () { if (logoVideo.readyState === 0) { logoVideo.style.display = 'none'; logoFallback.style.display = 'block'; } }, 60000);  
       });  
-      logoVideo.addEventListener('canplay', function () {  
-        forcePlay(logoVideo);  
-      });  
+      logoVideo.addEventListener('canplay', function () { forcePlay(logoVideo); });  
       forcePlay(logoVideo);  
     }  
   });  
@@ -1546,8 +1414,7 @@
     resize(); window.addEventListener('resize', resize);  
     const COLORS = ['rgba(244,180,0,0.7)','rgba(168,85,247,0.6)','rgba(255,213,79,0.5)'];  
     for (let i = 0; i < 70; i++) particles.push({  
-      x: Math.random()*2000, y: Math.random()*1200,  
-      r: Math.random()*1.5+0.4,  
+      x: Math.random()*2000, y: Math.random()*1200, r: Math.random()*1.5+0.4,  
       c: COLORS[Math.floor(Math.random()*COLORS.length)],  
       vx: (Math.random()-0.5)*0.3, vy: (Math.random()-0.5)*0.3,  
       op: Math.random()*0.6+0.2  
