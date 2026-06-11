@@ -27,7 +27,9 @@
       --violet: #A855F7;  
       --white: #FFFFFF;  
       --light-gray: #CFCFCF;  
-      --gray: #888888;  
+      --gray: #888888;
+      --sidenav-width: 220px;
+      --topbar-height: 60px;
     }  
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }  
     html { scroll-behavior: smooth; }  
@@ -62,7 +64,7 @@
       text-shadow: 0 0 12px rgba(244,180,0,0.6);  
       text-decoration: none;  
     }  
-    .nav-links { display: none; } /* Simplified mobile for this change */
+    .nav-links { display: none; }
     .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; }  
     .hamburger span { width: 24px; height: 2px; background: var(--gold); display: block; transition: all 0.3s; }  
     .mobile-menu {  
@@ -79,18 +81,24 @@
     }  
     .mobile-menu a:hover { color: var(--gold); }  
 
-    /* ── NAV — DESKTOP OVERRIDE (3-COLUMN FLEX) ── */  
+    /* ── NAV — DESKTOP OVERRIDE ── */  
     @media (min-width: 769px) {  
       nav { display: none; }  
       .mobile-menu { display: none !important; }  
 
       .desktop-topbar {  
         position: fixed; top: 0; left: 0; right: 0; z-index: 1000;  
-        height: 60px; display: flex; align-items: center; justify-content: space-between;  
+        height: var(--topbar-height); display: flex; align-items: center; justify-content: space-between;  
         padding: 0 2rem;  
         background: rgba(5,5,5,0.9); backdrop-filter: blur(14px);  
         border-bottom: 1px solid rgba(244,180,0,0.12);  
-      }  
+      }
+      .desktop-topbar-left { display: flex; flex-direction: column; z-index: 1; }
+      .desktop-topbar-center {
+        position: absolute; left: 50%; transform: translateX(-50%);
+        text-align: center; pointer-events: none;
+      }
+      .desktop-topbar-right { margin-left: auto; z-index: 1; }
       .dt-left { flex: 1; display: flex; flex-direction: column; }  
       .dt-center { flex: 2; text-align: center; }  
       .dt-right { flex: 1; display: flex; justify-content: flex-end; }
@@ -125,14 +133,44 @@
         box-shadow: 0 0 25px rgba(244,180,0,0.55); transform: translateY(-1px);  
       }  
 
+      /* ── FIXED RIGHT SIDENAV ── */
       .desktop-sidenav {  
-        position: fixed; top: 60px; right: 0; z-index: 999;  
-        width: 220px; height: calc(100vh - 60px);  
+        position: fixed; top: var(--topbar-height); right: 0; z-index: 999;  
+        width: var(--sidenav-width); height: calc(100vh - var(--topbar-height));  
         display: flex; flex-direction: column; justify-content: start;  
         padding: 1.5rem 1rem;  
         background: transparent;  
         overflow-y: auto;  
-      }  
+      }
+
+      /* ── FIXED LEFT PLAYLIST PANEL ── */
+      .desktop-playlist-panel {
+        position: fixed; top: var(--topbar-height); left: 0; z-index: 999;
+        width: var(--sidenav-width); height: calc(100vh - var(--topbar-height));
+        display: flex; flex-direction: column;
+        padding: 1.5rem 1rem;
+        background: transparent;
+        overflow: hidden;
+      }
+      .desktop-playlist-panel .playlist-inner-scroll {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        /* hide scrollbar but keep scrollable */
+        scrollbar-width: thin;
+        scrollbar-color: rgba(244,180,0,0.3) transparent;
+      }
+      .desktop-playlist-panel .playlist-inner-scroll::-webkit-scrollbar {
+        width: 4px;
+      }
+      .desktop-playlist-panel .playlist-inner-scroll::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .desktop-playlist-panel .playlist-inner-scroll::-webkit-scrollbar-thumb {
+        background: rgba(244,180,0,0.3);
+        border-radius: 2px;
+      }
+
       .desktop-sidenav a, .desktop-sidenav button {  
         display: block; width: 100%; text-align: left;  
         padding: 0.75rem 1.1rem;  
@@ -165,15 +203,19 @@
         margin: 0.3rem 0 0.8rem; border-radius: 2px;  
       }  
 
-      body.desktop-layout .page.active { margin-right: 220px; }  
-      body.desktop-layout .hero-section-wrap { margin-top: 60px; }  
+      /* ── MAIN CONTENT: offset both sides ── */
+      body.desktop-layout .page.active {
+        margin-left: var(--sidenav-width);
+        margin-right: var(--sidenav-width);
+      }
+      body.desktop-layout .hero-section-wrap { margin-top: var(--topbar-height); }
       body.desktop-layout .hero-token-name,  
       body.desktop-layout .hero-full-name,  
       body.desktop-layout .hero-tagline,  
-      body.desktop-layout .hero-buttons { display: none; }  
+      body.desktop-layout .hero-buttons { display: none; }
     }  
     @media (max-width: 768px) {  
-      .desktop-topbar, .desktop-sidenav { display: none !important; }  
+      .desktop-topbar, .desktop-sidenav, .desktop-playlist-panel { display: none !important; }  
     }  
 
     /* ── PAGES ── */  
@@ -195,16 +237,11 @@
     }  
     
     @media (min-width: 769px) {  
-      .hero-dual-grid {  
-        display: grid;  
-        grid-template-columns: 380px 1fr;  
-        gap: 3.5rem;  
-        width: 100%;  
-        max-width: 1440px;  
-        margin: 0 auto;  
-        align-items: center;  
-      }  
-      .hero { padding: 0 1% 40px; }  
+      .hero {
+        min-height: calc(100vh - var(--topbar-height));
+        padding: 40px 5% 40px;
+        justify-content: center;
+      }
     }  
 
     .hero-overlay {  
@@ -226,12 +263,12 @@
     }  
     @media (min-width: 769px) {  
       .hero-logo-wrap {   
-        width: 640px; height: 640px;  
+        width: 540px; height: 540px;  
         border: 6px solid var(--gold);  
         border-radius: 50%;  
         box-shadow: 0 0 30px rgba(244,180,0,0.35), inset 0 0 30px rgba(244,180,0,0.05);  
-        animation: logoPulse 3s ease-in-out infinite;  
-        margin-bottom: 0;   
+        animation: logoPulse 3s ease-in-out infinite;
+        margin: 0 auto;
       }  
     }  
     @keyframes logoPulse {  
@@ -322,27 +359,7 @@
     }  
     .btn-secondary:hover { background: rgba(244,180,0,0.15); box-shadow: 0 0 30px rgba(244,180,0,0.4); transform: translateY(-2px); }  
 
-    /* ── PLAYLIST SIDEBAR ── */  
-    .playlist-sidebar-container {  
-      display: none;  
-      background: rgba(10, 10, 10, 0.85);  
-      border: 1px solid rgba(244, 180, 0, 0.3);  
-      border-radius: 4px;  
-      padding: 16px 12px;  
-      width: 100%;  
-      max-width: 380px;  
-      max-height: 640px;  
-      overflow-y: auto;  
-      text-align: left;  
-      backdrop-filter: blur(12px);  
-      box-shadow: 0 0 30px rgba(0,0,0,0.8);  
-    }  
-    @media (min-width: 769px) {  
-      .playlist-sidebar-container {  
-        display: block;  
-        margin-top: 65px; /* Final nudge down adjustment to align perfectly with content flow */  
-      }  
-    }  
+    /* ── PLAYLIST TRACK STYLES (shared mobile + desktop panel) ── */  
     .playlist-track {  
       background: #000000 !important;  
       border: 1px solid rgba(244,180,0,0.15);  
@@ -358,26 +375,37 @@
       font-family: 'Rajdhani', sans-serif;  
       font-weight: 700;  
       color: var(--gold);  
-      font-size: 0.95rem;  
+      font-size: 0.85rem;  
       margin-bottom: 6px;  
       text-transform: uppercase;  
-      letter-spacing: 0.05em;  
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }  
     .audio-player-element {  
       width: 100%;  
-      height: 32px;  
+      height: 28px;  
       outline: none;  
       filter: invert(1) hue-rotate(180deg);  
       border-radius: 4px;  
     }  
+    .playlist-header-label {
+      font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 0.85rem;
+      color: var(--gold);
+      border-bottom: 1px solid rgba(244,180,0,0.25);
+      padding-bottom: 8px; margin-bottom: 12px;
+      letter-spacing: 0.05em; text-align: center;
+    }
     .playlist-footer-branding {  
       text-align: center;  
       font-family: 'Rajdhani', sans-serif;  
-      font-size: 0.75rem;  
+      font-size: 0.7rem;  
       color: var(--gray);  
-      letter-spacing: 0.1em;  
-      margin-top: 15px;  
-      text-transform: uppercase;  
+      letter-spacing: 0.08em;  
+      padding-top: 10px;
+      text-transform: uppercase;
+      flex-shrink: 0;
     }  
 
     /* ── HUB DESIGN ── */  
@@ -799,17 +827,121 @@
     <a href="#" onclick="openWhitepaperModal();toggleMobileMenu()">📄 Whitepaper</a>  
   </div>  
 
+  <!-- DESKTOP TOP BAR -->
   <div class="desktop-topbar" id="desktop-topbar">  
     <div class="desktop-topbar-left">  
       <a href="#" class="desktop-topbar-logo" onclick="showPage('home')">POSAA</a>  
       <div class="desktop-topbar-sub">Public Opinion, Speech, Antics, Assholery</div>  
-    </div>  
-    <div class="desktop-topbar-title">THE ULTIMATE SHIT COIN</div>  
-    <div>
+    </div>
+    <div class="desktop-topbar-center">
+      <div class="desktop-topbar-title">THE ULTIMATE SHIT COIN</div>
+    </div>
+    <div class="desktop-topbar-right">
       <button class="desktop-header-buy-btn" onclick="showPage('buy')" id="header-buy-trigger">Buy $POSAA</button>
     </div>  
-  </div>  
+  </div>
 
+  <!-- FIXED LEFT PLAYLIST PANEL (desktop only) -->
+  <div class="desktop-playlist-panel" id="desktop-playlist-panel">
+    <div class="playlist-header-label">🔊 $POSAA TRACKS</div>
+    <div class="playlist-inner-scroll">
+
+      <div class="playlist-track">
+        <div class="track-meta">01 - Oh No He's at It Again</div>
+        <audio class="audio-player-element" controls controlsList="nodownload">
+          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-01_Oh_No_He_s_At_It_Again__Corporate_Games_wdvmcr.wav" type="audio/wav">
+        </audio>
+      </div>
+      <div class="playlist-track">
+        <div class="track-meta">02 - Ooops He Diluted Again</div>
+        <audio class="audio-player-element" controls controlsList="nodownload">
+          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161158/-02_Ooops_He_s_Not_that_Innocent_rhb6s8.wav" type="audio/wav">
+        </audio>
+      </div>
+      <div class="playlist-track">
+        <div class="track-meta">03 - Na-Na-Na-Na Lets Roll</div>
+        <audio class="audio-player-element" controls controlsList="nodownload">
+          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161157/-03_Na_Na_Na_Na_zkgr9z.wav" type="audio/wav">
+        </audio>
+      </div>
+      <div class="playlist-track">
+        <div class="track-meta">04 - A Movie Company Glow</div>
+        <audio class="audio-player-element" controls controlsList="nodownload">
+          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-04_2021_Dreams_iaamek.wav" type="audio/wav">
+        </audio>
+      </div>
+      <div class="playlist-track">
+        <div class="track-meta">05 - The Knells of Christmas</div>
+        <audio class="audio-player-element" controls controlsList="nodownload">
+          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161178/-05_Apes_Fairy_Tale_Christmas_be6cg6.wav" type="audio/wav">
+        </audio>
+      </div>
+      <div class="playlist-track">
+        <div class="track-meta">06 - Echoes of the Market</div>
+        <audio class="audio-player-element" controls controlsList="nodownload">
+          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161151/Amy_Hurt_Me_vlhoas.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+      <div class="playlist-track">
+        <div class="track-meta">07 - Feelin Your Shiv</div>
+        <audio class="audio-player-element" controls controlsList="nodownload">
+          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-07_Feelin__Your_Shiv_morxoj.wav" type="audio/wav">
+        </audio>
+      </div>
+      <div class="playlist-track">
+        <div class="track-meta">08 - As We Held Down Tempo</div>
+        <audio class="audio-player-element" controls controlsList="nodownload">
+          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161157/-08_As_We_Held__Down_Tempo_pkrbgr.wav" type="audio/wav">
+        </audio>
+      </div>
+      <div class="playlist-track">
+        <div class="track-meta">09 - Silver Screen Dreams</div>
+        <audio class="audio-player-element" controls controlsList="nodownload">
+          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161160/-09_Silver_Screen_Dreams_j8f2rk.wav" type="audio/wav">
+        </audio>
+      </div>
+      <div class="playlist-track">
+        <div class="track-meta">10 - To The Moon</div>
+        <audio class="audio-player-element" controls controlsList="nodownload">
+          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161154/-10_To_the_Moon_luoi6u.wav" type="audio/wav">
+        </audio>
+      </div>
+      <div class="playlist-track">
+        <div class="track-meta">11 - Lamp On Flawed King</div>
+        <audio class="audio-player-element" controls controlsList="nodownload">
+          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161158/-11_Lamp_On__The_Flawed_King_f2xaaw.wav" type="audio/wav">
+        </audio>
+      </div>
+      <div class="playlist-track">
+        <div class="track-meta">12 - Unbroken</div>
+        <audio class="audio-player-element" controls controlsList="nodownload">
+          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161154/-12_Unbroken__Anthem_f8ur1e.wav" type="audio/wav">
+        </audio>
+      </div>
+      <div class="playlist-track">
+        <div class="track-meta">13 - Apes and Retards in Arms</div>
+        <audio class="audio-player-element" controls controlsList="nodownload">
+          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161177/-13_Apes_and_Retards_in_Arms_hydamw.wav" type="audio/wav">
+        </audio>
+      </div>
+      <div class="playlist-track">
+        <div class="track-meta">14 - Hurt It's Gonna Take a Lotta Love</div>
+        <audio class="audio-player-element" controls controlsList="nodownload">
+          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161152/Hurt_It_s_Gonna_Take_a_Lotta_Love_umm7of.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+      <div class="playlist-track">
+        <div class="track-meta">15 - Hodl My Shot</div>
+        <audio class="audio-player-element" controls controlsList="nodownload">
+          <source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161147/Hodl_My_Shot_i5dg2m.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+
+    </div>
+    <div class="playlist-footer-branding">POSAA — Public Opinion. Speech. Antics. Assholery.</div>
+  </div>
+
+  <!-- FIXED RIGHT SIDENAV -->
   <div class="desktop-sidenav" id="desktop-sidenav">  
     <a href="#" onclick="showPage('home')" class="active" id="dnav-home">Home</a>  
     <div class="sidenav-divider"></div>  
@@ -824,129 +956,22 @@
     <a href="#" onclick="showPage('youtube')" id="dnav-youtube">Challenges</a>  
   </div>  
 
+  <!-- HOME PAGE -->
   <div class="page active" id="page-home">    
     <div class="hero-section-wrap">  
       <section class="hero">  
         <div class="hero-overlay"></div>  
-        <div class="hero-dual-grid">  
-          
-          <div class="playlist-sidebar-container">  
-            <div style="font-family:'Orbitron', sans-serif; font-weight:900; font-size:1.1rem; color:var(--gold); border-bottom:1px solid rgba(244,180,0,0.25); padding-bottom:8px; margin-bottom:12px; letter-spacing:0.05em; text-align:center;">  
-              🔊 $POSAA TRACKS  
-            </div>  
-            <div style="max-height:540px; overflow-y:auto; padding-right:4px;">  
-              
-              <div class="playlist-track">  
-                <div class="track-meta">01 - Oh No He's at It Again</div>  
-                <audio class="audio-player-element" controls controlsList="nodownload">  
-                  <source src="https://www.dropbox.com/scl/fi/qgaqut3u3cesxie1vqf5o/01_Oh_No_He_s_At_It_Again__Corporate_Games.wav?rlkey=ioxse68nv88f7y7jp8t6yqw3y&st=k0s2f5jr&raw=1" type="audio/wav">  
-                </audio>  
-              </div>  
-
-              <div class="playlist-track">  
-                <div class="track-meta">02 - Ooops He Diluted Again</div>  
-                <audio class="audio-player-element" controls controlsList="nodownload">  
-                  <source src="https://www.dropbox.com/scl/fi/2n0rqac5f1yuehm8j0e0j/02_Ooops_He_s_Not_that_Innocent.wav?rlkey=s3r4kqv21zx5pqezftxex4wy8&st=jfu9yvjx&raw=1" type="audio/wav">  
-                </audio>  
-              </div>  
-
-              <div class="playlist-track">  
-                <div class="track-meta">03 - Na-Na-Na-Na Lets Roll</div>  
-                <audio class="audio-player-element" controls controlsList="nodownload">  
-                  <source src="https://www.dropbox.com/scl/fi/x1lg4rvfd3009kq40jbeh/03_Na_Na_Na_Na.wav?rlkey=vx2dcvxj9vl432duz8wk42twn&st=uvtavdmi&raw=1" type="audio/wav">  
-                </audio>  
-              </div>  
-
-              <div class="playlist-track">  
-                <div class="track-meta">04 - A Movie Company Glow</div>  
-                <audio class="audio-player-element" controls controlsList="nodownload">  
-                  <source src="https://www.dropbox.com/scl/fi/8zqyp60gj3cthkpiyd367/04_2021_Dreams.wav?rlkey=8lc59lvkw10r5lebde82r6ofc&st=nh9s68fa&raw=1" type="audio/wav">  
-                </audio>  
-              </div>  
-
-              <div class="playlist-track">  
-                <div class="track-meta">05 - The Knells of Christmas</div>  
-                <audio class="audio-player-element" controls controlsList="nodownload">  
-                  <source src="https://www.dropbox.com/scl/fi/x192n206tey9ul14dat3t/05_Apes_Fairy_Tale_Christmas.wav?rlkey=p95z33pbw95ff1rcc0v2k0a1t&st=ewpo0z02&raw=1" type="audio/wav">  
-                </audio>  
-              </div>  
-
-              <div class="playlist-track">  
-                <div class="track-meta">06 - Echoes of the Market</div>  
-                <audio class="audio-player-element" controls controlsList="nodownload" controls>  
-                  <source src="https://www.dropbox.com/scl/fi/styowc42qa726owg5oevj/Amy-Hurt-Me.mp3?rlkey=g66s0ir3nlmu6fvlhpht1xuvy&st=pyovos3t&raw=1" type="audio/mpeg">  
-                </audio>  
-              </div>  
-
-              <div class="playlist-track">  
-                <div class="track-meta">07 - Feelin Your Shiv</div>  
-                <audio class="audio-player-element" controls controlsList="nodownload">  
-                  <source src="https://www.dropbox.com/scl/fi/1vkkor6dzwthp4ynboel2/07_Feelin__Your_Shiv.wav?rlkey=yx3tpzqdwh8r4osrhhprmwrtl&st=0omzc79a&raw=1" type="audio/wav">  
-                </audio>  
-              </div>  
-
-              <div class="playlist-track">  
-                <div class="track-meta">08 - As We Held Down Tempo</div>  
-                <audio class="audio-player-element" controls controlsList="nodownload">  
-                  <source src="https://www.dropbox.com/scl/fi/msszv4eg1ml1g33cu1a7m/08_As_We_Held__Down_Tempo.wav?rlkey=0k29mni4m9n1xjjerpzf5vlxe&st=1trr7ymu&raw=1" type="audio/wav">  
-                </audio>  
-              </div>  
-
-              <div class="playlist-track">  
-                <div class="track-meta">09 - Silver Screen Dreams</div>  
-                <audio class="audio-player-element" controls controlsList="nodownload">  
-                  <source src="https://www.dropbox.com/scl/fi/bl225ju3f4imcpg2y9cc4/09_Silver_Screen_Dreams.wav?rlkey=uz2un9738rd4zuprfcelvkn3z&st=epipin6z&raw=1" type="audio/wav">  
-                </audio>  
-              </div>  
-
-              <div class="playlist-track">  
-                <div class="track-meta">10 - To The Moon</div>  
-                <audio class="audio-player-element" controls controlsList="nodownload">  
-                  <source src="https://www.dropbox.com/scl/fi/npoyh4cakrqgc0vj4vau9/10_To_the_Moon.wav?rlkey=50wdy4gygapd918uqdfis8pre&st=farhhfnc&raw=1" type="audio/wav">  
-                </audio>  
-              </div>  
-
-              <div class="playlist-track">  
-                <div class="track-meta">11 - Lamp On Flawed King</div>  
-                <audio class="audio-player-element" controls controlsList="nodownload">  
-                  <source src="https://www.dropbox.com/scl/fi/gof4ocheipjzhbymd8xo8/11_Lamp_On__The_Flawed_King.wav?rlkey=xxmjc84e9ehxd93vyxwue9xal&st=47xxk5cs&raw=1" type="audio/wav">  
-                </audio>  
-              </div>  
-
-              <div class="playlist-track">  
-                <div class="track-meta">12 - Unbroken</div>  
-                <audio class="audio-player-element" controls controlsList="nodownload">  
-                  <source src="https://www.dropbox.com/scl/fi/pklc5mhizlmpas2idd5ft/12_Unbroken__Anthem.wav?rlkey=17ovu3fu4yyrj62bmrcj4eyoj&st=ogs5jk0b&raw=1" type="audio/wav">  
-                </audio>  
-              </div>  
-
-              <div class="playlist-track">  
-                <div class="track-meta">13 - Apes and Retards in Arms</div>  
-                <audio class="audio-player-element" controls controlsList="nodownload">  
-                  <source src="https://www.dropbox.com/scl/fi/5qxy6ftu2bk6vie6i6vc6/13_Apes_and_Retards_in_Arms.wav?rlkey=jq0bdzqnhfaw8yzhdxfvul4se&st=03y12f4r&raw=1" type="audio/wav">  
-                </audio>  
-              </div>  
-
-            </div>  
-            <div class="playlist-footer-branding">  
-              POSAA — Public Opinion. Speech. Antics. Assholery.  
-            </div>  
+        <div class="hero-content">  
+          <div class="hero-logo-wrap">  
+            <img id="logo-fallback" src="posaa.png" alt="$POSAA Logo" />  
+            <video id="logo-video" src="https://res.cloudinary.com/drdrwbdkp/video/upload/q_auto,f_auto/v1780555490/lv_0_20260603222327_pvsitr.mp4" autoplay muted loop playsinline preload="auto"></video>  
           </div>  
-
-          <div class="hero-content">  
-            <div class="hero-logo-wrap">  
-              <img id="logo-fallback" src="posaa.png" alt="$POSAA Logo" />  
-              <video id="logo-video" src="https://res.cloudinary.com/drdrwbdkp/video/upload/q_auto,f_auto/v1780555490/lv_0_20260603222327_pvsitr.mp4" autoplay muted loop playsinline preload="auto"></video>  
-            </div>  
-
-            <div class="hero-token-name">$POSAA</div>  
-            <div class="hero-full-name">Public Opinion, Sentiment, Antics &amp; Assholery</div>  
-            <div class="hero-tagline">  
-              Reject echo chambers. Mock hypocrisy.<br/>  
-              <span>Speak the unfiltered truth — on-chain.</span>  
-            </div>  
+          <div class="hero-token-name">$POSAA</div>  
+          <div class="hero-full-name">Public Opinion, Sentiment, Antics &amp; Assholery</div>  
+          <div class="hero-tagline">  
+            Reject echo chambers. Mock hypocrisy.<br/>  
+            <span>Speak the unfiltered truth — on-chain.</span>  
           </div>  
-
         </div>  
       </section>  
     </div>  
@@ -974,7 +999,8 @@
           <div class="glass-card">  
             <div class="card-title">🚀 Mission</div>  
             <div class="card-body">  
-              <ul>                <li>Champion maximal free expression through savage meme culture</li>  
+              <ul>
+                <li>Champion maximal free expression through savage meme culture</li>  
                 <li>Rally people tired of mainstream media spin, corporate dilutions, and moderation bias</li>  
                 <li>Create viral, controversial content that roasts daily headlines and hypocrisy</li>  
                 <li>Reward participation and creativity — not passive income, staking, or empty promises</li>  
@@ -1003,7 +1029,6 @@
             </ul>  
           </div>  
         </div>  
-
         <div class="roadmap-item reveal">  
           <div class="roadmap-dot" style="border-color:var(--violet);box-shadow:0 0 12px rgba(168,85,247,0.4);"></div>  
           <div class="roadmap-phase" style="color:var(--violet);">Phase 2 · Q2–Q4 2026</div>  
@@ -1018,7 +1043,6 @@
             </ul>  
           </div>  
         </div>  
-
         <div class="roadmap-item reveal">  
           <div class="roadmap-dot" style="border-color:var(--gold-soft);box-shadow:0 0 12px rgba(255,213,79,0.4);"></div>  
           <div class="roadmap-phase" style="color:var(--gold-soft);">Phase 3 · Ongoing</div>  
@@ -1037,7 +1061,6 @@
             <em>All aspirational items are illustrative only and do not guarantee outcomes.</em>  
           </div>  
         </div>  
-
         <div class="roadmap-item reveal">  
           <div class="roadmap-dot" style="border-color:#ff6666;box-shadow:0 0 12px rgba(255,100,100,0.4);"></div>  
           <div class="roadmap-phase" style="color:#ff9999;">Phase 4 · Beyond 2026</div>  
@@ -1122,13 +1145,11 @@
     <section class="ca-analytics-section" id="section-analytics">
       <h2 class="section-heading reveal">Market Analysis</h2>  
       <div class="section-divider"></div>  
-      
       <div class="ca-display-card reveal">
         <div class="ca-title-label">Official XRPL Contract Address</div>
         <div class="ca-hash-box" id="ca-value-string">rUHPgW3p3YzkndS1RZRy9f3xKPRLuzVZtM</div>
         <button class="ca-action-trigger" onclick="copyContractToClipboard()">Copy Token Address</button>
       </div>
-
       <div class="chart-embed-frame reveal">
         <iframe src="https://dexscreener.com/xrpl/504F534141000000000000000000000000000000.rUHPgW3p3YzkndS1RZRy9f3xKPRLuzVZtM_XRP?embed=1&theme=dark&trades=0&info=0"></iframe>
       </div>
@@ -1211,19 +1232,20 @@
       <div class="footer-logo">$POSAA</div>  
       <p class="footer-copy">© 2026 $POSAA Community. Public Opinion, Sentiment, Antics &amp; Assholery. Not financial advice.</p>  
     </footer>  
-  </div><div class="page" id="page-buy">  
+  </div>
+
+  <!-- BUY PAGE -->
+  <div class="page" id="page-buy">  
     <div class="coming-soon-page">  
       <div class="cs-glow"></div>  
       <div class="cs-icon">💎</div>  
       <div class="cs-title">SECURE ROUTERS</div>  
       <div class="cs-subtitle">Acquire $POSAA Safely on XRPL Networks</div>  
-      
       <div class="buy-hub-wrapper">  
         <a href="https://dexscreener.com/xrpl/504F534141000000000000000000000000000000.rUHPgW3p3YzkndS1RZRy9f3xKPRLuzVZtM_XRP" target="_blank" rel="noopener" class="platform-link-btn">Buy on DexScreener</a>  
         <a href="https://firstledger.net/token/rUHPgW3p3YzkndS1RZRy9f3xKPRLuzVZtM/504F534141000000000000000000000000000000" target="_blank" rel="noopener" class="platform-link-btn">Buy on First Ledger</a>  
         <a href="https://xpmarket.com/dex/POSAA-rUHPgW3p3YzkndS1RZRy9f3xKPRLuzVZtM/XRP?trade=market" target="_blank" rel="noopener" class="platform-link-btn">Buy on XPMarket</a>  
       </div>  
-
       <p class="cs-desc" style="margin-top:25px; font-size:0.85rem; color:var(--gray);">  
         Always confirm contract validity. 0% network tax architecture enabled natively.  
       </p>  
@@ -1234,106 +1256,29 @@
     </footer>  
   </div>  
 
+  <!-- AUDIO PAGE -->
   <div class="page" id="page-audio">  
     <div class="coming-soon-page">  
       <div class="cs-glow"></div>  
       <div class="cs-icon">🎵</div>  
       <div class="cs-title">POSAA AUDIO</div>  
       <div class="cs-subtitle">Unfiltered Sound Waves Streamed On-Chain</div>  
-      
       <div class="mobile-audio-container" style="max-height: 520px; overflow-y: auto;">  
-        
-        <div class="playlist-track" style="text-align: left;">  
-          <div class="track-meta">01 - Oh No He's at It Again</div>  
-          <audio class="audio-player-element" controls controlsList="nodownload">  
-            <source src="https://www.dropbox.com/scl/fi/qgaqut3u3cesxie1vqf5o/01_Oh_No_He_s_At_It_Again__Corporate_Games.wav?rlkey=ioxse68nv88f7y7jp8t6yqw3y&st=k0s2f5jr&raw=1" type="audio/wav">  
-          </audio>  
-        </div>  
-
-        <div class="playlist-track" style="text-align: left;">  
-          <div class="track-meta">02 - Ooops He Diluted Again</div>  
-          <audio class="audio-player-element" controls controlsList="nodownload">  
-            <source src="https://www.dropbox.com/scl/fi/2n0rqac5f1yuehm8j0e0j/02_Ooops_He_s_Not_that_Innocent.wav?rlkey=s3r4kqv21zx5pqezftxex4wy8&st=jfu9yvjx&raw=1" type="audio/wav">  
-          </audio>  
-        </div>  
-
-        <div class="playlist-track" style="text-align: left;">  
-          <div class="track-meta">03 - Na-Na-Na-Na Lets Roll</div>  
-          <audio class="audio-player-element" controls controlsList="nodownload">  
-            <source src="https://www.dropbox.com/scl/fi/x1lg4rvfd3009kq40jbeh/03_Na_Na_Na_Na.wav?rlkey=vx2dcvxj9vl432duz8wk42twn&st=uvtavdmi&raw=1" type="audio/wav">  
-          </audio>  
-        </div>  
-
-        <div class="playlist-track" style="text-align: left;">  
-          <div class="track-meta">04 - A Movie Company Glow</div>  
-          <audio class="audio-player-element" controls controlsList="nodownload">  
-            <source src="https://www.dropbox.com/scl/fi/8zqyp60gj3cthkpiyd367/04_2021_Dreams.wav?rlkey=8lc59lvkw10r5lebde82r6ofc&st=nh9s68fa&raw=1" type="audio/wav">  
-          </audio>  
-        </div>  
-
-        <div class="playlist-track" style="text-align: left;">  
-          <div class="track-meta">05 - The Knells of Christmas</div>  
-          <audio class="audio-player-element" controls controlsList="nodownload">  
-            <source src="https://www.dropbox.com/scl/fi/x192n206tey9ul14dat3t/05_Apes_Fairy_Tale_Christmas.wav?rlkey=p95z33pbw95ff1rcc0v2k0a1t&st=ewpo0z02&raw=1" type="audio/wav">  
-          </audio>  
-        </div>  
-
-        <div class="playlist-track" style="text-align: left;">  
-          <div class="track-meta">06 - Echoes of the Market</div>  
-          <audio class="audio-player-element" controls controlsList="nodownload">  
-            <source src="https://www.dropbox.com/scl/fi/styowc42qa726owg5oevj/Amy-Hurt-Me.mp3?rlkey=g66s0ir3nlmu6fvlhpht1xuvy&st=pyovos3t&raw=1" type="audio/mpeg">  
-          </audio>  
-        </div>  
-
-        <div class="playlist-track" style="text-align: left;">  
-          <div class="track-meta">07 - Feelin Your Shiv</div>  
-          <audio class="audio-player-element" controls controlsList="nodownload">  
-            <source src="https://www.dropbox.com/scl/fi/1vkkor6dzwthp4ynboel2/07_Feelin__Your_Shiv.wav?rlkey=yx3tpzqdwh8r4osrhhprmwrtl&st=0omzc79a&raw=1" type="audio/wav">  
-          </audio>  
-        </div>  
-
-        <div class="playlist-track" style="text-align: left;">  
-          <div class="track-meta">08 - As We Held Down Tempo</div>  
-          <audio class="audio-player-element" controls controlsList="nodownload">  
-            <source src="https://www.dropbox.com/scl/fi/msszv4eg1ml1g33cu1a7m/08_As_We_Held__Down_Tempo.wav?rlkey=0k29mni4m9n1xjjerpzf5vlxe&st=1trr7ymu&raw=1" type="audio/wav">  
-          </audio>  
-        </div>  
-
-        <div class="playlist-track" style="text-align: left;">  
-          <div class="track-meta">09 - Silver Screen Dreams</div>  
-          <audio class="audio-player-element" controls controlsList="nodownload">  
-            <source src="https://www.dropbox.com/scl/fi/bl225ju3f4imcpg2y9cc4/09_Silver_Screen_Dreams.wav?rlkey=uz2un9738rd4zuprfcelvkn3z&st=epipin6z&raw=1" type="audio/wav">  
-          </audio>  
-        </div>  
-
-        <div class="playlist-track" style="text-align: left;">  
-          <div class="track-meta">10 - To The Moon</div>  
-          <audio class="audio-player-element" controls controlsList="nodownload">  
-            <source src="https://www.dropbox.com/scl/fi/npoyh4cakrqgc0vj4vau9/10_To_the_Moon.wav?rlkey=50wdy4gygapd918uqdfis8pre&st=farhhfnc&raw=1" type="audio/wav">  
-          </audio>  
-        </div>  
-
-        <div class="playlist-track" style="text-align: left;">  
-          <div class="track-meta">11 - Lamp On Flawed King</div>  
-          <audio class="audio-player-element" controls controlsList="nodownload">  
-            <source src="https://www.dropbox.com/scl/fi/gof4ocheipjzhbymd8xo8/11_Lamp_On__The_Flawed_King.wav?rlkey=xxmjc84e9ehxd93vyxwue9xal&st=47xxk5cs&raw=1" type="audio/wav">  
-          </audio>  
-        </div>  
-
-        <div class="playlist-track" style="text-align: left;">  
-          <div class="track-meta">12 - Unbroken</div>  
-          <audio class="audio-player-element" controls controlsList="nodownload">  
-            <source src="https://www.dropbox.com/scl/fi/pklc5mhizlmpas2idd5ft/12_Unbroken__Anthem.wav?rlkey=17ovu3fu4yyrj62bmrcj4eyoj&st=ogs5jk0b&raw=1" type="audio/wav">  
-          </audio>  
-        </div>  
-
-        <div class="playlist-track" style="text-align: left;">  
-          <div class="track-meta">13 - Apes and Retards in Arms</div>  
-          <audio class="audio-player-element" controls controlsList="nodownload">  
-            <source src="https://www.dropbox.com/scl/fi/5qxy6ftu2bk6vie6i6vc6/13_Apes_and_Retards_in_Arms.wav?rlkey=jq0bdzqnhfaw8yzhdxfvul4se&st=03y12f4r&raw=1" type="audio/wav">  
-          </audio>  
-        </div>  
-
+        <div class="playlist-track" style="text-align: left;"><div class="track-meta">01 - Oh No He's at It Again</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-01_Oh_No_He_s_At_It_Again__Corporate_Games_wdvmcr.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align: left;"><div class="track-meta">02 - Ooops He Diluted Again</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161158/-02_Ooops_He_s_Not_that_Innocent_rhb6s8.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align: left;"><div class="track-meta">03 - Na-Na-Na-Na Lets Roll</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161157/-03_Na_Na_Na_Na_zkgr9z.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align: left;"><div class="track-meta">04 - A Movie Company Glow</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-04_2021_Dreams_iaamek.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align: left;"><div class="track-meta">05 - The Knells of Christmas</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161178/-05_Apes_Fairy_Tale_Christmas_be6cg6.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align: left;"><div class="track-meta">06 - Echoes of the Market</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161151/Amy_Hurt_Me_vlhoas.mp3" type="audio/mpeg"></audio></div>
+        <div class="playlist-track" style="text-align: left;"><div class="track-meta">07 - Feelin Your Shiv</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-07_Feelin__Your_Shiv_morxoj.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align: left;"><div class="track-meta">08 - As We Held Down Tempo</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161157/-08_As_We_Held__Down_Tempo_pkrbgr.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align: left;"><div class="track-meta">09 - Silver Screen Dreams</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161160/-09_Silver_Screen_Dreams_j8f2rk.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align: left;"><div class="track-meta">10 - To The Moon</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161154/-10_To_the_Moon_luoi6u.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align: left;"><div class="track-meta">11 - Lamp On Flawed King</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161158/-11_Lamp_On__The_Flawed_King_f2xaaw.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align: left;"><div class="track-meta">12 - Unbroken</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161154/-12_Unbroken__Anthem_f8ur1e.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align: left;"><div class="track-meta">13 - Apes and Retards in Arms</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161177/-13_Apes_and_Retards_in_Arms_hydamw.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align: left;"><div class="track-meta">14 - Hurt It's Gonna Take a Lotta Love</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161152/Hurt_It_s_Gonna_Take_a_Lotta_Love_umm7of.mp3" type="audio/mpeg"></audio></div>
+        <div class="playlist-track" style="text-align: left;"><div class="track-meta">15 - Hodl My Shot</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161147/Hodl_My_Shot_i5dg2m.mp3" type="audio/mpeg"></audio></div>
       </div>  
       <p class="cs-desc" style="margin-top:20px;">More dynamic tracking metrics updating real-time.</p>  
     </div>  
@@ -1343,6 +1288,7 @@
     </footer>  
   </div>  
 
+  <!-- YOUTUBE PAGE -->
   <div class="page" id="page-youtube">  
     <div class="coming-soon-page">  
       <div class="cs-glow"></div>  
@@ -1363,6 +1309,7 @@
     </footer>  
   </div>  
 
+  <!-- GAME PAGE -->
   <div class="page" id="page-game">  
     <div class="coming-soon-page">  
       <div class="cs-glow" style="background:radial-gradient(circle, rgba(244,180,0,0.12) 0%, transparent 70%);"></div>  
@@ -1384,6 +1331,7 @@
     </footer>  
   </div>  
 
+  <!-- WHITEPAPER MODAL -->
   <div class="modal-overlay" id="whitepaper-modal" onclick="handleModalOverlayClick(event)">  
     <div class="modal-box">  
       <div class="modal-header">  
@@ -1424,7 +1372,6 @@
   </div>  
 
   <script>  
-  // ── DESKTOP LAYOUT DETECTION ──  
   function applyDesktopLayout() {  
     if (window.innerWidth >= 769) {  
       document.body.classList.add('desktop-layout');  
@@ -1435,11 +1382,9 @@
   applyDesktopLayout();  
   window.addEventListener('resize', applyDesktopLayout);  
     
-  // ── PAGE NAVIGATION ──  
   function showPage(id) {  
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));  
     document.getElementById('page-' + id).classList.add('active');  
-    
     ['home','buy','audio','youtube','game'].forEach(n => {  
       const el = document.getElementById('nav-' + n);  
       if (el) el.classList.toggle('active', n === id);  
@@ -1448,17 +1393,12 @@
       const el = document.getElementById('dnav-' + n);  
       if (el) el.classList.toggle('active', n === id);  
     });  
-
     const headerBuyBtn = document.getElementById('header-buy-trigger');  
-    if (headerBuyBtn) {  
-      headerBuyBtn.classList.toggle('active', id === 'buy');  
-    }  
-
+    if (headerBuyBtn) headerBuyBtn.classList.toggle('active', id === 'buy');  
     window.scrollTo(0, 0);  
     if (id === 'home') drawDonut();  
   }  
     
-  // ── SCROLL TO SECTION ──  
   function scrollToSection(id) {  
     showPage('home');  
     setTimeout(() => {  
@@ -1467,12 +1407,10 @@
     }, 50);  
   }  
     
-  // ── MOBILE MENU ──  
   function toggleMobileMenu() {  
     document.getElementById('mobile-menu').classList.toggle('open');  
   }  
     
-  // ── COPY CONTRACT MECHANISM ──  
   function copyContractToClipboard() {  
     const caString = "rUHPgW3p3YzkndS1RZRy9f3xKPRLuzVZtM";  
     navigator.clipboard.writeText(caString).then(() => {  
@@ -1488,7 +1426,6 @@
     setTimeout(() => t.classList.remove('show'), 2500);  
   }  
     
-  // ── COMING SOON MODAL ──  
   function showComingSoonAlert() {  
     document.getElementById('cs-modal').classList.add('open');  
   }  
@@ -1498,7 +1435,6 @@
     }  
   }  
     
-  // ── WHITEPAPER MODAL ──  
   let wpPage = 1; const wpTotal = 7;  
   function openWhitepaperModal() {  
     wpPage = 1; updateWpModal();  
@@ -1532,7 +1468,6 @@
     }  
   });  
     
-  // ── DONUT CHART ──  
   function drawDonut() {  
     const canvas = document.getElementById('donutChart');  
     if (!canvas) return;  
@@ -1567,7 +1502,6 @@
   }  
   window.addEventListener('load', drawDonut);  
     
-  // ── VIDEO FIX — Logo ──  
   function forcePlay(videoEl) {  
     if (!videoEl) return;  
     const promise = videoEl.play();  
@@ -1584,13 +1518,11 @@
   window.addEventListener('load', function () {  
     const logoVideo = document.getElementById('logo-video');  
     const logoFallback = document.getElementById('logo-fallback');  
-    
     if (logoVideo) {  
       logoVideo.addEventListener('error', function () {  
         logoVideo.style.display = 'none';  
         logoFallback.style.display = 'block';  
       });  
-    
       logoVideo.addEventListener('stalled', function () {  
         setTimeout(function () {  
           if (logoVideo.readyState === 0) {  
@@ -1599,7 +1531,6 @@
           }  
         }, 60000);  
       });  
-    
       logoVideo.addEventListener('canplay', function () {  
         forcePlay(logoVideo);  
       });  
@@ -1607,7 +1538,6 @@
     }  
   });  
     
-  // ── PARTICLES ──  
   (function() {  
     const canvas = document.getElementById('particles-canvas');  
     const ctx = canvas.getContext('2d');  
@@ -1636,7 +1566,6 @@
     frame();  
   })();  
     
-  // ── SCROLL REVEAL ──  
   const revealObserver = new IntersectionObserver((entries) => {  
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });  
   }, { threshold: 0.12 });  
