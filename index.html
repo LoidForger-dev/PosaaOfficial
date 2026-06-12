@@ -374,7 +374,7 @@
       text-transform: uppercase; flex-shrink: 0;  
     }  
 
-    /* ══ BUY PAGE — REDESIGNED ══ */
+    /* ══ BUY PAGE ══ */
     .buy-page-wrap {
       position: relative; z-index: 1;
       min-height: 100vh;
@@ -398,7 +398,6 @@
       text-align: center; margin-bottom: 2.5rem;
     }
 
-    /* How-to Steps */
     .how-to-container {
       max-width: 720px; margin: 0 auto 2.5rem;
     }
@@ -438,7 +437,6 @@
       font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #ffaa66; line-height: 1.5;
     }
 
-    /* Contract address display in buy page */
     .buy-ca-box {
       max-width: 720px; margin: 0 auto 0.5rem;
       background: rgba(15,15,15,0.85);
@@ -463,7 +461,6 @@
     }
     .buy-ca-copy:hover { background: var(--gold); color: var(--black); }
 
-    /* Wallet download buttons */
     .wallet-download-section {
       max-width: 720px; margin: 0 auto 2.5rem;
     }
@@ -495,7 +492,6 @@
     }
     .wallet-icon { font-size: 1.3rem; }
 
-    /* Security tips box */
     .security-box {
       max-width: 720px; margin: 0 auto 2.5rem;
       background: rgba(10,10,10,0.8); border: 1px solid rgba(255,180,0,0.15);
@@ -514,7 +510,6 @@
     }
     .security-list li::before { content: '🔒 '; }
 
-    /* Buy platform buttons */
     .buy-platforms-section {
       max-width: 720px; margin: 0 auto 2rem;
     }
@@ -785,6 +780,7 @@
 
   <canvas id="particles-canvas"></canvas>
 
+  <!-- MOBILE NAV -->
   <nav>  
     <a href="#" class="nav-logo" onclick="showPage('home')">$POSAA</a>  
     <div class="nav-links">  
@@ -797,14 +793,17 @@
     <div class="hamburger" onclick="toggleMobileMenu()" id="hamburger">  
       <span></span><span></span><span></span>  
     </div>  
-  </nav>  
+  </nav>
+
+  <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobile-menu">  
     <a href="#" onclick="showPage('home');toggleMobileMenu()">Home</a>  
     <a href="#" onclick="showPage('audio');toggleMobileMenu()">POSAA Audio</a>  
     <a href="#" onclick="showPage('youtube');toggleMobileMenu()">YouTube & Contest</a>  
     <a href="#" onclick="showPage('game');toggleMobileMenu()">Game</a>  
+    <a href="#" onclick="showPage('nft');toggleMobileMenu()">NFTs</a>
     <a href="#" onclick="openWhitepaperModal();toggleMobileMenu()">📄 Whitepaper</a>  
-  </div>  
+  </div>
 
   <!-- DESKTOP TOP BAR -->
   <div class="desktop-topbar" id="desktop-topbar">  
@@ -829,16 +828,15 @@
       <div class="playlist-track"><div class="track-meta">03 - Na-Na-Na-Na Lets Roll</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161157/-03_Na_Na_Na_Na_zkgr9z.wav" type="audio/wav"></audio></div>
       <div class="playlist-track"><div class="track-meta">04 - A Movie Company Glow</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-04_2021_Dreams_iaamek.wav" type="audio/wav"></audio></div>
       <div class="playlist-track"><div class="track-meta">05 - The Knells of Christmas</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161178/-05_Apes_Fairy_Tale_Christmas_be6cg6.wav" type="audio/wav"></audio></div>
-      <div class="playlist-track"><div class="track-meta">06 - Echoes of the Market</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161151/Amy_Hurt_Me_vlhoas.mp3" type="audio/mpeg"></audio></div>
-      <div class="playlist-track"><div class="track-meta">07 - Feelin Your Shiv</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-07_Feelin__Your_Shiv_morxoj.wav" type="audio/wav"></audio></div>
-      <div class="playlist-track"><div class="track-meta">08 - As We Held Down Tempo</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161157/-08_As_We_Held__Down_Tempo_pkrbgr.wav" type="audio/wav"></audio></div>
-      <div class="playlist-track"><div class="track-meta">09 - Silver Screen Dreams</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161160/-09_Silver_Screen_Dreams_j8f2rk.wav" type="audio/wav"></audio></div>
-      <div class="playlist-track"><div class="track-meta">10 - To The Moon</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161154/-10_To_the_Moon_luoi6u.wav" type="audio/wav"></audio></div>
-      <div class="playlist-track"><div class="track-meta">11 - Lamp On Flawed King</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161158/-11_Lamp_On__The_Flawed_King_f2xaaw.wav" type="audio/wav"></audio></div>
-      <div class="playlist-track"><div class="track-meta">12 - Unbroken</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161154/-12_Unbroken__Anthem_f8ur1e.wav" type="audio/wav"></audio></div>
-      <div class="playlist-track"><div class="track-meta">13 - Apes and Retards in Arms</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161177/-13_Apes_and_Retards_in_Arms_hydamw.wav" type="audio/wav"></audio></div>
-      <div class="playlist-track"><div class="track-meta">14 - Hurt It's Gonna Take a Lotta Love</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161152/Hurt_It_s_Gonna_Take_a_Lotta_Love_umm7of.mp3" type="audio/mpeg"></audio></div>
-      <div class="playlist-track"><div class="track-meta">15 - Hodl My Shot</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161147/Hodl_My_Shot_i5dg2m.mp3" type="audio/mpeg"></audio></div>
+      <div class="playlist-track"><div class="track-meta">06 - Feelin Your Shiv</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-07_Feelin__Your_Shiv_morxoj.wav" type="audio/wav"></audio></div>
+      <div class="playlist-track"><div class="track-meta">07 - As We Held Down Tempo</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161157/-08_As_We_Held__Down_Tempo_pkrbgr.wav" type="audio/wav"></audio></div>
+      <div class="playlist-track"><div class="track-meta">08 - Silver Screen Dreams</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161160/-09_Silver_Screen_Dreams_j8f2rk.wav" type="audio/wav"></audio></div>
+      <div class="playlist-track"><div class="track-meta">09 - To The Moon</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161154/-10_To_the_Moon_luoi6u.wav" type="audio/wav"></audio></div>
+      <div class="playlist-track"><div class="track-meta">10 - Lamp On Flawed King</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161158/-11_Lamp_On__The_Flawed_King_f2xaaw.wav" type="audio/wav"></audio></div>
+      <div class="playlist-track"><div class="track-meta">11 - Unbroken</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161154/-12_Unbroken__Anthem_f8ur1e.wav" type="audio/wav"></audio></div>
+      <div class="playlist-track"><div class="track-meta">12 - Apes and Retards in Arms</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161177/-13_Apes_and_Retards_in_Arms_hydamw.wav" type="audio/wav"></audio></div>
+      <div class="playlist-track"><div class="track-meta">13 - Hurt It's Gonna Take a Lotta Love</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161152/Hurt_It_s_Gonna_Take_a_Lotta_Love_umm7of.mp3" type="audio/mpeg"></audio></div>
+      <div class="playlist-track"><div class="track-meta">14 - Hodl My Shot</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161147/Hodl_My_Shot_i5dg2m.mp3" type="audio/mpeg"></audio></div>
     </div>
     <div class="playlist-footer-branding">POSAA — Public Opinion. Speech. Antics. Assholery.</div>
   </div>
@@ -854,9 +852,10 @@
     <a href="#" onclick="scrollToSection('analytics')">Live Chart</a>  
     <a href="#" onclick="scrollToSection('community')">Community</a>  
     <div class="sidenav-divider"></div>  
-    <a href="#" onclick="showPage('game')" id="dnav-game">Games</a>  
+    <a href="#" onclick="showPage('game')" id="dnav-game">Games</a>
+    <a href="#" onclick="showPage('nft')" id="dnav-nft">NFTs</a>
     <a href="#" onclick="showPage('youtube')" id="dnav-youtube">Challenges</a>  
-  </div>  
+  </div>
 
   <!-- ═══════════════════════════════════════ -->
   <!-- HOME PAGE -->
@@ -876,7 +875,6 @@
             Reject echo chambers. Mock hypocrisy.<br/>  
             <span>Speak the unfiltered truth — on-chain.</span>  
           </div>
-          <!-- MOBILE-ONLY BUY BUTTON IN HERO -->
           <button class="mobile-hero-buy-btn" onclick="showPage('buy')">💎 Buy $POSAA</button>
         </div>  
       </section>  
@@ -1032,16 +1030,14 @@
   </div>
 
   <!-- ═══════════════════════════════════════ -->
-  <!-- BUY PAGE — REDESIGNED -->
+  <!-- BUY PAGE -->
   <!-- ═══════════════════════════════════════ -->
   <div class="page" id="page-buy">  
     <div class="buy-page-wrap">
       <div class="buy-page-heading">Buy $POSAA</div>
       <div class="buy-page-sub">Step-by-step guide to getting started on XRPL</div>
 
-      <!-- HOW TO BUY STEPS -->
       <div class="how-to-container">
-
         <div class="how-to-step">
           <div class="step-number">01</div>
           <div class="step-content">
@@ -1049,9 +1045,8 @@
             <div class="step-desc">To interact with $POSAA, you need a compatible XRP Ledger wallet. Download your preferred wallet from its official source using the buttons below and complete installation.</div>
           </div>
         </div>
-
       </div>
-      <!-- WALLET DOWNLOAD BUTTONS — below step 1 -->
+
       <div class="wallet-download-section">
         <div class="wallet-section-label">📲 Download a Wallet</div>
         <div class="wallet-btn-row">
@@ -1063,8 +1058,8 @@
           </a>
         </div>
       </div>
-      <div class="how-to-container" style="margin-top:0;">
 
+      <div class="how-to-container" style="margin-top:0;">
         <div class="how-to-step">
           <div class="step-number">02</div>
           <div class="step-content">
@@ -1125,11 +1120,8 @@
             <div class="step-desc">After interacting with the XRP Ledger, monitor your wallet activity through your wallet app and supported XRPL explorers. Transaction records are permanently recorded on-chain.</div>
           </div>
         </div>
-
       </div>
-      <!-- END STEPS -->
 
-      <!-- SECURITY TIPS -->
       <div class="security-box">
         <div class="security-box-title">🛡️ Security Best Practices</div>
         <ul class="security-list">
@@ -1141,7 +1133,6 @@
         </ul>
       </div>
 
-      <!-- CONTRACT ADDRESS -->
       <div class="buy-ca-box">
         <div class="buy-ca-label">Official $POSAA Issuer Address</div>
         <div class="buy-ca-value">rUHPgW3p3YzkndS1RZRy9f3xKPRLuzVZtM</div>
@@ -1149,7 +1140,6 @@
       </div>
       <p style="text-align:center;font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--gray);margin-bottom:2rem;">Always verify this address before trading.</p>
 
-      <!-- BUY PLATFORM BUTTONS -->
       <div class="buy-platforms-section">
         <div class="platforms-label">🛒 Trade $POSAA — Choose a Platform</div>
         <a href="https://firstledger.net/token/rUHPgW3p3YzkndS1RZRy9f3xKPRLuzVZtM/504F534141000000000000000000000000000000" target="_blank" rel="noopener" class="platform-link-btn">Buy on First Ledger</a>
@@ -1158,7 +1148,6 @@
       </div>
 
       <p style="text-align:center;font-family:'Inter',sans-serif;font-size:0.82rem;color:var(--gray);padding-bottom:2rem;">Always confirm contract validity. 0% network tax architecture enabled natively. Not financial advice.</p>
-
     </div>
     <footer>  
       <div class="footer-logo">$POSAA</div>  
@@ -1166,7 +1155,9 @@
     </footer>  
   </div>  
 
+  <!-- ═══════════════════════════════════════ -->
   <!-- AUDIO PAGE -->
+  <!-- ═══════════════════════════════════════ -->
   <div class="page" id="page-audio">  
     <div class="coming-soon-page">  
       <div class="cs-glow"></div>  
@@ -1179,23 +1170,24 @@
         <div class="playlist-track" style="text-align:left;"><div class="track-meta">03 - Na-Na-Na-Na Lets Roll</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161157/-03_Na_Na_Na_Na_zkgr9z.wav" type="audio/wav"></audio></div>
         <div class="playlist-track" style="text-align:left;"><div class="track-meta">04 - A Movie Company Glow</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-04_2021_Dreams_iaamek.wav" type="audio/wav"></audio></div>
         <div class="playlist-track" style="text-align:left;"><div class="track-meta">05 - The Knells of Christmas</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161178/-05_Apes_Fairy_Tale_Christmas_be6cg6.wav" type="audio/wav"></audio></div>
-        <div class="playlist-track" style="text-align:left;"><div class="track-meta">06 - Echoes of the Market</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161151/Amy_Hurt_Me_vlhoas.mp3" type="audio/mpeg"></audio></div>
-        <div class="playlist-track" style="text-align:left;"><div class="track-meta">07 - Feelin Your Shiv</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-07_Feelin__Your_Shiv_morxoj.wav" type="audio/wav"></audio></div>
-        <div class="playlist-track" style="text-align:left;"><div class="track-meta">08 - As We Held Down Tempo</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161157/-08_As_We_Held__Down_Tempo_pkrbgr.wav" type="audio/wav"></audio></div>
-        <div class="playlist-track" style="text-align:left;"><div class="track-meta">09 - Silver Screen Dreams</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161160/-09_Silver_Screen_Dreams_j8f2rk.wav" type="audio/wav"></audio></div>
-        <div class="playlist-track" style="text-align:left;"><div class="track-meta">10 - To The Moon</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161154/-10_To_the_Moon_luoi6u.wav" type="audio/wav"></audio></div>
-        <div class="playlist-track" style="text-align:left;"><div class="track-meta">11 - Lamp On Flawed King</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161158/-11_Lamp_On__The_Flawed_King_f2xaaw.wav" type="audio/wav"></audio></div>
-        <div class="playlist-track" style="text-align:left;"><div class="track-meta">12 - Unbroken</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161154/-12_Unbroken__Anthem_f8ur1e.wav" type="audio/wav"></audio></div>
-        <div class="playlist-track" style="text-align:left;"><div class="track-meta">13 - Apes and Retards in Arms</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161177/-13_Apes_and_Retards_in_Arms_hydamw.wav" type="audio/wav"></audio></div>
-        <div class="playlist-track" style="text-align:left;"><div class="track-meta">14 - Hurt It's Gonna Take a Lotta Love</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161152/Hurt_It_s_Gonna_Take_a_Lotta_Love_umm7of.mp3" type="audio/mpeg"></audio></div>
-        <div class="playlist-track" style="text-align:left;"><div class="track-meta">15 - Hodl My Shot</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161147/Hodl_My_Shot_i5dg2m.mp3" type="audio/mpeg"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">06 - Feelin Your Shiv</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161153/-07_Feelin__Your_Shiv_morxoj.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">07 - As We Held Down Tempo</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161157/-08_As_We_Held__Down_Tempo_pkrbgr.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">08 - Silver Screen Dreams</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161160/-09_Silver_Screen_Dreams_j8f2rk.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">09 - To The Moon</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161154/-10_To_the_Moon_luoi6u.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">10 - Lamp On Flawed King</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161158/-11_Lamp_On__The_Flawed_King_f2xaaw.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">11 - Unbroken</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161154/-12_Unbroken__Anthem_f8ur1e.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">12 - Apes and Retards in Arms</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161177/-13_Apes_and_Retards_in_Arms_hydamw.wav" type="audio/wav"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">13 - Hurt It's Gonna Take a Lotta Love</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161152/Hurt_It_s_Gonna_Take_a_Lotta_Love_umm7of.mp3" type="audio/mpeg"></audio></div>
+        <div class="playlist-track" style="text-align:left;"><div class="track-meta">14 - Hodl My Shot</div><audio class="audio-player-element" controls controlsList="nodownload"><source src="https://res.cloudinary.com/drdrwbdkp/video/upload/v1781161147/Hodl_My_Shot_i5dg2m.mp3" type="audio/mpeg"></audio></div>
       </div>  
       <p class="cs-desc" style="margin-top:20px;">More dynamic tracking metrics updating real-time.</p>  
     </div>  
     <footer><div class="footer-logo">$POSAA</div><p class="footer-copy">© 2026 $POSAA Community. Not financial advice.</p></footer>  
   </div>  
 
-  <!-- YOUTUBE PAGE -->
+  <!-- ═══════════════════════════════════════ -->
+  <!-- YOUTUBE / CONTESTS PAGE -->
+  <!-- ═══════════════════════════════════════ -->
   <div class="page" id="page-youtube">
     <div style="padding: 120px 5% 60px;">
       <h2 class="section-heading reveal">Contests & Challenges</h2>
@@ -1227,7 +1219,7 @@
           </div>
         </div>
 
-        <div class="glass-card reveal" style="grid-column: span 1;">
+        <div class="glass-card reveal">
           <div class="card-title">Challenge 3: Viral Meme Challenge</div>
           <div class="card-body">
             <p>Create and share original POSAA memes on X. The first original meme to reach 1,000 likes or reposts wins.</p>
@@ -1249,39 +1241,49 @@
     <footer><div class="footer-logo">$POSAA</div><p class="footer-copy">© 2026 $POSAA Community. Not financial advice.</p></footer>
   </div>
 
-  <!-- GAME & NFT PAGE -->
+  <!-- ═══════════════════════════════════════ -->
+  <!-- GAME PAGE -->
+  <!-- ═══════════════════════════════════════ -->
   <div class="page" id="page-game">  
     <div class="coming-soon-page">  
-      <div class="cs-glow" style="background:radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%);"></div>  
-      
+      <div class="cs-glow" style="background:radial-gradient(circle, rgba(244,180,0,0.12) 0%, transparent 70%);"></div>  
       <div class="cs-icon">🎮</div>  
-      <div class="cs-title">Games & NFTs</div>  
-      <div class="cs-subtitle" style="color: var(--gold);">Coming Soon</div>  
-      
-      <div class="cs-desc" style="margin-bottom: 2rem;">
-        We are building a decentralized ecosystem where gaming meets digital ownership. Prepare for exclusive $POSAA-themed NFT drops and a community-driven experience where your assets grant you power in the boardroom battle.
-      </div>
+      <div class="cs-title">The Ape Game</div>  
+      <div class="cs-subtitle">Community-Driven. Battle-Ready.</div>  
+      <p class="cs-desc">The community-driven video game where apes battle diluted corporate undead is in development. Prepare to storm the boardrooms, expose the frauds, and earn your place in the hall of based legends.</p>  
+      <div style="margin-top:2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">  
+        <a href="https://x.com/Posaa_xrpl" target="_blank" rel="noopener" class="comm-btn comm-btn-x" style="display:inline-flex;">𝕏 Stay Updated</a>  
+        <a href="https://t.me/POSAA_XRPL" target="_blank" rel="noopener" class="comm-btn comm-btn-tg" style="display:inline-flex;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.94 8.19l-2.02 9.52c-.15.67-.54.84-1.09.52l-3-2.21-1.45 1.4c-.16.16-.29.29-.6.29l.21-3.02 5.5-4.97c.24-.21-.05-.33-.37-.12l-6.8 4.28-2.93-.91c-.64-.2-.65-.64.13-.95l11.42-4.4c.53-.19 1 .13.8.57z"/></svg>Join Telegram</a>  
+      </div>  
+    </div>  
+    <footer><div class="footer-logo">$POSAA</div><p class="footer-copy">© 2026 $POSAA Community. Not financial advice.</p></footer>  
+  </div>
 
-      <!-- Feature Grid for Coming Soon -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; width: 100%; max-width: 700px; margin-bottom: 2.5rem;">
-        <div class="glass-card" style="padding: 1rem;">
-          <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">⚔️</div>
-          <div style="font-family:'Rajdhani',sans-serif;font-weight:700;color:var(--white);">Game Architecture</div>
-        </div>
-        <div class="glass-card" style="padding: 1rem;">
-          <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🎨</div>
+  <!-- ═══════════════════════════════════════ -->
+  <!-- NFT PAGE -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="page" id="page-nft">  
+    <div class="coming-soon-page">  
+      <div class="cs-glow" style="background:radial-gradient(circle, rgba(123,47,255,0.15) 0%, transparent 70%);"></div>  
+      <div class="cs-icon">🖼️</div>  
+      <div class="cs-title">NFT Collection</div>  
+      <div class="cs-subtitle">Coming Soon</div>  
+      <p class="cs-desc">Exclusive digital collectibles featuring $POSAA lore and based legends are currently in the workshop. High-fidelity assets coming to the XRPL soon.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;width:100%;max-width:700px;margin:2rem 0 2.5rem;">
+        <div class="glass-card" style="padding:1rem;">
+          <div style="font-size:1.5rem;margin-bottom:0.5rem;">🎨</div>
           <div style="font-family:'Rajdhani',sans-serif;font-weight:700;color:var(--white);">Exclusive NFTs</div>
         </div>
-        <div class="glass-card" style="padding: 1rem;">
-          <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">💎</div>
+        <div class="glass-card" style="padding:1rem;">
+          <div style="font-size:1.5rem;margin-bottom:0.5rem;">💎</div>
           <div style="font-family:'Rajdhani',sans-serif;font-weight:700;color:var(--white);">Utility Rewards</div>
         </div>
       </div>
 
-      <p class="cs-desc">Stay tuned to our official channels for development updates, character reveals, and whitelist opportunities.</p>  
-      
+      <p class="cs-desc">Stay tuned to our official channels for development updates, character reveals, and whitelist opportunities.</p>
       <div style="margin-top:2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">  
-        <a href="https://x.com/Posaa_xrpl" target="_blank" rel="noopener" class="comm-btn comm-btn-x" style="display:inline-flex;">𝕏 Get Notified</a>  
+        <a href="https://x.com/Posaa_xrpl" target="_blank" rel="noopener" class="comm-btn comm-btn-x" style="display:inline-flex;">𝕏 Watch for Drops</a>  
         <a href="https://t.me/POSAA_XRPL" target="_blank" rel="noopener" class="comm-btn comm-btn-tg" style="display:inline-flex;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.94 8.19l-2.02 9.52c-.15.67-.54.84-1.09.52l-3-2.21-1.45 1.4c-.16.16-.29.29-.6.29l.21-3.02 5.5-4.97c.24-.21-.05-.33-.37-.12l-6.8 4.28-2.93-.91c-.64-.2-.65-.64.13-.95l11.42-4.4c.53-.19 1 .13.8.57z"/></svg>Join Community</a>  
       </div>  
     </div>  
@@ -1340,11 +1342,11 @@
   function showPage(id) {  
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));  
     document.getElementById('page-' + id).classList.add('active');  
-    ['home','buy','audio','youtube','game'].forEach(n => {  
+    ['home','buy','audio','youtube','game','nft'].forEach(n => {  
       const el = document.getElementById('nav-' + n);  
       if (el) el.classList.toggle('active', n === id);  
     });  
-    ['home','buy','audio','youtube','game'].forEach(n => {  
+    ['home','buy','audio','youtube','game','nft'].forEach(n => {  
       const el = document.getElementById('dnav-' + n);  
       if (el) el.classList.toggle('active', n === id);  
     });  
@@ -1501,22 +1503,17 @@
   const revealObserver = new IntersectionObserver((entries) => {  
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });  
   }, { threshold: 0.12 });  
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));  
-    // ... your existing scripts ...
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
   // Audio Exclusive Playback Logic
   document.addEventListener('play', function(e) {
-    // Check if the element played is an audio player
     if (e.target.tagName === 'AUDIO') {
       const allAudio = document.querySelectorAll('audio');
       allAudio.forEach(audio => {
-        // Pause all other audio elements except the one that just started
-        if (audio !== e.target) {
-          audio.pause();
-        }
+        if (audio !== e.target) audio.pause();
       });
     }
-  }, true); // The 'true' capture phase ensures we catch the event before it bubbles
+  }, true);
   </script>  
 </body>  
 </html>
